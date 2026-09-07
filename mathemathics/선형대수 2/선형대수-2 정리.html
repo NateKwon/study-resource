@@ -531,6 +531,96 @@
 
       </div>
 
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #1 · Nul A, Col A, Ker T &amp; Eigenvector/Eigenvalue (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body"><p>For the matrix $A=\begin{bmatrix}-6&12\\-3&6\end{bmatrix}$, let $x$ be the vector $\begin{bmatrix}2\\1\end{bmatrix}$. Is $x \in \operatorname{Nul} A$? Why or why not? Is $x \in \operatorname{Col} A$? Why or why not? Is $x$ an eigenvector of $A$? Why or why not?</p></div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$Ax$를 직접 계산해보고, $A$의 두 열벡터 사이의 관계(선형종속 여부)를 살펴보라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer/Hint 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>Nul A:</strong> $Ax=\begin{bmatrix}-6(2)+12(1)\\-3(2)+6(1)\end{bmatrix}=\begin{bmatrix}0\\0\end{bmatrix}$이므로 <strong>$x \in \operatorname{Nul} A$ (Yes)</strong>.</p>
+                <p><strong>Col A:</strong> 두 번째 열 $\begin{bmatrix}12\\6\end{bmatrix}=-2\begin{bmatrix}-6\\-3\end{bmatrix}$이므로 두 열이 선형종속이고, $\operatorname{Col} A=\operatorname{span}\left\{\begin{bmatrix}-6\\-3\end{bmatrix}\right\}=\operatorname{span}\left\{\begin{bmatrix}2\\1\end{bmatrix}\right\}$ (첫 열이 $x$의 $-3$배). 따라서 <strong>$x \in \operatorname{Col} A$ (Yes)</strong>.</p>
+                <p><strong>Eigenvector 여부:</strong> $Ax=0=0\cdot x$이고 $x \ne 0$이므로 <strong>$x$는 $\lambda=0$에 대응하는 고유벡터이다 (Yes)</strong>.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer/Hint): "Yes for both Nul A and Col A. Explain why. Since $Ax=0$, $x$ is an eigenvector corresponding to eigenvalue what?, So the answer is Yes again."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body"><p>Find a spanning set for $\operatorname{Nul} A$ where $A=\begin{bmatrix}1&3&5&0\\0&1&4&-2\end{bmatrix}$.</p></div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$Ax=0$을 풀되 $x_3, x_4$를 자유변수로 두고 $x_1, x_2$를 표현하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기</summary>
+              <div class="toggle-body">
+                <p>2행: $x_2+4x_3-2x_4=0 \Rightarrow x_2=-4x_3+2x_4$.</p>
+                <p>1행: $x_1+3x_2+5x_3=0 \Rightarrow x_1=-3x_2-5x_3=7x_3-6x_4$.</p>
+                <p>$x=x_3\begin{bmatrix}7\\-4\\1\\0\end{bmatrix}+x_4\begin{bmatrix}-6\\2\\0\\1\end{bmatrix}$이므로 spanning set은</p>
+                $$\left\{\begin{bmatrix}7\\-4\\1\\0\end{bmatrix},\ \begin{bmatrix}-6\\2\\0\\1\end{bmatrix}\right\}$$
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 3</div>
+          <div class="q-body"><p>Find $A$ such that the given set is $\operatorname{Col} A$:</p>
+          $$\left\{\begin{bmatrix}b-c\\2b+c+d\\5c-4d\\d\end{bmatrix} : b,c,d \text{ real}\right\}$$
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$b,c,d$ 각각의 계수를 뽑아내면 그것이 $A$의 각 열이 된다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기</summary>
+              <div class="toggle-body">
+                <p>$b$의 계수 열: $(1,2,0,0)$, $c$의 계수 열: $(-1,1,5,0)$, $d$의 계수 열: $(0,1,-4,1)$.</p>
+                $$A=\begin{bmatrix}1&-1&0\\2&1&1\\0&5&-4\\0&0&1\end{bmatrix}$$
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 4</div>
+          <div class="q-body"><p>Let $T: V \to W$ be a linear transformation from a vector space $V$ into a vector space $W$. Prove that $\operatorname{Ker} T$ is a subspace of $V$.</p></div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>부분공간 판정 3조건(영벡터 포함, 덧셈에 닫힘, 스칼라배에 닫힘)을 하나씩 확인하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기</summary>
+              <div class="toggle-body">
+                <p class="sol-step">(1) $T(0)=0$이므로 $0 \in \operatorname{Ker} T$.</p>
+                <p class="sol-step">(2) $u,v \in \operatorname{Ker} T$이면 $T(u+v)=T(u)+T(v)=0+0=0$이므로 $u+v \in \operatorname{Ker} T$ (덧셈에 닫힘).</p>
+                <p class="sol-step">(3) $u \in \operatorname{Ker} T$, 스칼라 $c$에 대해 $T(cu)=cT(u)=c\cdot 0=0$이므로 $cu \in \operatorname{Ker} T$ (스칼라배에 닫힘).</p>
+                <p>세 조건을 모두 만족하므로 $\operatorname{Ker} T$는 $V$의 부분공간이다. $\square$</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Practice_problems_#1_NulA_ColA_KerT_eigenvector_eigenvalue.pdf</code> — pp. 1–2 전체 (문제 + Answers/Hints)</p>
+      </div>
+
     </div>
   </div>
 
