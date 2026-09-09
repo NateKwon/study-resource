@@ -621,6 +621,68 @@
         <p>📄 <code>Practice_problems_#1_NulA_ColA_KerT_eigenvector_eigenvalue.pdf</code> — pp. 1–2 전체 (문제 + Answers/Hints)</p>
       </div>
 
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #2 · Characteristic Equation (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body">
+            <p>True or False. Justify.</p>
+            <ol type="a">
+              <li>If $Ax = \lambda x$ for some scalar $\lambda$, then $x$ is an eigenvector of $A$.</li>
+              <li>The eigenvalues of a matrix are on its main diagonal.</li>
+              <li>To find the eigenvalues of $A$, reduce $A$ to echelon form.</li>
+              <li>For a matrix $A \in \mathbb{R}^{n\times n}$, $A$ and $A^T$ have the same set of eigenvalues.</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>(a)~(c)는 고유벡터·고유값의 정의와 판정 조건을 정확히 다시 떠올려보라. (d)는 $\det M=\det M^T$를 이용하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(a) False.</strong> $x=0$이면 임의의 $\lambda$에 대해 $Ax=\lambda x$가 항상 성립하지만, $0$은 정의상 고유벡터가 될 수 없다 ($x \ne 0$ 조건이 빠져 있음).</p>
+                <p><strong>(b) False.</strong> 대각선 위에 고유값이 오는 것은 <em>삼각행렬(triangular matrix)</em>일 때만 성립하는 특수한 경우이며, 일반적인 행렬에서는 성립하지 않는다.</p>
+                <p><strong>(c) False.</strong> 행 축소(echelon form으로의 변형)는 일반적으로 고유값을 보존하지 않는다. 고유값은 $\det(A-\lambda I)=0$을 풀어서 구해야 한다.</p>
+                <p><strong>(d) True.</strong> $\det M=\det M^T$이므로 $\det(A-\lambda I)=\det\big((A-\lambda I)^T\big)=\det(A^T-\lambda I)$. 즉 $A$와 $A^T$는 같은 특성다항식을 가지므로 같은 고유값 집합을 갖는다.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "(a) F, (b) F, (c) F (justify them!) (d) T (Hint: Since $\det M=\det M^T$, $\det(A-\lambda I)=\det(A-\lambda I)^T$. What is $(M+N)^T$?)"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body"><p>Find the characteristic polynomial:</p>
+          $$\begin{bmatrix}6&-2&0\\-2&9&0\\5&8&3\end{bmatrix}$$
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>세 번째 열에 0이 두 개 있으므로, $\det(A-\lambda I)$를 세 번째 열을 따라 여인수 전개(cofactor expansion)하면 계산이 간단해진다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기</summary>
+              <div class="toggle-body">
+                $$A-\lambda I=\begin{bmatrix}6-\lambda&-2&0\\-2&9-\lambda&0\\5&8&3-\lambda\end{bmatrix}$$
+                <p>세 번째 열을 따라 전개하면:</p>
+                $$\det(A-\lambda I)=(3-\lambda)\det\begin{bmatrix}6-\lambda&-2\\-2&9-\lambda\end{bmatrix}=(3-\lambda)\big[(6-\lambda)(9-\lambda)-4\big]$$
+                $$=(3-\lambda)(\lambda^2-15\lambda+50)=-\lambda^3+18\lambda^2-95\lambda+150$$
+                <p>참고로 $\lambda^2-15\lambda+50=(\lambda-5)(\lambda-10)$이므로, 고유값은 $\lambda=3,\,5,\,10$이다.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Practice_problems#2_char_eqn.pdf</code> — pp. 1–2 전체 (문제 + Answers/Hints)</p>
+      </div>
+
     </div>
   </div>
 
