@@ -372,6 +372,9 @@
   <ul>
     <li><div id="nav-section-label">고유값과 고유벡터</div></li>
     <li><a href="#c1">Class 1 · Eigenvalues &amp; Eigenvectors</a></li>
+    <li class="nav-divider"></li>
+    <li><div id="nav-section-label">특성방정식</div></li>
+    <li><a href="#c2">Class 2 · Characteristic Equation</a></li>
   </ul>
 </nav>
 
@@ -379,7 +382,7 @@
 <main id="main">
 
   <h1 class="page-title">선형대수 2 공부 노트</h1>
-  <p class="page-subtitle">Class #1 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
+  <p class="page-subtitle">Class #1~2 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
 
   <!-- ────────── CLASS 1 ────────── -->
   <div class="section" id="c1">
@@ -621,6 +624,102 @@
         <p>📄 <code>Practice_problems_#1_NulA_ColA_KerT_eigenvector_eigenvalue.pdf</code> — pp. 1–2 전체 (문제 + Answers/Hints)</p>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 2 ────────── -->
+  <div class="section" id="c2">
+    <div class="section-header">
+      <span class="class-num">Class 2</span>
+      특성방정식 (Characteristic Equation)
+    </div>
+    <div class="section-body">
+
+      <h3>1. 정의 — 특성방정식과 특성다항식</h3>
+      <div class="def-block">
+        <div class="label">정의 (Characteristic Equation / Polynomial)</div>
+        <p>방정식 $\det(A-\lambda I) = 0$을 $A$의 <strong>특성방정식(characteristic equation)</strong>이라 하고, 이를 전개한 다항식 $\det(A-\lambda I)$를 $A$의 <strong>특성다항식(characteristic polynomial)</strong>이라 한다.</p>
+      </div>
+      <div class="note-block">
+        <div class="label">Class 1과의 연결</div>
+        <p>$\lambda$가 $A$의 고유값이다 $\iff \det(A-\lambda I)=0$, 즉 $\lambda$가 $A$의 고유값이다 $\iff$ $\lambda$가 <strong>특성다항식의 근(root)</strong>이다. (Class 1의 고유값 판정 조건을 특성다항식의 언어로 다시 쓴 것이다.)</p>
+      </div>
+
+      <h3>2. 예제 — 특성다항식으로 고유값 구하기</h3>
+      <div class="example-block">
+        <div class="label">예제 1 — 3×3 행렬의 모든 고유값 구하기</div>
+        <p>$A=\begin{bmatrix}3&-5&1\\1&0&2\\0&-1&1\end{bmatrix}$의 모든 고유값을 구하라.</p>
+        $$A-\lambda I = \begin{bmatrix}3-\lambda&-5&1\\1&-\lambda&2\\0&-1&1-\lambda\end{bmatrix}$$
+        <p>세 번째 행에 $0$이 있으므로 그 행을 따라 여인수 전개(cofactor expansion)한다.</p>
+        <p class="sol-step">$a_{32}$의 여인수: $(-1)^{3+2}\det\begin{bmatrix}3-\lambda&1\\1&2\end{bmatrix} = -\big[2(3-\lambda)-1\big] = 2\lambda-5$</p>
+        <p class="sol-step">$a_{33}$의 여인수: $(-1)^{3+3}\det\begin{bmatrix}3-\lambda&-5\\1&-\lambda\end{bmatrix} = \lambda^2-3\lambda+5$</p>
+        <p class="sol-step">$\det(A-\lambda I) = a_{32}\cdot(2\lambda-5) + a_{33}\cdot(\lambda^2-3\lambda+5) = (-1)(2\lambda-5)+(1-\lambda)(\lambda^2-3\lambda+5) = -\lambda^3+4\lambda^2-10\lambda+10$</p>
+        <p>따라서 특성방정식은 $\lambda^3-4\lambda^2+10\lambda-10=0$이다. 유리근 정리(rational root theorem)로 $\pm1,\pm2,\pm5,\pm10$을 대입해도 정수 근이 없다.</p>
+        <p>게다가 $f(\lambda)=\lambda^3-4\lambda^2+10\lambda-10$의 도함수 $f'(\lambda)=3\lambda^2-8\lambda+10$은 판별식이 $64-120=-56<0$이라 항상 양수이다 — 즉 $f$는 순증가함수이므로 <strong>실근은 정확히 하나뿐</strong>이다($\lambda\approx1.63$). 나머지 두 근은 서로 켤레인 <strong>복소수(complex conjugate pair)</strong>이다. 이는 아래 4번 — "실수 행렬도 복소수 고유값을 가질 수 있다" — 를 보여주는 구체적인 예이다.</p>
+      </div>
+
+      <h3>3. 대수적 중복도 (Algebraic Multiplicity)</h3>
+      <div class="def-block">
+        <div class="label">정의 (Algebraic Multiplicity)</div>
+        <p>어떤 고유값 $\lambda$가 특성다항식의 근으로서 나타나는 횟수를 $\lambda$의 <strong>대수적 중복도(algebraic multiplicity)</strong>라 한다.</p>
+      </div>
+      <div class="note-block">
+        <div class="label">기하 중복도와의 구분</div>
+        <p>Class 1에서 다룬 <strong>기하 중복도(geometric multiplicity)</strong> = $\dim(\text{고유공간}) = \operatorname{nullity}(A-\lambda I)$와는 별개의 개념이다. 일반적으로 기하 중복도 $\le$ 대수적 중복도가 성립한다.</p>
+      </div>
+      <div class="example-block">
+        <div class="label">예제 2 — 항등행렬의 고유값과 대수적 중복도</div>
+        <p>$n\times n$ 항등행렬 $I$의 고유값과 대수적 중복도를 구하라.</p>
+        <p>$\det(I-\lambda I) = \det\big((1-\lambda)I\big) = (1-\lambda)^n = 0$이므로, 고유값은 <strong>$\lambda=1$ 하나뿐</strong>이고 그 <strong>대수적 중복도는 $n$</strong>이다.</p>
+      </div>
+
+      <h3>4. 실수 $n\times n$ 행렬의 고유값 개수와 가역성</h3>
+      <div class="thm-block">
+        <div class="label">정리 — 고유값의 최대 개수</div>
+        <p>실수 $n\times n$ 행렬 $A$의 특성다항식은 <strong>차수(degree) $n$</strong>을 갖는다. 따라서 $A$는 (실수·복소수를 통틀어) <strong>최대 $n$개</strong>의 고유값을 가질 수 있고, 그중 <strong>최대 $n$개까지</strong> 실수 고유값일 수 있다.</p>
+      </div>
+      <div class="thm-block">
+        <div class="label">정리 — 가역성과 고유값</div>
+        <p>$A$가 <strong>가역(invertible)</strong>이다 $\iff$ $A$의 <strong>모든 고유값이 0이 아니다(nonzero)</strong>. ($0$이 고유값이면 $\det(A-0\cdot I)=\det A=0$이므로 $A$는 특이행렬이다.)</p>
+      </div>
+
+      <h3>5. 행 동치(Row Equivalence)와 고유값</h3>
+      <div class="example-block">
+        <div class="label">예제 3 — 행 축소는 고유값을 보존하지 않는다</div>
+        <p>$A=\begin{bmatrix}1&2\\2&4\end{bmatrix}$의 고유값과, 이를 행 축소($R_2\to R_2-2R_1$)한 $B=\begin{bmatrix}1&2\\0&0\end{bmatrix}$의 (삼각행렬이므로 대각원소인) "고유값"을 비교하라.</p>
+        <p>$A$의 특성방정식: $(1-\lambda)(4-\lambda)-4=\lambda^2-5\lambda=\lambda(\lambda-5)=0 \Rightarrow \lambda=0,\,5$.</p>
+        <p>$B$는 삼각행렬이므로 (Class 1 정리에 의해) 대각원소 $1,\,0$이 그대로 고유값이다.</p>
+        <p>두 집합 $\{0,5\}$와 $\{1,0\}$은 <strong>서로 다르다</strong>($5\ne1$) — 즉 <strong>$A$와 그 행 축소 행렬은 일반적으로 같은 고유값 집합을 갖지 않는다.</strong></p>
+        <p>그러나 두 집합 모두 $0$을 포함한다 — <strong>"$0$이 고유값인가"라는 정보만은 행 축소 전후로 보존된다</strong>. ($0$이 $A$의 고유값 $\iff \det A=0 \iff A$가 특이행렬 $\iff$ 행 축소 결과에 영행이 생김 $\iff$ $0$이 행 사다리꼴의 고유값.)</p>
+      </div>
+
+      <h3>6. 서로 다른 고유값에 대응하는 고유벡터의 선형독립성</h3>
+      <div class="thm-block">
+        <div class="label">정리</div>
+        <p>실수 $n\times n$ 행렬 $A$의 서로 다른(distinct) 고유값 $\lambda_1,\ldots,\lambda_k$ ($k\le n$)에 각각 대응하는 고유벡터를 $x_1,\ldots,x_k$라 하면, 집합 $\{x_1,\ldots,x_k\}$는 $\mathbb{R}^n$에서 <strong>선형독립(linearly independent)</strong>이다. 즉, <strong>서로 다른 고유값에 대응하는 고유벡터들은 선형독립이다.</strong></p>
+        <p style="margin-top:10px;"><strong>증명 (귀류법)</strong></p>
+        <p class="sol-step">$\{x_1,\ldots,x_k\}$가 선형종속이라 가정하자. 고유벡터는 $0$이 아니므로, 어떤 최소의 $p$가 존재하여 그 이전 벡터들 $x_1,\ldots,x_p$는 선형독립이지만 $x_{p+1}$은 이들의 일차결합으로 표현된다: $c_1x_1+\cdots+c_px_p=x_{p+1}$ … (∗)</p>
+        <p class="sol-step">양변에 $A$를 곱하면 $c_1\lambda_1x_1+\cdots+c_p\lambda_px_p=\lambda_{p+1}x_{p+1}$ … (∗∗)</p>
+        <p class="sol-step">(∗)의 양변에 $\lambda_{p+1}$을 곱하면 $c_1\lambda_{p+1}x_1+\cdots+c_p\lambda_{p+1}x_p=\lambda_{p+1}x_{p+1}$</p>
+        <p class="sol-step">(∗∗)에서 이 식을 빼면 $c_1(\lambda_1-\lambda_{p+1})x_1+\cdots+c_p(\lambda_p-\lambda_{p+1})x_p=0$</p>
+        <p class="sol-step">$x_1,\ldots,x_p$가 선형독립이고 $\lambda_i\ne\lambda_{p+1}$ ($i\le p$, 서로 다른 고유값이므로)이므로 모든 계수 $c_i=0$이어야 한다.</p>
+        <p class="sol-step">그러면 (∗)에 의해 $x_{p+1}=0$이 되는데, 이는 고유벡터가 $0$이 될 수 없다는 사실에 모순이다. 따라서 $\{x_1,\ldots,x_k\}$는 선형독립이다. $\blacksquare$</p>
+      </div>
+
+      <div class="deepdive-block">
+        <p class="deepdive-label">📐 개념 심화 — 특성방정식이 중요한 이유</p>
+        <p class="deepdive-intro"><strong>특성방정식은 "고유값을 어떻게 계산하는가"라는 질문에 대한 구체적인 답이다.</strong> Class 1이 고유값·고유벡터가 무엇인지 정의했다면, Class 2는 실제로 손으로 계산해서 찾아내는 도구($\det(A-\lambda I)=0$)를 제공한다.</p>
+        <div class="thm-block">
+          <div class="label">대수적 vs 기하 중복도</div>
+          <p>대수적 중복도(특성다항식에서의 근의 개수)와 기하 중복도(고유공간의 차원)가 항상 같은 것은 아니다. 이 둘이 <strong>일치하지 않는 경우가 대각화 불가능(non-diagonalizable) 행렬</strong>의 원인이 되며, 이는 다음 단계인 대각화 단원에서 핵심적으로 다뤄진다.</p>
+        </div>
+        <div class="note-block">
+          <div class="label">다음 내용과의 연결</div>
+          <p>서로 다른 고유값에 대응하는 고유벡터들이 선형독립이라는 정리(6번)는, $n\times n$ 행렬이 $n$개의 서로 다른 고유값을 가지면 자동으로 $n$개의 선형독립인 고유벡터를 얻는다는 뜻이다. 이는 <strong>대각화 $A=PDP^{-1}$</strong>가 가능하기 위한 충분조건으로 바로 이어진다.</p>
+        </div>
+        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#2-characteristic_equation_handout.pdf</code> — <strong>pp. 1–2 전체</strong><br><span class="pdf-ref-detail">p.1 특성방정식 정의 &amp; 예제 &amp; 대수적 중복도 · p.2 가역성 &amp; 행 동치와 고유값 &amp; 고유벡터의 선형독립성</span></div>
+      </div>
+
       <div class="practice-section">
         <div class="practice-label">📝 Practice Problems #2 · Characteristic Equation (영어 원문)</div>
 
@@ -681,6 +780,67 @@
       <div class="note-block">
         <div class="label">출처</div>
         <p>📄 <code>Practice_problems#2_char_eqn.pdf</code> — pp. 1–2 전체 (문제 + Answers/Hints)</p>
+      </div>
+
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #3 · Multiplicity, Eigenvalue &amp; Eigenvector (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body"><p>True or False. The following matrix has a zero eigenvalue.</p>
+          $$A=\begin{bmatrix}1&-4&9\\-1&2&-4\\5&-6&10\end{bmatrix}$$
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$0$이 고유값 $\iff$ $A$가 특이행렬(singular), 즉 $\det A=0$ 또는 열들이 선형종속인지 확인하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>True.</strong> $\det A$를 첫 행으로 여인수 전개하면</p>
+                $$\det A = 1(20-24)-(-4)(-10+20)+9(6-10) = -4+40-36 = 0$$
+                <p>$\det A=0$이므로 $A$는 특이행렬이고, 따라서 <strong>$\lambda=0$은 $A$의 고유값이다</strong>.</p>
+                <p>실제로 $Ax=0$을 풀면 $x=(2,5,2)$가 $\lambda=0$에 대응하는 고유벡터임을 확인할 수 있다 (검산: $A(2,5,2)^T=(0,0,0)^T$).</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "True. Why?"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body">
+            <p>In the following, show that (a) the given $\lambda$ is an eigenvalue of the given matrix $A$, (b) find a basis for the eigenspace corresponding to $\lambda$, (c) what is the geometric multiplicity of $\lambda$?, (d) give an eigenvector of $A$ corresponding to $\lambda$ other than your basis vectors.</p>
+            <p><strong>(2-1)</strong> $A=\begin{bmatrix}4&-2\\-3&9\end{bmatrix}, \ \lambda=10$</p>
+            <p><strong>(2-2)</strong> $A=\begin{bmatrix}4&2&3\\-1&1&-3\\2&4&9\end{bmatrix}, \ \lambda=3$</p>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$(A-\lambda I)$를 계산해서 행들 사이의 관계(선형종속 여부)를 먼저 살펴보면 행 축소 없이도 nontrivial 해의 존재를 알 수 있다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(2-1)</strong> $A-10I=\begin{bmatrix}-6&-2\\-3&-1\end{bmatrix}$. 둘째 행이 첫째 행의 $\tfrac12$배이므로 (a) nontrivial 해가 존재 → $\lambda=10$은 고유값이다. $-6x_1-2x_2=0 \Rightarrow x_2=-3x_1$이므로 (b) 고유공간의 기저는 $\left\{\begin{bmatrix}-1\\3\end{bmatrix}\right\}$, (c) 기하 중복도는 $1$, (d) 다른 고유벡터의 예: $\begin{bmatrix}-2\\6\end{bmatrix}$ (기저 벡터의 $2$배).</p>
+                <p><strong>(2-2)</strong> $A-3I=\begin{bmatrix}1&2&3\\-1&-2&-3\\2&4&6\end{bmatrix}$. 둘째 행 $=-1\times$첫째 행, 셋째 행 $=2\times$첫째 행이므로 (a) nontrivial 해가 존재 → $\lambda=3$은 고유값이다. $x_1+2x_2+3x_3=0$에서 $x_2,x_3$을 자유변수로 두면 (b) 기저는 $\left\{\begin{bmatrix}-2\\1\\0\end{bmatrix},\begin{bmatrix}-3\\0\\1\end{bmatrix}\right\}$, (c) 기하 중복도는 $2$, (d) 다른 고유벡터의 예: $\begin{bmatrix}-5\\1\\1\end{bmatrix}$ (두 기저 벡터의 합).</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "(a) Do something with $(A-\lambda I)$. (b) There can be many different answers... (c) (2-1) 1, (2-2) 2. (d) There can be infinitely many different answers..."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Practice_problems#3_multiplicity_eigenvalue_eigenvector.pdf</code> — pp. 1–2 전체 (문제 + Answers/Hints)</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#2-characteristic_equation_handout.pdf</code> — pp. 1–2 전체</p>
       </div>
 
     </div>
