@@ -384,6 +384,9 @@
     <li><div id="nav-section-label">대각화와 그 응용</div></li>
     <li><a href="#c3">Class 3 · Diagonalization</a></li>
     <li><a href="#c4">Class 4 · Eigenvectors &amp; Linear Transformations</a></li>
+    <li class="nav-divider"></li>
+    <li><div id="nav-section-label">복소 고유값</div></li>
+    <li><a href="#c5">Class 5 · Complex Eigenvalues</a></li>
   </ul>
 </nav>
 
@@ -391,7 +394,7 @@
 <main id="main">
 
   <h1 class="page-title">선형대수 2 공부 노트</h1>
-  <p class="page-subtitle">Class #1~4 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
+  <p class="page-subtitle">Class #1~5 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
 
   <!-- ────────── CLASS 1 ────────── -->
   <div class="section" id="c1">
@@ -1102,9 +1105,145 @@
         <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#4-Eigenvectors_and_Linear_Transformations_handout.pdf</code> — <strong>pp. 1–4 전체</strong><br><span class="pdf-ref-detail">p.1 행렬표현 정의 &amp; 예제 · p.2 다항식→R⁴ 변환 예제 · p.3 $B$-행렬 &amp; 상 계산 예제 · p.4 대각화 불가능 예제</span></div>
       </div>
 
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #6 · $B$-Matrix &amp; Diagonalizability (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body">
+            <p>Find the $B$-matrix for the transformation $x \mapsto Ax$, when $B=\{b_1,b_2\}$.</p>
+            $$A=\begin{bmatrix}3&4\\-1&-1\end{bmatrix}, \quad b_1=\begin{bmatrix}2\\-1\end{bmatrix}, \quad b_2=\begin{bmatrix}1\\2\end{bmatrix}$$
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$T(b_1)=Ab_1$을 먼저 계산해보라 — 혹시 $b_1$ 자신의 배수가 나오지 않는가?</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>$T(b_1)=Ab_1=\begin{bmatrix}3(2)+4(-1)\\-1(2)+(-1)(-1)\end{bmatrix}=\begin{bmatrix}2\\-1\end{bmatrix}=b_1$이므로 $[T(b_1)]_B=(1,0)$.</p>
+                <p>$T(b_2)=Ab_2=\begin{bmatrix}3(1)+4(2)\\-1(1)+(-1)(2)\end{bmatrix}=\begin{bmatrix}11\\-3\end{bmatrix}$. $c_1b_1+c_2b_2=(11,-3)$를 풀면 $2c_1+c_2=11,\ -c_1+2c_2=-3 \Rightarrow c_1=5,\,c_2=1$이므로 $[T(b_2)]_B=(5,1)$.</p>
+                <p>두 좌표벡터를 열로 배열하면</p>
+                $$[T]_B = \begin{bmatrix}1&5\\0&1\end{bmatrix}$$
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "If $T(x)=A(x)$, what's $T(b_1)$? Ans: $\begin{bmatrix}1&5\\0&1\end{bmatrix}$"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body">
+            <p>Consider the matrix</p>
+            $$A=\begin{bmatrix}4&3&1&1\\3&4&1&1\\1&1&4&3\\1&1&3&4\end{bmatrix}$$
+            <p>Suppose $T(x)=Ax$. Is there a basis $B$ such that $[T]_B$ is diagonal? If so, find the $B$-matrix for $T$. If not, say why.</p>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$A$가 대칭행렬(symmetric)임에 주목하라. 또한 $A$를 $2\times2$ 블록 $\begin{bmatrix}B&C\\C&B\end{bmatrix}$ 형태로 보면, $(x,x)$ 꼴과 $(x,-x)$ 꼴의 벡터를 이용해 고유값을 $B+C$, $B-C$의 고유값으로 분리할 수 있다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>$A$는 대칭행렬이므로 (스펙트럼 정리에 의해) <strong>항상 대각화 가능</strong>하다 — 즉 그런 기저 $B$가 존재한다.</p>
+                <p>$B=\begin{bmatrix}4&3\\3&4\end{bmatrix}$, $C=\begin{bmatrix}1&1\\1&1\end{bmatrix}$로 블록을 나누면, $B+C=\begin{bmatrix}5&4\\4&5\end{bmatrix}$의 고유값은 $9$ (고유벡터 $(1,1)$), $1$ (고유벡터 $(1,-1)$)이고, $B-C=\begin{bmatrix}3&2\\2&3\end{bmatrix}$의 고유값은 $5$ (고유벡터 $(1,1)$), $1$ (고유벡터 $(1,-1)$)이다.</p>
+                <p>$(x,x)$ 꼴 고유벡터는 $B+C$의 고유값을, $(x,-x)$ 꼴 고유벡터는 $B-C$의 고유값을 그대로 $A$의 고유값으로 갖는다:</p>
+                <p class="sol-step">$\lambda=9$: $(1,1,1,1)$ &nbsp;&nbsp; $\lambda=1$: $(1,-1,1,-1)$ &nbsp;&nbsp; $\lambda=5$: $(1,1,-1,-1)$ &nbsp;&nbsp; $\lambda=1$: $(1,-1,-1,1)$</p>
+                <p>검산: 고유값의 합 $9+1+5+1=16=\operatorname{tr}(A)$ ($4+4+4+4$). ✓ 네 고유벡터 모두 서로 선형독립이므로 $B=\{(1,1,1,1),(1,-1,1,-1),(1,1,-1,-1),(1,-1,-1,1)\}$을 기저로 택하면</p>
+                $$[T]_B = \begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&5&0\\0&0&0&9\end{bmatrix}$$
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "There can be many different answers. One possible answer: $[T]_B=\operatorname{diag}(1,1,5,9)$" (고유벡터의 순서·부호는 답마다 다를 수 있다.)</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
       <div class="note-block">
         <div class="label">출처</div>
         <p>📄 <code>Class#4-Eigenvectors_and_Linear_Transformations_handout.pdf</code> — pp. 1–4 전체</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 5 ────────── -->
+  <div class="section" id="c5">
+    <div class="section-header">
+      <span class="class-num">Class 5</span>
+      복소 고유값 (Complex Eigenvalues)
+    </div>
+    <div class="section-body">
+
+      <h3>1. 동기 — 실수 행렬의 복소 고유값</h3>
+      <p>실수 행렬(real matrix)이라도 특성방정식의 근이 복소수일 수 있다. 이 경우 고유벡터도 $\mathbb{C}^n$(복소벡터공간)에서 찾아야 한다.</p>
+
+      <div class="example-block">
+        <div class="label">예제 1 — $\mathbb{C}^2$에서 고유값·고유벡터 구하기</div>
+        <p>$A=\begin{bmatrix}1&-2\\1&3\end{bmatrix}$가 $\mathbb{C}^2$ 위에서 작용할 때, 고유값과 각 고유공간의 기저를 구하라.</p>
+        <p>특성방정식: $\det(A-\lambda I)=(1-\lambda)(3-\lambda)+2=\lambda^2-4\lambda+5=0$</p>
+        $$\lambda = \frac{4\pm\sqrt{16-20}}{2} = \frac{4\pm2i}{2} = 2\pm i$$
+        <p>$\lambda=2+i$: $(A-(2+i)I)=\begin{bmatrix}-1-i&-2\\1&1-i\end{bmatrix}$. 둘째 행에서 $x_1=(i-1)x_2$이므로 고유벡터 $\begin{bmatrix}-1+i\\1\end{bmatrix}$.</p>
+        <p>$\lambda=2-i$: $\lambda=2+i$의 켤레이므로 고유벡터도 켤레: $\begin{bmatrix}-1-i\\1\end{bmatrix}$.</p>
+        <p>고유공간의 기저: $\lambda=2+i$에 대해 $\left\{\begin{bmatrix}-1+i\\1\end{bmatrix}\right\}$, $\lambda=2-i$에 대해 $\left\{\begin{bmatrix}-1-i\\1\end{bmatrix}\right\}$.</p>
+      </div>
+
+      <h3>2. 회전과 확대·축소(Rotation-Scaling)</h3>
+      <p>$x\mapsto Ax$가 회전(rotation)과 확대·축소(scaling)의 합성으로 나타나는 특수한 경우가 있다.</p>
+      <div class="example-block">
+        <div class="label">예제 2 — 회전각과 배율 구하기</div>
+        <p>$A=\begin{bmatrix}\sqrt3&3\\-3&\sqrt3\end{bmatrix}$에 대해, 회전각 $\theta$ ($-\pi<\theta\le\pi$)와 배율(scale factor) $\gamma$를 구하라.</p>
+        <p>$A$는 $\begin{bmatrix}a&-b\\b&a\end{bmatrix}$ 꼴이므로 $a=\sqrt3,\ b=-3$. 고유값 $\lambda=a+bi=\sqrt3-3i$ (와 켤레 $\sqrt3+3i$).</p>
+        $$\gamma = |\lambda| = \sqrt{a^2+b^2} = \sqrt{3+9} = 2\sqrt3$$
+        <p>$\theta$는 $\lambda=\sqrt3-3i$의 편각(argument): 실수부 양수, 허수부 음수이므로 4사분면에 위치. $\tan\theta = -3/\sqrt3=-\sqrt3 \Rightarrow \theta=-\dfrac{\pi}{3}$.</p>
+        <p>검산: $\gamma\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix} = 2\sqrt3\begin{bmatrix}1/2&\sqrt3/2\\-\sqrt3/2&1/2\end{bmatrix} = \begin{bmatrix}\sqrt3&3\\-3&\sqrt3\end{bmatrix}=A$. ✓</p>
+      </div>
+
+      <div class="thm-block">
+        <div class="label">정리 — 회전-확대축소 행렬의 일반형</div>
+        <p>$A=\begin{bmatrix}a&-b\\b&a\end{bmatrix}$ ($a,b$는 실수이고 둘 다 $0$은 아님)이면 고유값은 $\lambda=a\pm bi$이다. $\gamma=|\lambda|=\sqrt{a^2+b^2}$로 두면</p>
+        $$A = \gamma\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$$
+        <p>이때 각 $\theta$를 $\lambda=a+bi$의 <strong>편각(argument)</strong>이라 한다.</p>
+      </div>
+
+      <h3>3. 일반적인 실수 $2\times2$ 행렬로 확장</h3>
+      <div class="note-block">
+        <div class="label">일반화</div>
+        <p>복소 고유값을 갖는 <strong>임의의 실수 $2\times2$ 행렬</strong>도, 적절한 기저(변수) 변경을 거치면 회전-확대축소의 합성이 된다 — 예제 2는 그 특수한 경우($A$ 자체가 이미 표준형)였을 뿐이다.</p>
+      </div>
+      <div class="thm-block">
+        <div class="label">정리</div>
+        <p>실수 $2\times2$ 행렬 $A$가 복소 고유값 $\lambda=a-bi$ ($b\ne0$)와 대응하는 고유벡터 $v\in\mathbb{C}^2$를 가지면,</p>
+        $$A = PCP^{-1}, \quad P=[\operatorname{Re}v \ \ \operatorname{Im}v], \quad C=\begin{bmatrix}a&-b\\b&a\end{bmatrix}$$
+        <p style="margin-top:10px;"><strong>증명 스케치</strong></p>
+        <p class="sol-step">(1) $A$는 실수 행렬이므로 임의의 $x\in\mathbb{C}^2$에 대해 $\operatorname{Re}(Ax)=A(\operatorname{Re}x)$, $\operatorname{Im}(Ax)=A(\operatorname{Im}x)$.</p>
+        <p class="sol-step">(2) $Av=\lambda v=(a-bi)(\operatorname{Re}v+i\operatorname{Im}v)$의 실수부·허수부를 (1)과 비교하면 $A(\operatorname{Re}v)=a\operatorname{Re}v+b\operatorname{Im}v$, $A(\operatorname{Im}v)=-b\operatorname{Re}v+a\operatorname{Im}v$.</p>
+        <p class="sol-step">(3) $P=[\operatorname{Re}v\ \operatorname{Im}v]$의 두 열에 대한 (2)의 관계식을 행렬 곱으로 다시 쓰면 정확히 $AP=PC$이고, $\operatorname{Re}v,\operatorname{Im}v$가 선형독립(따라서 $P$가 가역)이므로 $A=PCP^{-1}$. $\blacksquare$</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 3 — $3\times3$ 블록 구조에서의 복소 고유값</div>
+        <p>$A=\begin{bmatrix}1&-1&0\\1&1&0\\0&0&2\end{bmatrix}$의 고유값을 구하고 기하학적으로 해석하라.</p>
+        <p>$3$행·$3$열이 $(0,0,2)$뿐이므로, $A$는 $xy$-평면에 작용하는 $2\times2$ 블록 $\begin{bmatrix}1&-1\\1&1\end{bmatrix}$과 $z$축에 작용하는 스칼라 $2$로 분리된다.</p>
+        <p>$xy$-블록은 $a=1,b=1$ 형태이므로 고유값 $1\pm i$, $\gamma=\sqrt2$, $\theta=\arg(1+i)=\pi/4$. $z$축 방향은 고유값 $2$ (고유벡터 $(0,0,1)$).</p>
+        <p>따라서 $A$의 고유값은 $\{1+i,\ 1-i,\ 2\}$이며, 기하학적으로 $A$는 <strong>$xy$-평면에서 $45°$ 회전 후 $\sqrt2$배 확대</strong>하는 동시에 <strong>$z$축 방향으로는 $2$배 확대</strong>하는 변환이다.</p>
+      </div>
+
+      <div class="deepdive-block">
+        <p class="deepdive-label">📐 개념 심화 — 복소 고유값의 기하학적 의미</p>
+        <p class="deepdive-intro"><strong>실수 고유값은 "방향은 그대로, 크기만 변한다"였다면, 복소 고유값은 "방향이 회전하면서 크기도 변한다"는 뜻이다.</strong> $2\times2$ 실수 행렬이 켤레 복소 고유값 $a\pm bi$를 가지면, 그 행렬이 만드는 변환은 항상 회전-확대축소로 분해된다.</p>
+        <div class="note-block">
+          <div class="label">Class 1~4와의 연결</div>
+          <p>복소 고유값이 있어도 Class 2의 특성방정식, Class 3의 유사 대각화 아이디어, Class 4의 기저 변경 $A=PCP^{-1}$ 관점은 그대로 통한다 — 다만 대각행렬 $D$ 대신 회전-확대축소를 나타내는 $2\times2$ 블록 $C=\begin{bmatrix}a&-b\\b&a\end{bmatrix}$가 등장할 뿐이다.</p>
+        </div>
+        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#5-complex_eigenvalues_handout.pdf</code> — <strong>pp. 1–3 전체</strong><br><span class="pdf-ref-detail">p.1 $\mathbb{C}^2$에서의 고유값·고유벡터 &amp; 회전-확대축소 예제 · p.2 일반형 정리 &amp; $A=PCP^{-1}$ 정리·증명 · p.3 $3\times3$ 블록 예제</span></div>
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#5-complex_eigenvalues_handout.pdf</code> — pp. 1–3 전체</p>
       </div>
 
     </div>
