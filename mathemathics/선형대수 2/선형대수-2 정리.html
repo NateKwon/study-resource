@@ -387,6 +387,10 @@
     <li class="nav-divider"></li>
     <li><div id="nav-section-label">복소 고유값</div></li>
     <li><a href="#c5">Class 5 · Complex Eigenvalues</a></li>
+    <li class="nav-divider"></li>
+    <li><div id="nav-section-label">응용 — 동역학계 &amp; 미분방정식</div></li>
+    <li><a href="#c6">Class 6 · Discrete Dynamical Systems</a></li>
+    <li><a href="#c7">Class 7 · Applications to DE</a></li>
   </ul>
 </nav>
 
@@ -394,7 +398,7 @@
 <main id="main">
 
   <h1 class="page-title">선형대수 2 공부 노트</h1>
-  <p class="page-subtitle">Class #1~5 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
+  <p class="page-subtitle">Class #1~7 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
 
   <!-- ────────── CLASS 1 ────────── -->
   <div class="section" id="c1">
@@ -1293,9 +1297,292 @@
 
       </div>
 
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #8 · Rotation-Scaling &amp; $PCP^{-1}$ (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body">
+            <p>For the following matrices, give the angle $\theta$ of the rotation, where $-\pi<\theta\le\pi$, and give the scale factor $\gamma$.</p>
+            <p><strong>(a)</strong> $\begin{bmatrix}\sqrt3&-1\\1&\sqrt3\end{bmatrix}$ &nbsp;&nbsp; <strong>(b)</strong> $\begin{bmatrix}0&0.3\\-0.3&0\end{bmatrix}$</p>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$\begin{bmatrix}a&-b\\b&a\end{bmatrix}$ 꼴로 보고 $\gamma=\sqrt{a^2+b^2}$, $\theta=\arg(a+bi)$를 계산하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(a)</strong> $a=\sqrt3,\ b=1 \Rightarrow \gamma=\sqrt{3+1}=2$. $\tan\theta=1/\sqrt3 \Rightarrow \theta=\pi/6$ (1사분면).</p>
+                <p><strong>(b)</strong> $a=0,\ b=-0.3 \Rightarrow \gamma=\sqrt{0+0.09}=0.3$. $a+bi=-0.3i$는 음의 허수축 위에 있으므로 $\theta=-\pi/2$.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "(a) $\theta=\pi/6,\ \gamma=2$ (b) $\theta=-\pi/2,\ \gamma=0.3$"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body"><p>True or False. Justify: Let $A$ be a real $n\times n$ matrix and let $v$ in $\mathbb{C}^n$ be an eigenvector corresponding to a complex eigenvalue $\lambda$. For each nonzero complex scalar $\mu$, the vector $\mu v$ is also an eigenvector of $A$.</p></div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$A(\mu v)$를 직접 계산해보라. 고유벡터의 스칼라배 성질은 실수뿐 아니라 복소수 스칼라에 대해서도 성립한다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>True.</strong> $A(\mu v)=\mu(Av)=\mu(\lambda v)=\lambda(\mu v)$이고, $\mu\ne0,\ v\ne0$이므로 $\mu v\ne0$이다. 따라서 $\mu v$도 $\lambda$에 대응하는 고유벡터이다.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "True. Justify!"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 3</div>
+          <div class="q-body"><p>Find an invertible matrix $P$ and a matrix $C$ of the form $\begin{bmatrix}a&-b\\b&a\end{bmatrix}$ such that the given matrix has the form $A=PCP^{-1}$.</p>
+          $$A=\begin{bmatrix}1&5\\-2&3\end{bmatrix}$$
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>먼저 고유값 $\lambda=a-bi$ 하나를 구하고, Class 5의 정리대로 그 대응 고유벡터 $v$의 $[\operatorname{Re}v\ \operatorname{Im}v]$를 $P$로 두어라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>특성방정식: $(1-\lambda)(3-\lambda)+10=\lambda^2-4\lambda+13=0 \Rightarrow \lambda=2\pm3i$.</p>
+                <p>Class 5의 정리대로 $\lambda=a-bi=2-3i$ (즉 $a=2,b=3$)를 선택하면 $C=\begin{bmatrix}2&-3\\3&2\end{bmatrix}$.</p>
+                <p>$\lambda=2-3i$의 고유벡터: $(A-(2-3i)I)=\begin{bmatrix}-1+3i&5\\-2&1+3i\end{bmatrix}$에서 $x_1=(1+3i)/2\cdot x_2$. $x_2=2$로 두면 $v=(1+3i,\,2)$.</p>
+                <p>$P=[\operatorname{Re}v\ \ \operatorname{Im}v]=\begin{bmatrix}1&3\\2&0\end{bmatrix}$.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "One example is: $P=\begin{bmatrix}1&3\\2&0\end{bmatrix},\ C=\begin{bmatrix}2&-3\\3&2\end{bmatrix}$" (고유벡터는 무수히 많으므로 답은 유일하지 않다.)</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 4</div>
+          <div class="q-body"><p>Justify the following statement <em>without any calculation</em>: If $a$ and $b$ are real and $A=\begin{bmatrix}a&-b\\b&a\end{bmatrix}$, then the vectors $\begin{bmatrix}1\\-i\end{bmatrix}$ and $\begin{bmatrix}1\\i\end{bmatrix}$ must be eigenvectors of $A$.</p></div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>Class 5의 정리 $A=PCP^{-1}$에서, 이 $A$ 자체가 이미 $C=\begin{bmatrix}a&-b\\b&a\end{bmatrix}$ 꼴이다. 그렇다면 $P$로 무엇을 선택할 수 있는가?</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>$A$가 이미 $C=\begin{bmatrix}a&-b\\b&a\end{bmatrix}$ 꼴 그 자체이므로, Class 5의 정리 $A=PCP^{-1}$는 $P=I$를 선택해도 성립한다 ($A=ICI^{-1}=C=A$).</p>
+                <p>정리에 의하면 $P=[\operatorname{Re}v\ \ \operatorname{Im}v]$이므로, $P=I=[e_1\ e_2]$일 때 $\operatorname{Re}v=e_1=(1,0)$, $\operatorname{Im}v=e_2=(0,1)$, 즉 $v=(1,0)+i(0,1)=(1,i)$가 고유값 $a-bi$에 대응하는 고유벡터이다. 그 켤레 $\bar v=(1,-i)$는 자동으로 켤레 고유값 $a+bi$에 대응하는 고유벡터이다 — <strong>계산 없이</strong> 정리의 구조만으로 결론이 나온다.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "Just by looking at $A$, you can find the eigenvalues of $A$, yes? Note that $P=I$ in this case. Are the eigenvectors correct to be columns of the identity matrix that is $P$?"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
       <div class="note-block">
         <div class="label">출처</div>
         <p>📄 <code>Class#5-complex_eigenvalues_handout.pdf</code> — pp. 1–3 전체</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 6 ────────── -->
+  <div class="section" id="c6">
+    <div class="section-header">
+      <span class="class-num">Class 6</span>
+      이산 동역학계 (Discrete Dynamical Systems)
+    </div>
+    <div class="section-body">
+
+      <h3>1. 예제 — 인구 이동 모형 (도시 ↔ 교외)</h3>
+      <p>매년 도시 인구의 $4\%$가 교외로, 교외 인구의 $3\%$가 도시로 이동한다. 2026년 도시 인구 $600{,}000$명, 교외 인구 $400{,}000$명일 때, $x_0=(600000,\,400000)$으로 두고 차분방정식을 세워 2028년(2년 후) 인구를 추정하라.</p>
+      <div class="example-block">
+        <div class="label">풀이</div>
+        <p>도시 인구 중 $96\%$는 남고 교외에서 $3\%$가 유입: $x^{\text{city}}_{k+1}=0.96x^{\text{city}}_k+0.03x^{\text{suburb}}_k$. 교외는 도시에서 $4\%$ 유입, 자신의 $97\%$ 유지: $x^{\text{suburb}}_{k+1}=0.04x^{\text{city}}_k+0.97x^{\text{suburb}}_k$.</p>
+        $$x_{k+1}=Ax_k, \quad A=\begin{bmatrix}0.96&0.03\\0.04&0.97\end{bmatrix}$$
+        <p>$x_1=Ax_0=(0.96{\cdot}600000+0.03{\cdot}400000,\ 0.04{\cdot}600000+0.97{\cdot}400000)=(588000,\,412000)$</p>
+        <p>$x_2=Ax_1=(0.96{\cdot}588000+0.03{\cdot}412000,\ 0.04{\cdot}588000+0.97{\cdot}412000)=(576840,\,423160)$</p>
+        <p>따라서 2028년 도시 인구 $\approx576{,}840$명, 교외 인구 $\approx423{,}160$명이다 (총합 $1{,}000{,}000$명으로 보존됨을 검산할 수 있다).</p>
+      </div>
+
+      <h3>2. 예제 — 포식자-피식자 모형 (올빼미-쥐)</h3>
+      <p>$O_k$: $k$개월째 올빼미 수, $R_k$: $k$개월째 쥐 수(천 마리 단위). (1) 쥐가 없으면 올빼미는 매달 절반만 생존. (2) 올빼미가 없으면 쥐는 매달 $10\%$ 증가. (3) 쥐가 풍부하면 올빼미는 $0.4R_k$만큼 증가. (4) 매달 $0.104O_k$마리(천 마리 단위)의 쥐가 잡아먹힘.</p>
+      <div class="def-block">
+        <div class="label">차분방정식</div>
+        $$\begin{bmatrix}O_{k+1}\\R_{k+1}\end{bmatrix} = \begin{bmatrix}0.5&0.4\\-0.104&1.1\end{bmatrix}\begin{bmatrix}O_k\\R_k\end{bmatrix}$$
+      </div>
+
+      <h3>3. 일반 이론 — 두 실수 고유값을 가질 때</h3>
+      <div class="thm-block">
+        <div class="label">정리</div>
+        <p>서로 다른 두 실수 고유값 $\lambda_1,\lambda_2$ (고유벡터 $v_1,v_2$)를 가질 때, 일반해는 $x_k=c_1\lambda_1^k v_1+c_2\lambda_2^k v_2$이다.</p>
+        <p><strong>(경우 1)</strong> $|\lambda_1|>1,\ |\lambda_2|<1$이면, $k\to\infty$일 때 $\lambda_2^k\to0$이므로 $x_k \approx c_1\lambda_1^k v_1$ — 즉 해는 결국 <strong>$v_1$ 방향으로 수렴하며 $\lambda_1$배씩 성장</strong>한다.</p>
+        <p><strong>(경우 2)</strong> $|\lambda_1|<1,\ |\lambda_2|<1$이면 (둘 다 $1$보다 작으면), $x_k\to 0$ — 즉 <strong>초기값과 무관하게 결국 소멸</strong>한다.</p>
+      </div>
+      <div class="example-block">
+        <div class="label">예제 — 성장 vs 소멸 illustrating the theorem</div>
+        <p>고유값이 $1.05$(고유벡터 $(6,13)$)와 $0.55$라면: 지배적 고유값이 $1.05=1+5\%$이므로 두 개체군은 결국 <strong>매년 $5\%$씩 성장</strong>하며, 개체수 비율은 고유벡터 성분비인 <strong>올빼미 $6$ : 쥐(천 마리) $13$</strong>에 수렴한다.</p>
+        <p>반대로 고유값이 $0.9$와 $0.7$처럼 <strong>둘 다 $1$보다 작으면</strong>, 초기 개체수가 얼마든 두 개체군 모두 결국 <strong>$0$으로 소멸</strong>한다.</p>
+      </div>
+
+      <h3>4. 예제 — $3\times3$ 시스템의 특수한 경우</h3>
+      <div class="example-block">
+        <div class="label">예제 — 초기값이 정확히 하나의 고유벡터인 경우</div>
+        <p>$3\times3$ 행렬 $A$의 고유값이 $3,\ 4/5,\ 3/5$이고 대응 고유벡터가 각각 $v_1=(1,0,-3)$, $v_2=(2,1,-5)$, $v_3=(-2,-5,3)$이다. $x_0=(-2,-5,3)$일 때 $x_{k+1}=Ax_k$의 해를 구하고 $k\to\infty$일 때의 거동을 설명하라.</p>
+        <p>$x_0=(-2,-5,3)$는 정확히 $v_3$ 자신이다! 따라서 일반적인 세 항의 결합이 필요 없이, $c_1=c_2=0,\ c_3=1$인 자명한(그리고 유일한) 경우이다:</p>
+        $$x_k = \left(\frac{3}{5}\right)^k v_3 = \left(\frac{3}{5}\right)^k\begin{bmatrix}-2\\-5\\3\end{bmatrix}$$
+        <p>$|3/5|<1$이므로 $k\to\infty$일 때 $x_k \to (0,0,0)$ — 즉 원점으로 수렴(소멸)한다.</p>
+      </div>
+
+      <div class="deepdive-block">
+        <p class="deepdive-label">📐 개념 심화 — 왜 "지배적 고유값"이 전체를 결정하는가</p>
+        <p class="deepdive-intro"><strong>일반해 $x_k=c_1\lambda_1^k v_1+\cdots+c_n\lambda_n^k v_n$에서, $|\lambda_i|$가 가장 큰 항이 시간이 지날수록 나머지 항들을 압도한다.</strong> 이것이 이산 동역학계(인구 모형, 경제 모형 등)에서 장기적 행동을 예측하는 핵심 원리이다.</p>
+        <div class="note-block">
+          <div class="label">Class 1~5와의 연결</div>
+          <p>여기서 쓰이는 일반해 공식은 Class 3의 대각화 $A=PDP^{-1}$에서 바로 유도된다: $x_k=A^kx_0=PD^kP^{-1}x_0$이고 $D^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_n^k)$이므로, $x_0$를 고유벡터 기저로 분해한 계수가 그대로 $\lambda_i^k$배씩 자라거나 줄어든다.</p>
+        </div>
+        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#6_Discrete_Dynamical_Systems_handout.pdf</code> — <strong>pp. 1–3 전체</strong><br><span class="pdf-ref-detail">p.1 인구 이동 &amp; 포식자-피식자 모형 설정 · p.2 일반 이론(성장 사례) · p.3 일반 이론(소멸 사례) &amp; $3\times3$ 예제</span></div>
+      </div>
+
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #9 · Dynamical Systems (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body"><p>Suppose the eigenvalues of a $3\times3$ matrix $A$ are $3,\ 4/5,$ and $3/5$, with corresponding eigenvectors $\begin{bmatrix}1\\0\\-3\end{bmatrix}$, $\begin{bmatrix}2\\1\\-5\end{bmatrix}$, and $\begin{bmatrix}-2\\-5\\3\end{bmatrix}$. Let $x_0=\begin{bmatrix}-2\\-5\\3\end{bmatrix}$. Find the solution of the equation $x_{k+1}=Ax_k$ for the specified $x_0$, and describe what happens as $k\to\infty$.</p></div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$x_0$가 세 고유벡터 중 하나와 정확히 같지 않은지 먼저 확인하라 — Class 6 개념 정리의 예제와 동일한 문제이다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기</summary>
+              <div class="toggle-body">
+                <p>$x_0=(-2,-5,3)$는 세 번째 고유벡터 $v_3$와 정확히 일치한다. 고유벡터 분해의 유일성에 의해 $x_0=0\cdot v_1+0\cdot v_2+1\cdot v_3$이 유일한 표현이므로,</p>
+                $$x_k = \left(\frac35\right)^k\begin{bmatrix}-2\\-5\\3\end{bmatrix}$$
+                <p>$\left|\dfrac35\right|<1$이므로 $k\to\infty$일 때 $x_k\to(0,0,0)$ (원점으로 수렴).</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body">
+            <p>Let $A$ be a $2\times2$ matrix with eigenvalues $3$ and $1/3$ and corresponding eigenvectors $v_1=\begin{bmatrix}1\\1\end{bmatrix}$ and $v_2=\begin{bmatrix}-1\\1\end{bmatrix}$. Consider the difference equation $x_{k+1}=Ax_k$ with $x_0=\begin{bmatrix}9\\1\end{bmatrix}$.</p>
+            <ol type="a">
+              <li>Compute $x_1$ without finding the matrix $A$ itself.</li>
+              <li>Find a formula for $x_k$.</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$x_0$를 $c_1v_1+c_2v_2$ 꼴로 먼저 분해하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>$x_0=c_1v_1+c_2v_2$: $c_1-c_2=9,\ c_1+c_2=1 \Rightarrow c_1=5,\ c_2=-4$. 즉 $x_0=5v_1-4v_2$.</p>
+                <p><strong>(a)</strong> $x_1=Ax_0=5\cdot3\cdot v_1-4\cdot\frac13\cdot v_2=15(1,1)-\frac43(-1,1)=\left(\dfrac{49}{3},\dfrac{41}{3}\right)$.</p>
+                <p><strong>(b)</strong> $x_k = 5(3^k)v_1-4\left(\dfrac13\right)^k v_2$.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "(a) $x_1=\begin{bmatrix}49/3\\41/3\end{bmatrix}$ (b) $x_k=5(3^k)v_1-4((1/3)^k)v_2$"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 3</div>
+          <div class="q-body">
+            <p>Suppose the female dogs give birth each year to an average of $1.6$ female puppies. Each year, $30\%$ of the puppies survive to become dogs and $80\%$ of the dogs survive. Consider a difference equation $x_{k+1}=Ax_k$, $k\ge0$, where $x_k=(P_k,D_k)$, the numbers of female puppies and female dogs in year $k$.</p>
+            <ol type="a">
+              <li>Find the matrix $A$.</li>
+              <li>Show that population is growing.</li>
+              <li>Fill in the blanks and explain why: Eventually, both populations will grow at ____% per year. Eventually, there will be ____ female puppies for every ____ female dogs.</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>(a) 강아지($P_{k+1}$)는 오직 개의 출산으로만 생기고, 개($D_{k+1}$)는 생존한 강아지와 생존한 개로 구성된다. (b) 가장 큰 고유값이 $1$보다 큰지 확인하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(a)</strong> $P_{k+1}=1.6D_k$, $D_{k+1}=0.3P_k+0.8D_k$이므로</p>
+                $$A=\begin{bmatrix}0&1.6\\0.3&0.8\end{bmatrix}$$
+                <p><strong>(b)</strong> 특성방정식 $\lambda^2-0.8\lambda-0.48=0 \Rightarrow \lambda=\dfrac{0.8\pm\sqrt{0.64+1.92}}{2}=\dfrac{0.8\pm1.6}{2} \Rightarrow \lambda=1.2$ 또는 $-0.4$. 가장 큰 고유값이 $1.2>1$이므로 전체 개체수는 결국 증가한다.</p>
+                <p><strong>(c)</strong> 성장률 $=(1.2-1)\times100\%=\mathbf{20\%}$. $\lambda=1.2$의 고유벡터: $(A-1.2I)=\begin{bmatrix}-1.2&1.6\\0.3&-0.4\end{bmatrix}$에서 $x_1=\frac43 x_2$, 즉 $(4,3)$. 따라서 결국 <strong>강아지 $4$마리당 개 $3$마리</strong> 비율로 수렴한다.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "(a) $A=\begin{bmatrix}0&1.6\\0.3&0.8\end{bmatrix}$ (b) What is the largest eigenvalue? (c) Ans: 20, 4, 3."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#6_Discrete_Dynamical_Systems_handout.pdf</code> — pp. 1–3 전체</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 7 ────────── -->
+  <div class="section" id="c7">
+    <div class="section-header">
+      <span class="class-num">Class 7</span>
+      미분방정식에의 응용 (Applications to Differential Equations)
+    </div>
+    <div class="section-body">
+
+      <h3>1. 선형 미분방정식 시스템</h3>
+      <p>$n$개의 함수 $x_1(t),\ldots,x_n(t)$로 이루어진 선형 시스템을 생각하자:</p>
+      $$\frac{dx}{dt}=Ax, \quad x(t)=\begin{bmatrix}x_1(t)\\\vdots\\x_n(t)\end{bmatrix}, \quad A=\begin{bmatrix}a_{11}&\cdots&a_{1n}\\\vdots&&\vdots\\a_{n1}&\cdots&a_{nn}\end{bmatrix} \quad (*)$$
+      <p>목표: $(*)$의 <strong>$n$개의 선형독립인 해</strong> $x^1(t),\ldots,x^n(t)$를 찾는 것이다.</p>
+
+      <h3>2. 고유벡터를 이용한 해 구성</h3>
+      <div class="thm-block">
+        <div class="label">핵심 아이디어</div>
+        <p>$A$의 고유벡터 $v^j$가 고유값 $\lambda_j$에 대응하면, <strong>$x^j(t)=e^{\lambda_j t}v^j$</strong>는 $(*)$의 해이다.</p>
+        <p><em>확인:</em> $\dfrac{d}{dt}\big(e^{\lambda_j t}v^j\big)=\lambda_j e^{\lambda_j t}v^j = e^{\lambda_j t}(\lambda_j v^j) = e^{\lambda_j t}(Av^j) = A\big(e^{\lambda_j t}v^j\big)$. ✓</p>
+        <p>$A$가 $n$개의 선형독립인 고유벡터 $v^1,\ldots,v^n$ (대응 고유값 $\lambda_1,\ldots,\lambda_n$, <strong>서로 다를 필요는 없음</strong>)을 가지면, $x^j(t)=e^{\lambda_j t}v^j$ ($j=1,\ldots,n$)는 $(*)$의 <strong>선형독립인 해</strong>이고, 일반해는</p>
+        $$x(t) = c_1e^{\lambda_1 t}v^1 + c_2e^{\lambda_2 t}v^2 + \cdots + c_ne^{\lambda_n t}v^n$$
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 — $3\times3$ 시스템의 일반해 구하기</div>
+        <p>$A=\begin{bmatrix}1&-1&4\\3&2&-1\\2&1&-1\end{bmatrix}$에 대해 특성다항식 $p(\lambda)=(1-\lambda)(\lambda-3)(\lambda+2)$가 주어졌다. 고유값과 고유벡터를 구하고 일반해를 써라.</p>
+        <p>특성다항식의 근: $\lambda=1,\ 3,\ -2$ (트레이스 $1+2-1=2=1+3-2$ ✓로 검산).</p>
+        <p>각 고유값에 대응하는 고유벡터를 직접 대입해 확인하면:</p>
+        <p class="sol-step">$\lambda=1$: $v^1=(-1,4,1)$ — $Av^1=(-1,4,1)=1\cdot v^1$ ✓</p>
+        <p class="sol-step">$\lambda=3$: $v^2=(1,2,1)$ — $Av^2=(3,6,3)=3\cdot v^2$ ✓</p>
+        <p class="sol-step">$\lambda=-2$: $v^3=(-1,1,1)$ — $Av^3=(2,-2,-2)=-2\cdot v^3$ ✓</p>
+        <p>따라서 일반해는</p>
+        $$x(t) = c_1e^{t}\begin{bmatrix}-1\\4\\1\end{bmatrix} + c_2e^{3t}\begin{bmatrix}1\\2\\1\end{bmatrix} + c_3e^{-2t}\begin{bmatrix}-1\\1\\1\end{bmatrix}$$
+      </div>
+
+      <div class="deepdive-block">
+        <p class="deepdive-label">📐 개념 심화 — Class 1의 동기로 돌아가서</p>
+        <p class="deepdive-intro"><strong>Class 1에서 "$\dfrac{dx}{dt}=Ax(t)$의 해는 고유값에 의해 결정된다"고 했던 예고가 여기서 완성된다.</strong> 고유값·고유벡터 쌍 하나하나가 "순수 지수함수 해" $e^{\lambda t}v$를 주고, 이들을 적절히 중첩(선형결합)하면 임의의 초기조건을 만족하는 일반해를 얻는다.</p>
+        <div class="note-block">
+          <div class="label">Class 6과의 비교</div>
+          <p>이산 동역학계($x_{k+1}=Ax_k$)에서는 해가 $\lambda^k$(거듭제곱)로 자라거나 줄었다면, 연속 시스템($\dot x=Ax$)에서는 $e^{\lambda t}$(지수함수)로 변한다. $\lambda>0$이면 발산, $\lambda<0$이면 $0$으로 수렴, $\lambda$가 복소수이면(Class 5) 진동하며 성장·감쇠한다 — 이산계의 $|\lambda|$ vs $1$ 비교가 연속계에서는 $\lambda$의 부호(또는 복소수의 실수부 부호) 비교로 대응된다.</p>
+        </div>
+        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#7-_Applications_to_DE_handout.pdf</code> — <strong>pp. 1–2 전체</strong><br><span class="pdf-ref-detail">p.1 일반 이론 &amp; 예제 설정 · p.2 일반해</span></div>
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#7-_Applications_to_DE_handout.pdf</code> — pp. 1–2 전체</p>
       </div>
 
     </div>
