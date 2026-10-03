@@ -308,56 +308,6 @@
     }
     .sol-step { margin: 6px 0; padding-left: 8px; }
     .sol-step::before { content: "▸ "; color: #388e3c; font-size: 12px; }
-
-    /* ── Deep-dive explanation blocks ── */
-    .deepdive-block {
-      background: #f0f4ff;
-      border-left: 4px solid #3b5bdb;
-      border-radius: 6px;
-      padding: 14px 16px;
-      margin: 14px 0;
-    }
-    .deepdive-block .deepdive-label {
-      font-size: 11px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.8px;
-      color: #3b5bdb; margin: 0 0 10px 0;
-    }
-    .deepdive-block .thm-block {
-      background: #e8edff; border-left: 3px solid #3b5bdb; margin: 10px 0;
-    }
-    .deepdive-block .def-block {
-      background: #eef3ff; border-left: 3px solid #4c6ef5; margin: 10px 0;
-    }
-    .deepdive-block .example-block {
-      background: #f3f0ff; border-left: 3px solid #7950f2; margin: 10px 0;
-    }
-    .deepdive-block .note-block {
-      background: #fff9e6; border-left: 3px solid #f59f00; margin: 10px 0;
-    }
-    .deepdive-block .pdf-ref {
-      background: #e9ecef; border-radius: 4px;
-      padding: 6px 10px; margin-top: 10px;
-      font-size: 12px; color: #495057;
-      border-left: 3px solid #adb5bd;
-    }
-    .deepdive-block .pdf-ref code {
-      background: #dee2e6; border-radius: 3px;
-      padding: 1px 4px; font-size: 11px; color: #212529;
-    }
-    .deepdive-block .pdf-ref-detail {
-      color: #6c757d; font-size: 11px; display: block; margin-top: 2px;
-    }
-    .deepdive-block .deepdive-intro {
-      margin: 4px 0 12px 0;
-      font-size: 13.5px;
-      line-height: 1.65;
-      color: #1a1a2e;
-      border-bottom: 1px dashed #c5cfe8;
-      padding-bottom: 10px;
-    }
-    .deepdive-block .deepdive-intro strong {
-      color: #3b5bdb;
-    }
   </style>
 </head>
 <body>
@@ -475,70 +425,6 @@
         <p><em>이유:</em> $A-\lambda I$도 삼각행렬이므로 $\det(A-\lambda I)=\prod_i(a_{ii}-\lambda)$. 이 값이 0이 되는 $\lambda$는 정확히 대각원소들이다.</p>
       </div>
 
-      <div class="deepdive-block">
-        <p class="deepdive-label">📐 개념 심화 — 고유값·고유벡터가 중요한 이유</p>
-        <p class="deepdive-intro"><strong>고유벡터는 선형변환 $A$가 방향을 바꾸지 않고 크기만 $\lambda$배로 늘리거나 줄이는 특별한 방향이다.</strong> 이 성질 덕분에 행렬의 거듭제곱, 미분방정식, 대각화 같은 복잡한 계산을 고유값 단위로 단순화할 수 있다.</p>
-        <div class="thm-block">
-          <div class="label">기하학적 의미</div>
-          <p>일반적인 벡터 $v$에 $A$를 곱하면 방향과 크기가 모두 바뀐다. 그러나 고유벡터 $x$에 $A$를 곱하면 <strong>방향은 그대로, 크기만 $\lambda$배</strong>가 된다 ($\lambda<0$이면 방향이 반대로 뒤집힌다).</p>
-        </div>
-        <div class="note-block">
-          <div class="label">다음 내용과의 연결</div>
-          <p>고유값은 특성방정식(characteristic equation) $\det(A-\lambda I)=0$을 풀어서 구하고, 이후 대각화 $A=PDP^{-1}$로 이어진다. $\dfrac{dx}{dt}=Ax(t)$와 같은 미분방정식도 고유값·고유벡터를 이용해 $x(t)=c_1e^{\lambda_1 t}v_1+\cdots$ 형태의 해로 풀 수 있다.</p>
-        </div>
-        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#1-eigenvector_eigenvalue_handout.pdf</code> — <strong>pp. 1–3 전체</strong><br><span class="pdf-ref-detail">p.1 정의 &amp; 기본 예제 · p.2 고유값 판정 조건 &amp; 고유공간 · p.3 계산 없이 고유값 찾기 &amp; 삼각행렬</span></div>
-      </div>
-
-      <div class="practice-section">
-        <div class="practice-label">📝 Practice · Class 1 예제 다시 풀어보기</div>
-
-        <div class="practice-item">
-          <div class="q-num">Problem 1</div>
-          <div class="q-body"><p>$x=\begin{bmatrix}4\\-3\\1\end{bmatrix}$이 $A=\begin{bmatrix}3&7&9\\-4&-5&1\\2&4&4\end{bmatrix}$의 고유벡터인지 확인하고, 맞다면 대응하는 고유값을 구하라.</p></div>
-          <div class="toggle-row">
-            <details class="hint-detail">
-              <summary>💡 힌트 보기</summary>
-              <div class="toggle-body"><p>$Ax$를 직접 계산해서 $x$의 스칼라배가 나오는지 확인한다.</p></div>
-            </details>
-            <details class="sol-detail">
-              <summary>✅ 완전한 해설 보기</summary>
-              <div class="toggle-body"><p>$Ax=\begin{bmatrix}0\\0\\0\end{bmatrix}=0\cdot x$. 따라서 $x$는 고유벡터이고 대응하는 고유값은 $\lambda=0$이다.</p></div>
-            </details>
-          </div>
-        </div>
-
-        <div class="practice-item">
-          <div class="q-num">Problem 2</div>
-          <div class="q-body"><p>$\lambda=4$가 $A=\begin{bmatrix}3&0&-1\\2&3&1\\-3&4&5\end{bmatrix}$의 고유값인지 확인하고, 맞다면 대응하는 고유벡터를 하나 구하라.</p></div>
-          <div class="toggle-row">
-            <details class="hint-detail">
-              <summary>💡 힌트 보기</summary>
-              <div class="toggle-body"><p>$(A-4I)x=0$을 행 축소하여 nontrivial 해가 있는지 확인한다.</p></div>
-            </details>
-            <details class="sol-detail">
-              <summary>✅ 완전한 해설 보기</summary>
-              <div class="toggle-body"><p>$A-4I=\begin{bmatrix}-1&0&-1\\2&-1&1\\-3&4&1\end{bmatrix}$을 행 축소하면 자유변수가 존재한다. $x=\begin{bmatrix}1\\1\\-1\end{bmatrix}$이 고유벡터이며, 검산하면 $Ax=\begin{bmatrix}4\\4\\-4\end{bmatrix}=4x$. 따라서 $\lambda=4$는 고유값이다.</p></div>
-            </details>
-          </div>
-        </div>
-
-        <div class="practice-item">
-          <div class="q-num">Problem 3</div>
-          <div class="q-body"><p>$A=\begin{bmatrix}1&2&3\\1&2&3\\1&2&3\end{bmatrix}$에 대해, 계산 없이 $\lambda=0$이 고유값임을 보이고, 대응하는 고유공간의 기저와 기하 중복도를 구하라.</p></div>
-          <div class="toggle-row">
-            <details class="hint-detail">
-              <summary>💡 힌트 보기</summary>
-              <div class="toggle-body"><p>$A$의 열들 사이의 관계를 살펴보라 ($c_2, c_3$을 $c_1$으로 표현할 수 있는가?).</p></div>
-            </details>
-            <details class="sol-detail">
-              <summary>✅ 완전한 해설 보기</summary>
-              <div class="toggle-body"><p>$c_2=2c_1,\ c_3=3c_1$이므로 열이 선형종속 → $Ax=0$이 nontrivial 해를 가짐 → $\lambda=0$은 고유값. 고유공간 기저: $\left\{\begin{bmatrix}-2\\1\\0\end{bmatrix},\begin{bmatrix}-3\\0\\1\end{bmatrix}\right\}$, 기하 중복도 $=2$.</p></div>
-            </details>
-          </div>
-        </div>
-
-      </div>
-
       <div class="practice-section">
         <div class="practice-label">📝 Practice Problems #1 · Nul A, Col A, Ker T &amp; Eigenvector/Eigenvalue (영어 원문)</div>
 
@@ -624,6 +510,11 @@
 
       </div>
 
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#1-eigenvector_eigenvalue_handout.pdf</code> — pp. 1–3 전체</p>
+      </div>
+
     </div>
   </div>
 
@@ -704,20 +595,6 @@
         <p class="sol-step">(∗∗)에서 이 식을 빼면 $c_1(\lambda_1-\lambda_{p+1})x_1+\cdots+c_p(\lambda_p-\lambda_{p+1})x_p=0$</p>
         <p class="sol-step">$x_1,\ldots,x_p$가 선형독립이고 $\lambda_i\ne\lambda_{p+1}$ ($i\le p$, 서로 다른 고유값이므로)이므로 모든 계수 $c_i=0$이어야 한다.</p>
         <p class="sol-step">그러면 (∗)에 의해 $x_{p+1}=0$이 되는데, 이는 고유벡터가 $0$이 될 수 없다는 사실에 모순이다. 따라서 $\{x_1,\ldots,x_k\}$는 선형독립이다. $\blacksquare$</p>
-      </div>
-
-      <div class="deepdive-block">
-        <p class="deepdive-label">📐 개념 심화 — 특성방정식이 중요한 이유</p>
-        <p class="deepdive-intro"><strong>특성방정식은 "고유값을 어떻게 계산하는가"라는 질문에 대한 구체적인 답이다.</strong> Class 1이 고유값·고유벡터가 무엇인지 정의했다면, Class 2는 실제로 손으로 계산해서 찾아내는 도구($\det(A-\lambda I)=0$)를 제공한다.</p>
-        <div class="thm-block">
-          <div class="label">대수적 vs 기하 중복도</div>
-          <p>대수적 중복도(특성다항식에서의 근의 개수)와 기하 중복도(고유공간의 차원)가 항상 같은 것은 아니다. 이 둘이 <strong>일치하지 않는 경우가 대각화 불가능(non-diagonalizable) 행렬</strong>의 원인이 되며, 이는 다음 단계인 대각화 단원에서 핵심적으로 다뤄진다.</p>
-        </div>
-        <div class="note-block">
-          <div class="label">다음 내용과의 연결</div>
-          <p>서로 다른 고유값에 대응하는 고유벡터들이 선형독립이라는 정리(6번)는, $n\times n$ 행렬이 $n$개의 서로 다른 고유값을 가지면 자동으로 $n$개의 선형독립인 고유벡터를 얻는다는 뜻이다. 이는 <strong>대각화 $A=PDP^{-1}$</strong>가 가능하기 위한 충분조건으로 바로 이어진다.</p>
-        </div>
-        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#2-characteristic_equation_handout.pdf</code> — <strong>pp. 1–2 전체</strong><br><span class="pdf-ref-detail">p.1 특성방정식 정의 &amp; 예제 &amp; 대수적 중복도 · p.2 가역성 &amp; 행 동치와 고유값 &amp; 고유벡터의 선형독립성</span></div>
       </div>
 
       <div class="practice-section">
@@ -910,16 +787,6 @@
         <p style="color:#888;font-style:italic;margin-top:10px;">$P$의 열 순서와 고유벡터의 스칼라배는 답에 영향을 주지 않는다 — $D$의 대각원소 순서만 $P$의 열 순서와 일치하면 된다.</p>
       </div>
 
-      <div class="deepdive-block">
-        <p class="deepdive-label">📐 개념 심화 — 대각화가 강력한 이유</p>
-        <p class="deepdive-intro"><strong>$A=PDP^{-1}$이면 $A^k = PD^kP^{-1}$이고, $D^k$는 대각원소를 $k$제곱하기만 하면 된다.</strong> 이 덕분에 행렬의 거듭제곱이나 $\dfrac{dx}{dt}=Ax(t)$ 같은 미분방정식의 해를 훨씬 쉽게 구할 수 있다 — Class 1에서 언급했던 동기가 여기서 실제로 실현된다.</p>
-        <div class="note-block">
-          <div class="label">대각화가 불가능한 경우</div>
-          <p>대수적 중복도 $>$ 기하 중복도인 고유값이 하나라도 있으면, 고유벡터가 부족해 $n$개의 선형독립인 고유벡터를 모을 수 없으므로 대각화가 불가능하다. (예: $\begin{bmatrix}1&1\\0&1\end{bmatrix}$은 $\lambda=1$의 대수적 중복도가 $2$이지만 기하 중복도는 $1$이라 대각화 불가능하다.)</p>
-        </div>
-        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#3-diagonalization_handout.pdf</code> — <strong>pp. 1–3 전체</strong><br><span class="pdf-ref-detail">p.1 대수적·기하 중복도 &amp; 닮음 행렬 · p.2 대각화 아이디어 &amp; 중복도 판단 예제 · p.3 대각화 가능 조건 &amp; 실전 예제</span></div>
-      </div>
-
       <div class="practice-section">
         <div class="practice-label">📝 Practice Problems #4 · Similar Matrices &amp; Diagonalization (영어 원문)</div>
 
@@ -1088,16 +955,6 @@
         <p>고유공간이 $1$차원뿐이라 선형독립인 고유벡터를 $2$개 모을 수 없다. 따라서 <strong>$[T]_B$를 대각행렬로 만드는 기저 $B$는 존재하지 않는다</strong> ($A$는 대각화 불가능).</p>
       </div>
 
-      <div class="deepdive-block">
-        <p class="deepdive-label">📐 개념 심화 — "행렬"과 "선형변환"의 관계</p>
-        <p class="deepdive-intro"><strong>같은 선형변환 $T$라도 어떤 기저를 쓰느냐에 따라 행렬 표현이 완전히 달라진다.</strong> $A$(표준기저 기준 행렬)와 $[T]_B$(고유벡터 기저 기준 행렬)는 서로 <strong>닮음(similar)</strong>이며, $[T]_B = P^{-1}AP$ ($P$는 $B$의 벡터를 열로 갖는 행렬)이다.</p>
-        <div class="thm-block">
-          <div class="label">Class 3과의 연결</div>
-          <p>Class 3에서 "$A=PDP^{-1}$로 대각화한다"고 했던 것은, 사실 "표준기저 대신 고유벡터로 이루어진 기저 $B$를 쓰면 $T$의 행렬이 $D=[T]_B$로 단순해진다"는 뜻과 정확히 같다. 즉 대각화는 <strong>기저 변경(change of basis)</strong>의 특수한 경우이다.</p>
-        </div>
-        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#4-Eigenvectors_and_Linear_Transformations_handout.pdf</code> — <strong>pp. 1–4 전체</strong><br><span class="pdf-ref-detail">p.1 행렬표현 정의 &amp; 예제 · p.2 다항식→R⁴ 변환 예제 · p.3 $B$-행렬 &amp; 상 계산 예제 · p.4 대각화 불가능 예제</span></div>
-      </div>
-
       <div class="practice-section">
         <div class="practice-label">📝 Practice Problems #6 · $B$-Matrix &amp; Diagonalizability (영어 원문)</div>
 
@@ -1222,16 +1079,6 @@
         <p>$3$행·$3$열이 $(0,0,2)$뿐이므로, $A$는 $xy$-평면에 작용하는 $2\times2$ 블록 $\begin{bmatrix}1&-1\\1&1\end{bmatrix}$과 $z$축에 작용하는 스칼라 $2$로 분리된다.</p>
         <p>$xy$-블록은 $a=1,b=1$ 형태이므로 고유값 $1\pm i$, $\gamma=\sqrt2$, $\theta=\arg(1+i)=\pi/4$. $z$축 방향은 고유값 $2$ (고유벡터 $(0,0,1)$).</p>
         <p>따라서 $A$의 고유값은 $\{1+i,\ 1-i,\ 2\}$이며, 기하학적으로 $A$는 <strong>$xy$-평면에서 $45°$ 회전 후 $\sqrt2$배 확대</strong>하는 동시에 <strong>$z$축 방향으로는 $2$배 확대</strong>하는 변환이다.</p>
-      </div>
-
-      <div class="deepdive-block">
-        <p class="deepdive-label">📐 개념 심화 — 복소 고유값의 기하학적 의미</p>
-        <p class="deepdive-intro"><strong>실수 고유값은 "방향은 그대로, 크기만 변한다"였다면, 복소 고유값은 "방향이 회전하면서 크기도 변한다"는 뜻이다.</strong> $2\times2$ 실수 행렬이 켤레 복소 고유값 $a\pm bi$를 가지면, 그 행렬이 만드는 변환은 항상 회전-확대축소로 분해된다.</p>
-        <div class="note-block">
-          <div class="label">Class 1~4와의 연결</div>
-          <p>복소 고유값이 있어도 Class 2의 특성방정식, Class 3의 유사 대각화 아이디어, Class 4의 기저 변경 $A=PCP^{-1}$ 관점은 그대로 통한다 — 다만 대각행렬 $D$ 대신 회전-확대축소를 나타내는 $2\times2$ 블록 $C=\begin{bmatrix}a&-b\\b&a\end{bmatrix}$가 등장할 뿐이다.</p>
-        </div>
-        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#5-complex_eigenvalues_handout.pdf</code> — <strong>pp. 1–3 전체</strong><br><span class="pdf-ref-detail">p.1 $\mathbb{C}^2$에서의 고유값·고유벡터 &amp; 회전-확대축소 예제 · p.2 일반형 정리 &amp; $A=PCP^{-1}$ 정리·증명 · p.3 $3\times3$ 블록 예제</span></div>
       </div>
 
       <div class="practice-section">
@@ -1429,16 +1276,6 @@
         <p>$|3/5|<1$이므로 $k\to\infty$일 때 $x_k \to (0,0,0)$ — 즉 원점으로 수렴(소멸)한다.</p>
       </div>
 
-      <div class="deepdive-block">
-        <p class="deepdive-label">📐 개념 심화 — 왜 "지배적 고유값"이 전체를 결정하는가</p>
-        <p class="deepdive-intro"><strong>일반해 $x_k=c_1\lambda_1^k v_1+\cdots+c_n\lambda_n^k v_n$에서, $|\lambda_i|$가 가장 큰 항이 시간이 지날수록 나머지 항들을 압도한다.</strong> 이것이 이산 동역학계(인구 모형, 경제 모형 등)에서 장기적 행동을 예측하는 핵심 원리이다.</p>
-        <div class="note-block">
-          <div class="label">Class 1~5와의 연결</div>
-          <p>여기서 쓰이는 일반해 공식은 Class 3의 대각화 $A=PDP^{-1}$에서 바로 유도된다: $x_k=A^kx_0=PD^kP^{-1}x_0$이고 $D^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_n^k)$이므로, $x_0$를 고유벡터 기저로 분해한 계수가 그대로 $\lambda_i^k$배씩 자라거나 줄어든다.</p>
-        </div>
-        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#6_Discrete_Dynamical_Systems_handout.pdf</code> — <strong>pp. 1–3 전체</strong><br><span class="pdf-ref-detail">p.1 인구 이동 &amp; 포식자-피식자 모형 설정 · p.2 일반 이론(성장 사례) · p.3 일반 이론(소멸 사례) &amp; $3\times3$ 예제</span></div>
-      </div>
-
       <div class="practice-section">
         <div class="practice-label">📝 Practice Problems #9 · Dynamical Systems (영어 원문)</div>
 
@@ -1557,16 +1394,6 @@
         <p class="sol-step">$\lambda=-2$: $v^3=(-1,1,1)$ — $Av^3=(2,-2,-2)=-2\cdot v^3$ ✓</p>
         <p>따라서 일반해는</p>
         $$x(t) = c_1e^{t}\begin{bmatrix}-1\\4\\1\end{bmatrix} + c_2e^{3t}\begin{bmatrix}1\\2\\1\end{bmatrix} + c_3e^{-2t}\begin{bmatrix}-1\\1\\1\end{bmatrix}$$
-      </div>
-
-      <div class="deepdive-block">
-        <p class="deepdive-label">📐 개념 심화 — Class 1의 동기로 돌아가서</p>
-        <p class="deepdive-intro"><strong>Class 1에서 "$\dfrac{dx}{dt}=Ax(t)$의 해는 고유값에 의해 결정된다"고 했던 예고가 여기서 완성된다.</strong> 고유값·고유벡터 쌍 하나하나가 "순수 지수함수 해" $e^{\lambda t}v$를 주고, 이들을 적절히 중첩(선형결합)하면 임의의 초기조건을 만족하는 일반해를 얻는다.</p>
-        <div class="note-block">
-          <div class="label">Class 6과의 비교</div>
-          <p>이산 동역학계($x_{k+1}=Ax_k$)에서는 해가 $\lambda^k$(거듭제곱)로 자라거나 줄었다면, 연속 시스템($\dot x=Ax$)에서는 $e^{\lambda t}$(지수함수)로 변한다. $\lambda>0$이면 발산, $\lambda<0$이면 $0$으로 수렴, $\lambda$가 복소수이면(Class 5) 진동하며 성장·감쇠한다 — 이산계의 $|\lambda|$ vs $1$ 비교가 연속계에서는 $\lambda$의 부호(또는 복소수의 실수부 부호) 비교로 대응된다.</p>
-        </div>
-        <div class="pdf-ref">📄 <strong>교재 PDF 참고:</strong> <code>Class#7-_Applications_to_DE_handout.pdf</code> — <strong>pp. 1–2 전체</strong><br><span class="pdf-ref-detail">p.1 일반 이론 &amp; 예제 설정 · p.2 일반해</span></div>
       </div>
 
       <div class="note-block">
