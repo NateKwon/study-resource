@@ -331,6 +331,9 @@
     <li><a href="#c6">Class 6 · Discrete Dynamical Systems</a></li>
     <li><a href="#c7">Class 7 · Applications to DE</a></li>
     <li><a href="#c8">Class 8 · Matrix Exponential</a></li>
+    <li><a href="#c9">Class 9 · The Power Method</a></li>
+    <li><div id="nav-section-label">직교성</div></li>
+    <li><a href="#c10">Class 10 · Orthogonality</a></li>
   </ul>
 </nav>
 
@@ -338,7 +341,7 @@
 <main id="main">
 
   <h1 class="page-title">선형대수 2 공부 노트</h1>
-  <p class="page-subtitle">Class #1~8 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
+  <p class="page-subtitle">Class #1~10 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
 
   <!-- ────────── CLASS 1 ────────── -->
   <div class="section" id="c1">
@@ -1577,6 +1580,171 @@
       <div class="note-block">
         <div class="label">출처</div>
         <p>📄 <code>Class#8-matrix_exponential_handout.pdf</code> — pp. 1–3 전체</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 9 ────────── -->
+  <div class="section" id="c9">
+    <div class="section-header">
+      <span class="class-num">Class 9</span>
+      거듭제곱법 (The Power Method)
+    </div>
+    <div class="section-body">
+
+      <h3>1. 이론적 배경</h3>
+      <p>$A$가 실수 $n\times n$ 대각화 가능 행렬이고, 선형독립인 고유벡터 $\{v_1,\ldots,v_n\}$(기저)와 대응 고유값이 $|\lambda_1|>|\lambda_2|\ge|\lambda_3|\ge\cdots$를 만족한다고 하자 (즉 $\lambda_1$이 유일한 <strong>지배적 고유값(dominant eigenvalue)</strong>).</p>
+      <div class="thm-block">
+        <div class="label">핵심 관찰</div>
+        <p>임의의 $x=c_1v_1+\cdots+c_nv_n\in\mathbb{R}^n$에 대해</p>
+        $$A^kx = c_1\lambda_1^kv_1+\cdots+c_n\lambda_n^kv_n = \lambda_1^k\left[c_1v_1+c_2\left(\frac{\lambda_2}{\lambda_1}\right)^kv_2+\cdots\right]$$
+        <p>$c_1\ne0$이라 하면, $\left|\lambda_i/\lambda_1\right|<1$ ($i\ge2$)이므로 $k\to\infty$일 때 괄호 안의 둘째 항부터는 모두 $0$으로 사라진다. 따라서 <strong>$k$가 클수록 $A^kx$는 $v_1$ 방향(또는 그 반대 방향)을 거의 가리킨다.</strong></p>
+        <p>다만 $|\lambda_1|$이 $1$보다 크거나 작으면 $A^kx$ 자체의 크기가 발산하거나 $0$으로 줄어들므로, 매 단계 적절히 <strong>스케일(정규화)</strong>해 크기를 조절해야 한다.</p>
+      </div>
+
+      <h3>2. 거듭제곱법 알고리즘</h3>
+      <div class="def-block">
+        <div class="label">알고리즘 (Power Method)</div>
+        <p><strong>1단계:</strong> $x_0$를 고른다 ($c_1\ne0$이 되도록).</p>
+        <p><strong>2단계:</strong> $k=1,2,3,\ldots$에 대해 수렴할 때까지 반복:</p>
+        $$\hat x_k = Ax_{k-1}, \qquad x_k = \hat x_k/\max(\hat x_k)$$
+        <p>(여기서 $\max(v)$는 벡터 $v$의 성분 중 절댓값이 가장 큰 성분을 뜻한다.)</p>
+      </div>
+      <div class="thm-block">
+        <div class="label">수렴 결과</div>
+        <p>$c_1\ne0$, $A$ 대각화 가능, $\lambda_1$이 유일한 지배적 고유값이라는 조건 하에서, $k\to\infty$일 때 $\max(\hat x_k)\to\lambda_1$이고 $\{x_k\}\to w_1$ ($v_1$의 스칼라배)이다.</p>
+        <p><em>이유:</em> $x_k = \dfrac{A^kx_0}{\max(A^kx_0)}$이고 ($x_k$를 재귀적으로 전개하면 중간의 정규화 상수들이 telescoping되어 이렇게 정리된다), 1절의 논의에 의해 $A^kx_0 \approx \lambda_1^kc_1v_1$이므로 이를 자기 자신의 최댓값으로 나누면 $v_1$ 방향으로 정규화된 벡터에 수렴한다.</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 — 실제 반복 계산</div>
+        <p>$A=\begin{bmatrix}1&2&3\\2&3&4\\3&4&5\end{bmatrix}$, $x_0=\begin{bmatrix}1\\1\\1\end{bmatrix}$. (참고: 고유값은 $0,\,-0.6235,\,9.6235$이므로 $\lambda_1=9.6235$, $v_1\approx(0.3851,0.5595,0.7339)$.)</p>
+        <p class="sol-step">$k=1$: $\hat x_1=Ax_0=(6,9,12)$, $\max(\hat x_1)=12$, $x_1=(0.5,\,0.75,\,1.0)$.</p>
+        <p class="sol-step">$k=2$: $\hat x_2=Ax_1=(5.00,7.25,9.50)$, $\max(\hat x_2)=9.5$, $x_2=(0.5263,0.7632,1.0000)$.</p>
+        <p class="sol-step">$k=3$: $\hat x_3=Ax_2=(5.0526,7.3421,9.6316)$, $\max(\hat x_3)=9.6316$, $x_3=(0.5246,0.7623,1.0000)$.</p>
+        <p>$\max(\hat x_k)$가 $12\to9.5\to9.6316\to\cdots$로 $\lambda_1=9.6235$에, $x_k$가 $v_1$의 정규화된 방향 $(0.3851,0.5595,0.7339)/0.7339\approx(0.5247,0.7624,1.0000)$에 빠르게 수렴함을 볼 수 있다.</p>
+      </div>
+
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #12 · Power Method (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body">
+            <p>Consider the matrix $A=\begin{bmatrix}4&3\\1&2\end{bmatrix}$.</p>
+            <ol type="a">
+              <li>Just by inspecting, does $A$ have at least one nonzero eigenvalue? Why or why not?</li>
+              <li>Suppose $A$ satisfies the conditions of the Power method. And with $x_0$ as below, $x_1,x_2,x_3,x_4$ are produced by the power method.
+              $$x_0=\begin{bmatrix}1\\0\end{bmatrix},\ x_1=\begin{bmatrix}1\\0.25\end{bmatrix},\ x_2=\begin{bmatrix}1\\0.3158\end{bmatrix},\ x_3=\begin{bmatrix}1\\0.3298\end{bmatrix},\ x_4=\begin{bmatrix}1\\0.3326\end{bmatrix}$$
+              Use these to estimate the dominant eigenvalue of $A$, and give a corresponding eigenvector.</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>(a) 행렬식 $\det A$를 계산해보라 — $\det A=\lambda_1\lambda_2$이다. (b) $\hat x_5=Ax_4$를 계산하면 $\max(\hat x_5)$가 바로 고유값의 추정치이다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(a)</strong> $\det A=4(2)-3(1)=5\ne0$이므로 $\lambda=0$은 $A$의 고유값이 아니다 (만약 두 고유값이 모두 $0$이라면 $\det A=\lambda_1\lambda_2=0$이어야 하는데 모순). 따라서 $A$는 (사실 두 고유값 모두) $0$이 아닌 고유값을 갖는다.</p>
+                <p><strong>(b)</strong> $\hat x_5=Ax_4=\begin{bmatrix}4(1)+3(0.3326)\\1(1)+2(0.3326)\end{bmatrix}=\begin{bmatrix}4.9978\\1.6652\end{bmatrix}$이므로 $\max(\hat x_5)=4.9978$ — 지배적 고유값의 추정치이다. 대응 고유벡터는 $x_4=(1,\,0.3326)$ (또는 그 임의의 0이 아닌 스칼라배).</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "(a) What happens if both eigenvalues are zero? In such case, what is nullity of A? (b) eigenvector: $x_4$. eigenvalue $\approx 4.9978$"</p>
+                <p>(참고: 실제 고유값은 특성방정식 $\lambda^2-6\lambda+5=(\lambda-1)(\lambda-5)=0$에서 $\lambda=1,5$이므로 $\lambda_1=5$ — 추정치 $4.9978$과 거의 일치한다.)</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#9-Power_method_handout.pdf</code> — pp. 1–2 전체</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 10 ────────── -->
+  <div class="section" id="c10">
+    <div class="section-header">
+      <span class="class-num">Class 10</span>
+      직교성 (Orthogonality)
+    </div>
+    <div class="section-body">
+
+      <h3>1. 내적 (Inner Product)</h3>
+      <div class="def-block">
+        <div class="label">정의 (Scalar Product / Inner Product)</div>
+        <p>$u,v\in\mathbb{R}^n$에 대해 $u^Tv$를 $u$와 $v$의 <strong>스칼라곱(scalar product)</strong> 또는 <strong>내적(inner product)</strong>이라 하고, $u\cdot v$로도 쓴다.</p>
+      </div>
+      <div class="thm-block">
+        <div class="label">정리 — 내적의 성질</div>
+        <p>$u,v,w\in\mathbb{R}^n$, 스칼라 $c$에 대해:</p>
+        <p class="sol-step">(a) $u\cdot v = v\cdot u$</p>
+        <p class="sol-step">(b) $(u+v)\cdot w = u\cdot w + v\cdot w$</p>
+        <p class="sol-step">(c) $(cu)\cdot v = c(u\cdot v) = u\cdot(cv)$</p>
+        <p class="sol-step">(d) $u\cdot u \ge 0$, 그리고 $u\cdot u=0 \iff u=0$</p>
+      </div>
+
+      <h3>2. 길이와 거리</h3>
+      <div class="def-block">
+        <div class="label">정의 (Length / Norm)</div>
+        <p>$v$의 <strong>길이(노름, norm)</strong> $\|v\|$는 $\|v\|=\sqrt{v\cdot v}=\sqrt{v_1^2+\cdots+v_n^2}$로 정의하며, $\|v\|^2=v\cdot v$이다.</p>
+        <p>임의의 스칼라 $c$에 대해 $\|cv\|=|c|\,\|v\|$.</p>
+      </div>
+      <div class="def-block">
+        <div class="label">정의 (Distance)</div>
+        <p>$u,v\in\mathbb{R}^n$ 사이의 <strong>거리</strong> $\operatorname{dist}(u,v) = \|u-v\|$.</p>
+      </div>
+
+      <h3>3. 직교성 (Orthogonality)</h3>
+      <div class="note-block">
+        <div class="label">기하학적 동기</div>
+        <p>$\mathbb{R}^2,\mathbb{R}^3$에서 $0$이 아닌 $u,v$에 대해 $u\cdot v = \|u\|\|v\|\cos\theta$ ($\theta$는 $u,v$사이의 각). $\theta=\pi/2$(직각)일 때 $\cos\theta=0$이므로 $u\cdot v=0$ — 이 성질을 영벡터를 포함한 $\mathbb{R}^n$의 모든 벡터로 일반화한다.</p>
+      </div>
+      <div class="def-block">
+        <div class="label">정의 (Orthogonal)</div>
+        <p>$u,v\in\mathbb{R}^n$가 <strong>직교(orthogonal)</strong>한다는 것은 $u\cdot v=0$을 뜻한다. <strong>영벡터 $0$은 모든 벡터와 직교한다</strong> ($0\cdot v=0$이므로).</p>
+      </div>
+      <div class="thm-block">
+        <div class="label">피타고라스 정리</div>
+        <p>$u,v$가 직교 $\iff \|u+v\|^2 = \|u\|^2+\|v\|^2$.</p>
+        <p><em>증명:</em> $\|u+v\|^2=(u+v)\cdot(u+v)=u\cdot u+2(u\cdot v)+v\cdot v=\|u\|^2+2(u\cdot v)+\|v\|^2$. 이 값이 $\|u\|^2+\|v\|^2$과 같을 필요충분조건은 $u\cdot v=0$.</p>
+      </div>
+
+      <h3>4. 직교여공간 (Orthogonal Complement)</h3>
+      <div class="def-block">
+        <div class="label">정의 (Orthogonal Complement)</div>
+        <p>$W$가 $\mathbb{R}^n$의 부분공간일 때, 벡터 $z$가 $W$의 모든 벡터와 직교하면 $z$는 $W$에 <strong>직교</strong>한다고 한다. $W$에 직교하는 모든 벡터의 집합을 $W$의 <strong>직교여공간(orthogonal complement)</strong>이라 하고 $W^\perp$로 쓴다.</p>
+      </div>
+      <div class="example-block">
+        <div class="label">예제 — 차원별 $W^\perp$</div>
+        <p>$n\ge2$라 하자. $W=\{0\}$이면 $W^\perp=\mathbb{R}^n$ (영벡터는 모든 벡터와 직교하므로).</p>
+        <p>$\dim W=1$이면 $W=\operatorname{span}\{v\}$ (원점을 지나는 직선)이고, $v$에 직교하는 $0$이 아닌 벡터 $x$가 존재한다 ($n\ge2$이므로). 이 $x$는 $W$의 모든 벡터($v$의 스칼라배)에 직교한다.</p>
+      </div>
+      <div class="note-block">
+        <div class="label">빈칸 채우기 — 생성집합만 확인하면 충분</div>
+        <p>$x\in W^\perp \iff x$가 $W$를 생성(span)하는 어떤 집합의 모든 벡터에 직교한다. (즉 $W$의 기저 벡터들에 대해서만 직교성을 확인하면 충분하다.)</p>
+        <p>$\dim W=n$이면 (즉 $W=\mathbb{R}^n$) $W^\perp=\{0\}$ (모든 벡터, 특히 자기 자신과도 직교해야 하므로).</p>
+      </div>
+      <div class="thm-block">
+        <div class="label">정리</div>
+        <p>$W$가 $\mathbb{R}^n$의 부분공간이면 $W^\perp$도 $\mathbb{R}^n$의 <strong>부분공간</strong>이다.</p>
+        <p><em>증명:</em> $0\in W^\perp$ (자명). $z_1,z_2\in W^\perp$이면 임의의 $w\in W$에 대해 $(z_1+z_2)\cdot w=z_1\cdot w+z_2\cdot w=0$이므로 $z_1+z_2\in W^\perp$. $z\in W^\perp$, 스칼라 $c$에 대해 $(cz)\cdot w=c(z\cdot w)=0$이므로 $cz\in W^\perp$.</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 — $(\operatorname{Nul}A)^\perp$</div>
+        <p>$A$가 $m\times n$ 행렬일 때, $(\operatorname{Nul}A)^\perp = \operatorname{Row}A$ (행공간).</p>
+        <p><em>이유:</em> $\operatorname{Nul}A=\{x:Ax=0\}$은 $x$가 $A$의 모든 행과 직교함을 뜻하므로 $\operatorname{Nul}A=(\operatorname{Row}A)^\perp$. 양변에 직교여공간을 취하면 $(\operatorname{Nul}A)^\perp=\operatorname{Row}A$ (부분공간에 대해 $(W^\perp)^\perp=W$이므로).</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#10-orthogonality_handout.pdf</code> — pp. 1–4 전체</p>
       </div>
 
     </div>
