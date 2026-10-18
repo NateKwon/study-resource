@@ -334,6 +334,7 @@
     <li><a href="#c9">Class 9 · The Power Method</a></li>
     <li><div id="nav-section-label">직교성</div></li>
     <li><a href="#c10">Class 10 · Orthogonality</a></li>
+    <li><a href="#c11">Class 11 · Orthogonal Sets</a></li>
   </ul>
 </nav>
 
@@ -341,7 +342,7 @@
 <main id="main">
 
   <h1 class="page-title">선형대수 2 공부 노트</h1>
-  <p class="page-subtitle">Class #1~10 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
+  <p class="page-subtitle">Class #1~11 · 교재 핸드아웃 기반 정리 (자료가 추가되는 대로 계속 보강됩니다)</p>
 
   <!-- ────────── CLASS 1 ────────── -->
   <div class="section" id="c1">
@@ -1742,9 +1743,125 @@
         <p><em>이유:</em> $\operatorname{Nul}A=\{x:Ax=0\}$은 $x$가 $A$의 모든 행과 직교함을 뜻하므로 $\operatorname{Nul}A=(\operatorname{Row}A)^\perp$. 양변에 직교여공간을 취하면 $(\operatorname{Nul}A)^\perp=\operatorname{Row}A$ (부분공간에 대해 $(W^\perp)^\perp=W$이므로).</p>
       </div>
 
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #13 · $W^\perp$ Intro (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body"><p>Let $W$ be a subspace of $\mathbb{R}^n$. Show that $W^\perp$ is also a subspace of $\mathbb{R}^n$.</p></div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>위 "정리"(직교여공간은 부분공간) 박스의 증명을 그대로 따라가면 된다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>본문의 정리에서 이미 증명했다: (i) $0\in W^\perp$. (ii) $z_1,z_2\in W^\perp \Rightarrow (z_1+z_2)\cdot w=0$ (모든 $w\in W$에 대해) $\Rightarrow z_1+z_2\in W^\perp$. (iii) $z\in W^\perp$, 스칼라 $c \Rightarrow (cz)\cdot w=c(z\cdot w)=0 \Rightarrow cz\in W^\perp$. 세 조건을 만족하므로 $W^\perp$는 부분공간이다.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "Follow the outline of the proof given in class."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body"><p>True or False. Justify: If $u$ is in both $W$ and $W^\perp$, then $u=0$.</p></div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$u\in W^\perp$이므로 $u$는 $W$의 모든 벡터와 직교한다. 그런데 $u$ 자신도 $W$에 속한다면?</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>True.</strong> $u\in W^\perp$이므로 $u$는 $W$의 모든 벡터에 직교한다. $u\in W$이기도 하므로, 특히 $u$ 자신에도 직교해야 한다: $u\cdot u=0$. 내적의 성질 (d)에 의해 $u\cdot u=0 \iff u=0$. 따라서 $u=0$.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "True. (Hint: If $u\ne0$ is in $W\cap W^\perp$, then what should happen?)"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
       <div class="note-block">
         <div class="label">출처</div>
         <p>📄 <code>Class#10-orthogonality_handout.pdf</code> — pp. 1–4 전체</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 11 ────────── -->
+  <div class="section" id="c11">
+    <div class="section-header">
+      <span class="class-num">Class 11</span>
+      직교집합 (Orthogonal Sets)
+    </div>
+    <div class="section-body">
+
+      <h3>1. 직교집합 (Orthogonal Set)</h3>
+      <div class="def-block">
+        <div class="label">정의 (Orthogonal Set)</div>
+        <p>$\mathbb{R}^n$의 벡터 집합 $\{u_1,\ldots,u_p\}$가 <strong>직교집합(orthogonal set)</strong>이라는 것은, 집합에서 뽑은 서로 다른 두 벡터는 항상 직교한다는 뜻이다. 즉 $i\ne j$일 때마다 $u_i\cdot u_j=0$.</p>
+      </div>
+      <div class="thm-block">
+        <div class="label">정리</div>
+        <p>$S=\{u_1,\ldots,u_p\}$가 $\mathbb{R}^n$의 <strong>$0$이 아닌 벡터들로 이루어진</strong> 직교집합이면, $S$는 <strong>선형독립</strong>이다. (따름정리: $p=n$이면 $S$는 $\mathbb{R}^n$의 <strong>기저</strong>이다.)</p>
+        <p><em>증명:</em> $c_1u_1+\cdots+c_pu_p=0$이라 하자. 양변에 $u_i$를 내적하면, 직교성에 의해 $j\ne i$인 항은 모두 $0$이 되어 $c_i(u_i\cdot u_i)=0$만 남는다. $u_i\ne0$이므로 $u_i\cdot u_i>0$, 따라서 $c_i=0$. 모든 $i$에 대해 성립하므로 $S$는 선형독립이다.</p>
+      </div>
+      <div class="def-block">
+        <div class="label">정의 (Orthogonal Basis)</div>
+        <p>부분공간 $W$의 <strong>직교기저(orthogonal basis)</strong>란, $W$의 <strong>기저</strong>이면서 동시에 <strong>직교집합</strong>인 것을 말한다.</p>
+      </div>
+
+      <h3>2. 직교기저의 좌표 계산</h3>
+      <div class="thm-block">
+        <div class="label">정리 — 좌표 공식</div>
+        <p>$\{u_1,\ldots,u_p\}$가 부분공간 $W$의 직교기저이면, 모든 $y\in W$는 $u_1,\ldots,u_p$의 일차결합으로 <strong>유일하게</strong> 표현되며, $y=c_1u_1+\cdots+c_pu_p$일 때</p>
+        $$c_i = \frac{y\cdot u_i}{u_i\cdot u_i} \quad (i=1,\ldots,p)$$
+        <p><em>증명:</em> 양변에 $u_i$를 내적하면 직교성에 의해 $y\cdot u_i = c_i(u_i\cdot u_i)$만 남으므로 $c_i=(y\cdot u_i)/(u_i\cdot u_i)$.</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 — 직교기저로 좌표 구하기</div>
+        <p>$u_1=\begin{bmatrix}3\\1\\1\end{bmatrix}$, $u_2=\begin{bmatrix}-1\\2\\1\end{bmatrix}$, $u_3=\begin{bmatrix}-1/2\\-2\\7/2\end{bmatrix}$.</p>
+        <p><strong>(a)</strong> 세 쌍을 모두 확인: $u_1\cdot u_2=-3+2+1=0$, $u_1\cdot u_3=-3/2-2+7/2=0$, $u_2\cdot u_3=1/2-4+7/2=0$. 모두 직교하고 $0$이 아니므로, $S=\{u_1,u_2,u_3\}$는 $\mathbb{R}^3$의 <strong>직교기저</strong>이다 ($3$개의 선형독립 벡터).</p>
+        <p><strong>(b)</strong> $y=\begin{bmatrix}6\\1\\-8\end{bmatrix}$일 때 $[y]_S$를 구하라.</p>
+        <p class="sol-step">$c_1=\dfrac{y\cdot u_1}{u_1\cdot u_1}=\dfrac{18+1-8}{9+1+1}=\dfrac{11}{11}=1$</p>
+        <p class="sol-step">$c_2=\dfrac{y\cdot u_2}{u_2\cdot u_2}=\dfrac{-6+2-8}{1+4+1}=\dfrac{-12}{6}=-2$</p>
+        <p class="sol-step">$c_3=\dfrac{y\cdot u_3}{u_3\cdot u_3}=\dfrac{-3-2-28}{1/4+4+49/4}=\dfrac{-33}{16.5}=-2$</p>
+        <p>따라서 $[y]_S=(1,-2,-2)$. 검산: $1\cdot u_1-2u_2-2u_3=(3,1,1)+(2,-4,-2)+(1,4,-7)=(6,1,-8)=y$. ✓</p>
+      </div>
+
+      <h3>3. 직교 분해와 직교 투영</h3>
+      <div class="def-block">
+        <div class="label">정의 (Orthogonal Projection)</div>
+        <p>$0$이 아닌 $u\in\mathbb{R}^n$를 고정하면 $W=\operatorname{span}\{u\}$는 $\mathbb{R}^n$의 <strong>$1$차원 부분공간</strong>이다. 임의의 $y\in\mathbb{R}^n$를 $y=a+b$ ($a\in W$, $b\in W^\perp$, 즉 $a,b$는 서로 <strong>직교</strong>) 꼴로 분해할 수 있다.</p>
+        $$a = \frac{y\cdot u}{u\cdot u}\,u, \qquad b = y - a$$
+        <p>$a$를 $y$의 ($W$ 또는 $u$ 위로의) <strong>직교 투영(orthogonal projection)</strong>, $b$를 $u$에 직교한 <strong>$y$의 성분(component orthogonal to $u$)</strong>이라 한다.</p>
+      </div>
+      <div class="example-block">
+        <div class="label">예제 — 직교 분해 계산</div>
+        <p>$y=\begin{bmatrix}7\\6\end{bmatrix}$, $u=\begin{bmatrix}4\\2\end{bmatrix}$일 때, $y$를 $\operatorname{span}\{u\}$ 위의 성분과 $u$에 직교한 성분의 합으로 나타내라.</p>
+        <p>$a=\dfrac{y\cdot u}{u\cdot u}u=\dfrac{28+12}{16+4}\begin{bmatrix}4\\2\end{bmatrix}=2\begin{bmatrix}4\\2\end{bmatrix}=\begin{bmatrix}8\\4\end{bmatrix}$, &nbsp; $b=y-a=\begin{bmatrix}7\\6\end{bmatrix}-\begin{bmatrix}8\\4\end{bmatrix}=\begin{bmatrix}-1\\2\end{bmatrix}$</p>
+        <p>검산: $b\cdot u=-4+4=0$ ✓. 따라서 $y=\begin{bmatrix}8\\4\end{bmatrix}+\begin{bmatrix}-1\\2\end{bmatrix}$.</p>
+      </div>
+
+      <h3>4. 정규직교집합 (Orthonormal Set)</h3>
+      <div class="def-block">
+        <div class="label">정의 (Orthonormal Set / Basis)</div>
+        <p>집합 $\{u_1,\ldots,u_p\}$가 <strong>정규직교집합(orthonormal set)</strong>이라는 것은, <strong>단위벡터(길이 $1$)들로 이루어진 직교집합</strong>이라는 뜻이다. $W=\operatorname{span}\{u_1,\ldots,u_p\}$이면, $\{u_1,\ldots,u_p\}$는 $W$의 <strong>정규직교기저(orthonormal basis)</strong>이다.</p>
+      </div>
+      <div class="example-block">
+        <div class="label">예제 — $\mathbb{R}^3$의 서로 다른 정규직교기저 두 개</div>
+        <p>표준기저 $\{e_1,e_2,e_3\}=\left\{\begin{bmatrix}1\\0\\0\end{bmatrix},\begin{bmatrix}0\\1\\0\end{bmatrix},\begin{bmatrix}0\\0\\1\end{bmatrix}\right\}$는 가장 간단한 정규직교기저이다.</p>
+        <p>$xy$-평면을 $45°$ 회전시킨 기저 $\left\{\begin{bmatrix}1/\sqrt2\\1/\sqrt2\\0\end{bmatrix},\begin{bmatrix}-1/\sqrt2\\1/\sqrt2\\0\end{bmatrix},\begin{bmatrix}0\\0\\1\end{bmatrix}\right\}$도 정규직교기저이다 (각 벡터의 길이가 $1$이고, 서로 내적하면 $0$임을 쉽게 확인할 수 있다).</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#11-orthogonal_set_handout.pdf</code> — pp. 1–4 전체</p>
       </div>
 
     </div>
