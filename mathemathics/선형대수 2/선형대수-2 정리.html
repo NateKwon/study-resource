@@ -2179,16 +2179,16 @@
   <div class="section" id="c13">
     <div class="section-header">
       <span class="class-num">Class 13</span>
-      그람-슈미트 과정 (The Gram-Schmidt Process)
+      Gram-Schmidt Process
     </div>
     <div class="section-body">
 
       <div class="lead-block">
         <p class="lead-label">들어가며 — 어떤 맥락에서 나온 개념인가</p>
         <p>Class 11~12에서 직교(정규직교)기저가 얼마나 편리한지 봤다 — 좌표도, 투영도 전부 내적 하나로 즉시 나온다. 그런데 지금까지는 직교기저가 <strong>이미 주어졌을 때</strong>만 그 혜택을 누렸다. 현실에서 손에 쥔 기저는 대개 평범한(직교가 아닌) 기저뿐이다.</p>
-        <p>그람-슈미트 과정은 <strong>임의의 기저를 직교기저로 바꾸는 알고리즘</strong>이다. 핵심 아이디어는 간단하다 — 벡터를 하나씩 추가하면서, 매번 "지금까지 만든 공간 위로의 투영을 빼서" 그 공간에 수직인 성분만 남긴다. Class 12의 직교분해($y=\hat y+z$, $z\perp W$)를 반복 적용하는 것이 바로 그람-슈미트다.</p>
+        <p>Gram-Schmidt 과정은 <strong>임의의 기저를 직교기저로 바꾸는 알고리즘</strong>이다. 핵심 아이디어는 간단하다 — 벡터를 하나씩 추가하면서, 매번 "지금까지 만든 공간 위로의 투영을 빼서" 그 공간에 수직인 성분만 남긴다. Class 12의 직교분해($y=\hat y+z$, $z\perp W$)를 반복 적용하는 것이 바로 Gram-Schmidt다.</p>
         <p>이 과정의 부산물이 <strong>QR 분해</strong>다. $A=QR$로 쪼개면 ($Q$: 정규직교 열, $R$: 상삼각) 최소제곱법 등 수치 계산이 훨씬 안정적이고 효율적으로 바뀐다.</p>
-        <p><strong>이 단원에서 다루는 것:</strong> 정규직교기저에서의 투영 공식 $\operatorname{proj}_W y = UU^Ty$, 그람-슈미트 알고리즘과 전체 예제, 그리고 QR 분해.</p>
+        <p><strong>이 단원에서 다루는 것:</strong> 정규직교기저에서의 투영 공식 $\operatorname{proj}_W y = UU^Ty$, Gram-Schmidt 알고리즘과 전체 예제, 그리고 QR 분해.</p>
       </div>
 
       <h3>1. 정규직교기저에서의 투영 공식</h3>
@@ -2202,14 +2202,14 @@
         <p style="color:#555;">👉 $U^TU=I$(Class 12)였지만 $UU^T$는 일반적으로 $I$가 <strong>아니다</strong> — $UU^T$는 "$W$ 위로 투영하는" 행렬 그 자체이다.</p>
       </div>
 
-      <h3>2. 그람-슈미트 과정 (The Gram-Schmidt Process)</h3>
+      <h3>2. Gram-Schmidt Process</h3>
       <div class="def-block">
         <div class="label">개요</div>
-        <p>그람-슈미트 과정은 $\mathbb{R}^n$의 임의의 부분공간에 대해 <strong>직교(또는 정규직교) 기저를 생성하는</strong> 알고리즘이다.</p>
+        <p>Gram-Schmidt 과정은 $\mathbb{R}^n$의 임의의 부분공간에 대해 <strong>직교(또는 정규직교) 기저를 생성하는</strong> 알고리즘이다.</p>
       </div>
 
       <div class="example-block">
-        <div class="label">예제 — 그람-슈미트 과정 전체 과정</div>
+        <div class="label">예제 — Gram-Schmidt 과정 전체 과정</div>
         <p>$b_1=\begin{bmatrix}1\\1\\1\\1\end{bmatrix}$, $b_2=\begin{bmatrix}0\\1\\1\\1\end{bmatrix}$, $b_3=\begin{bmatrix}0\\0\\1\\1\end{bmatrix}$이고, $\{b_1,b_2,b_3\}$는 $\mathbb{R}^4$의 부분공간 $W$의 기저이다. $W$의 직교기저 $\{u_1,u_2,u_3\}$를 구성하라.</p>
 
         <p><strong>(Step 1)</strong> $u_1=b_1=(1,1,1,1)$, $W_1=\operatorname{Span}\{b_1\}=\operatorname{Span}\{u_1\}$.</p>
@@ -2231,7 +2231,7 @@
       </div>
 
       <div class="thm-block">
-        <div class="label">정리 — 그람-슈미트 과정 (일반형)</div>
+        <div class="label">정리 — Gram-Schmidt 과정 (일반형)</div>
         <p>부분공간 $W$의 기저 $\{b_1,\ldots,b_p\}$가 주어지면, 다음과 같이 정의하자:</p>
         <p class="sol-step">$u_1=b_1$</p>
         <p class="sol-step">$u_2=b_2-\dfrac{b_2\cdot u_1}{u_1\cdot u_1}u_1$</p>
@@ -2245,7 +2245,7 @@
 
       <div class="note-block">
         <div class="label">빈칸 채우기 — 직교기저의 존재성</div>
-        <p>$\mathbb{R}^n$의 <strong>영이 아닌 모든</strong> 부분공간 $W$는 (그람-슈미트 과정 덕분에) <strong>직교기저</strong>를 갖는다. 즉 모든 부분공간에서 Class 11~12의 "좌표/투영이 쉬워지는" 혜택을 누릴 수 있다는 뜻이다.</p>
+        <p>$\mathbb{R}^n$의 <strong>영이 아닌 모든</strong> 부분공간 $W$는 (Gram-Schmidt 과정 덕분에) <strong>직교기저</strong>를 갖는다. 즉 모든 부분공간에서 Class 11~12의 "좌표/투영이 쉬워지는" 혜택을 누릴 수 있다는 뜻이다.</p>
       </div>
 
       <h3>3. QR 분해 (The QR Factorization)</h3>
@@ -2254,7 +2254,7 @@
         <p>$A$가 선형독립인 열을 가진 $m\times n$ 행렬이면, $A$는 다음과 같이 분해된다:</p>
         $$A=QR$$
         <p>여기서 $Q$는 $A$의 열공간 $\operatorname{Col}A$의 <strong>정규직교기저</strong>를 열로 갖는 $m\times n$ 행렬이고, $R$은 <strong>대각원소가 모두 양수인 가역 상삼각행렬</strong>($n\times n$)이다.</p>
-        <p><em>증명 스케치:</em> $A$의 열 $a_1,\ldots,a_n$은 선형독립이므로 $\operatorname{Col}A$의 기저이다. 그람-슈미트로 정규직교기저 $\{u_1,\ldots,u_n\}$을 만들고 $Q=[u_1\ \cdots\ u_n]$으로 둔다. 그람-슈미트의 구성 방식상 $a_i\in\operatorname{Span}\{u_1,\ldots,u_i\}$이므로</p>
+        <p><em>증명 스케치:</em> $A$의 열 $a_1,\ldots,a_n$은 선형독립이므로 $\operatorname{Col}A$의 기저이다. Gram-Schmidt로 정규직교기저 $\{u_1,\ldots,u_n\}$을 만들고 $Q=[u_1\ \cdots\ u_n]$으로 둔다. Gram-Schmidt의 구성 방식상 $a_i\in\operatorname{Span}\{u_1,\ldots,u_i\}$이므로</p>
         $$a_i = r_{1i}u_1+\cdots+r_{ii}u_i+0\cdot u_{i+1}+\cdots+0\cdot u_n$$
         <p>를 만족하는 계수들이 존재한다 ($r_{ii}<0$이면 $u_i$를 $-u_i$로 바꿔서 $r_{ii}\ge0$으로 만들 수 있다). $r_i=(r_{1i},\ldots,r_{ii},0,\ldots,0)^T$, $R=[r_1\ \cdots\ r_n]$으로 두면 $a_i=Qr_i$이므로</p>
         $$A=[a_1\ \cdots\ a_n]=[Qr_1\ \cdots\ Qr_n]=QR$$
@@ -2299,13 +2299,13 @@
           <div class="toggle-row">
             <details class="hint-detail">
               <summary>💡 힌트 보기</summary>
-              <div class="toggle-body"><p>(a) 행 축소해서 피벗이 $3$개(열의 개수만큼) 나오는지 확인하라. (b) $A$의 세 열을 $b_1,b_2,b_3$로 두고 위 예제와 똑같이 그람-슈미트 과정을 적용하라.</p></div>
+              <div class="toggle-body"><p>(a) 행 축소해서 피벗이 $3$개(열의 개수만큼) 나오는지 확인하라. (b) $A$의 세 열을 $b_1,b_2,b_3$로 두고 위 예제와 똑같이 Gram-Schmidt 과정을 적용하라.</p></div>
             </details>
             <details class="sol-detail">
               <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
               <div class="toggle-body">
                 <p><strong>(a)</strong> $A$를 행 축소하면 피벗이 $3$개(열의 수와 동일) 나오므로 세 열은 선형독립이다. (직접 행 축소하여 확인.)</p>
-                <p><strong>(b)</strong> $A$의 열 $b_1=(1,-1,0,1,1)$, $b_2=(3,-3,2,5,5)$, $b_3=(5,1,3,2,8)$에 그람-슈미트 과정을 적용하면:</p>
+                <p><strong>(b)</strong> $A$의 열 $b_1=(1,-1,0,1,1)$, $b_2=(3,-3,2,5,5)$, $b_3=(5,1,3,2,8)$에 Gram-Schmidt 과정을 적용하면:</p>
                 $$u_1=\begin{bmatrix}1\\-1\\0\\1\\1\end{bmatrix},\quad u_2=\begin{bmatrix}-1\\1\\2\\1\\1\end{bmatrix},\quad u_3=\begin{bmatrix}1\\1\\0\\-1\\1\end{bmatrix}$$
                 <p>이것이 $\operatorname{Col}A$의 <strong>직교기저</strong>이다. 각 벡터의 길이는 $\|u_1\|=\|u_3\|=2$, $\|u_2\|=2\sqrt2$이므로, <strong>정규직교기저</strong>는</p>
                 $$\left\{\frac{u_1}{2},\ \frac{u_2}{2\sqrt2},\ \frac{u_3}{2}\right\}$$
