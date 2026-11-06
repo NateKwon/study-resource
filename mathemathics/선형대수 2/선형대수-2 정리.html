@@ -353,6 +353,11 @@
     <li><a href="#c11">Class 11 · Orthogonal Sets</a></li>
     <li><a href="#c12">Class 12 · Orthogonal Projections</a></li>
     <li><a href="#c13">Class 13 · Gram-Schmidt Process</a></li>
+    <li><div id="nav-section-label">최소제곱법과 응용</div></li>
+    <li><a href="#c14">Class 14 · Least-Squares Problems</a></li>
+    <li><a href="#c15">Class 15 · Applications</a></li>
+    <li><div id="nav-section-label">일반적인 내적공간</div></li>
+    <li><a href="#c16">Class 16 · Inner Product Spaces</a></li>
   </ul>
 </nav>
 
@@ -2317,9 +2322,325 @@
 
       </div>
 
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #17 · QR Factorization (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body">
+            <p>Consider the same matrix as above:</p>
+            $$A=\begin{bmatrix}1&3&5\\-1&-3&1\\0&2&3\\1&5&2\\1&5&8\end{bmatrix}$$
+            <ol type="a">
+              <li>Explain why the given matrix has a $QR$ factorization.</li>
+              <li>Find an upper triangular matrix $R$ with positive diagonal entries so that $A=QR$.</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>(a) $QR$ 분해 정리(Class 13)는 열이 선형독립인 행렬에만 적용된다 — Practice #16에서 이미 확인한 사실을 떠올려라. (b) $r_{ij}=a_j\cdot u_i$ 공식(Class 13)에 바로 위에서 구한 정규직교기저 $u_1,u_2,u_3$를 대입하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(a)</strong> $QR$ 분해는 <strong>열이 선형독립인</strong> 행렬에 대해 항상 존재한다(Class 13 정리). 위 Practice #16에서 $A$의 세 열이 선형독립임을 이미 보였으므로, $A$는 $QR$ 분해를 갖는다.</p>
+                <p><strong>(b)</strong> $Q=[u_1\ u_2\ u_3]=\left[\dfrac{(1,-1,0,1,1)}{2}\ \ \dfrac{(-1,1,2,1,1)}{2\sqrt2}\ \ \dfrac{(1,1,0,-1,1)}{2}\right]$를 정규직교기저로 사용한다. $A$의 열을 $a_1,a_2,a_3$라 하면 $r_{ij}=a_j\cdot u_i$ ($i\le j$):</p>
+                <p class="sol-step">$r_{11}=a_1\cdot u_1=\dfrac{a_1\cdot a_1}{2}=\dfrac{4}{2}=2$</p>
+                <p class="sol-step">$r_{12}=a_2\cdot u_1=\dfrac{a_2\cdot a_1}{2}=\dfrac{16}{2}=8$, &nbsp; $r_{22}=a_2\cdot u_2=\dfrac{8}{2\sqrt2}=2\sqrt2$</p>
+                <p class="sol-step">$r_{13}=a_3\cdot u_1=\dfrac{a_3\cdot a_1}{2}=\dfrac{14}{2}=7$, &nbsp; $r_{23}=a_3\cdot u_2=\dfrac{12}{2\sqrt2}=3\sqrt2$, &nbsp; $r_{33}=a_3\cdot u_3=\dfrac{12}{2}=6$</p>
+                $$R=\begin{bmatrix}2&8&7\\0&2\sqrt2&3\sqrt2\\0&0&6\end{bmatrix}$$
+                <p>대각원소 $2,\,2\sqrt2,\,6$이 모두 양수이므로 조건을 만족한다. ($QR=A$로 검산 가능.)</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "#1(a): Columns of $A$ are? #1(b): Find $R$ using the formula for $r_{ij}$ from the class, and check if your $R$ is correct by computing $QR$ (it should equal $A$)."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body">
+            <p>Not every application needs the diagonals of the matrix $R$ to be positive. If we drop this requirement, you don't need to update $Q$, and there is an easy way of computing the matrix $R$. What is an easy way? Discuss.</p>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$A=QR$의 양변에 왼쪽에서 $Q^T$를 곱하면 $Q^TA=Q^TQR$이다. $Q$는 정규직교 열을 가지므로(Class 12) $Q^TQ=?$</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>$A=QR$의 양변에 $Q^T$를 곱하면 $Q^TA=Q^TQR$. $Q$는 정규직교 <strong>열</strong>을 가지므로(Class 12 정리) $Q^TQ=I$. 따라서</p>
+                $$Q^TA=R$$
+                <p>즉, $r_{ij}=a_j\cdot u_i$ 공식을 하나씩 계산할 필요 없이, <strong>행렬곱 $R=Q^TA$ 한 번으로</strong> $R$ 전체를 바로 얻을 수 있다. 이 방법은 대각원소의 부호를 따로 조정하지 않으므로(그람-슈미트에서 $u_i$를 그대로 썼다면) 대각원소가 음수일 수도 있다 — 하지만 많은 응용(예: 최소제곱법)에서는 부호가 중요하지 않으므로 문제없다.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "Since $A=QR$, we have $Q^TA=Q^TQR$. Note that the matrix $Q$ has [orthonormal] columns, so $Q^TQ=I$."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
       <div class="note-block">
         <div class="label">출처</div>
-        <p>📄 <code>Class#13-GS_process_handout.pdf</code> — pp. 1–3 전체</p>
+        <p>📄 <code>Class#13-GS_process_handout.pdf</code> — pp. 1–3 전체 (Answer Key 포함)</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 14 ────────── -->
+  <div class="section" id="c14">
+    <div class="section-header">
+      <span class="class-num">Class 14</span>
+      최소제곱문제 (Least-Squares Problems)
+    </div>
+    <div class="section-body">
+
+      <div class="lead-block">
+        <p class="lead-label">들어가며 — 어떤 맥락에서 나온 개념인가</p>
+        <p>지금까지 $Ax=b$는 해가 있을 때만 다뤘다. 그런데 현실의 데이터(측정값, 설문 응답, 센서 값)는 노이즈를 포함하기 때문에, 방정식의 개수(관측치 수 $m$)가 미지수 개수($n$)보다 많은 경우 $Ax=b$가 <strong>해를 갖지 못하는</strong> 경우가 대부분이다($b\notin\operatorname{Col}A$).</p>
+        <p>이럴 때 포기하는 대신 <strong>"가장 비슷한 답"</strong>을 찾자는 것이 이 단원의 발상이다. Class 12의 최적근사정리 — "$\operatorname{Col}A$ 안에서 $b$에 가장 가까운 점은 $\operatorname{proj}_{\operatorname{Col}A}b$다" — 를 그대로 적용하면 된다. $b$를 $\hat b=\operatorname{proj}_{\operatorname{Col}A}b$로 바꿔치기하면 $Ax=\hat b$는 <strong>항상 해를 갖고</strong>, 그 해가 원래 방정식의 "최선의 근사해"가 된다.</p>
+        <p>이 아이디어가 바로 <strong>최소제곱법(least squares)</strong>이다 — 통계의 회귀분석, 머신러닝의 선형회귀가 모두 이 단원의 응용이다(Class 15에서 직접 다룬다).</p>
+        <p><strong>이 단원에서 다루는 것:</strong> 최소제곱해의 정의, 정규방정식(normal equations) $A^TA\hat x=A^Tb$의 유도, 최소제곱해의 유일성 조건, $QR$ 분해를 이용한 효율적 계산, 최소제곱오차.</p>
+      </div>
+
+      <h3>1. 최소제곱문제의 정의</h3>
+      <div class="def-block">
+        <div class="label">정의 (Least-Squares Solution)</div>
+        <p>$A\in\mathbb{R}^{m\times n}$, $b\in\mathbb{R}^m$일 때, $Ax=b$의 <strong>최소제곱해</strong>란 다음을 만족하는 $\hat x\in\mathbb{R}^n$이다:</p>
+        $$\|b-A\hat x\| \le \|b-Ax\| \quad \text{모든 } x\in\mathbb{R}^n\text{에 대해}$$
+        <p>즉 $b$와 $Ax$ 사이의 거리 $\|b-Ax\|$를 <strong>가장 작게</strong> 만드는 $x$를 찾는 문제다.</p>
+      </div>
+
+      <h3>2. 핵심 관찰 — $\hat b=\operatorname{proj}_{\operatorname{Col}A}b$로 바꿔 풀기</h3>
+      <div class="thm-block">
+        <div class="label">관찰</div>
+        <p>임의의 $x\in\mathbb{R}^n$에 대해 $Ax\in\operatorname{Col}A$이다. 따라서 $\|b-Ax\|$를 최소화하는 것은, $\operatorname{Col}A$ <strong>안에서</strong> $b$에 가장 가까운 점을 찾는 것과 같다.</p>
+        <p>Class 12의 최적근사정리에 의해 $\operatorname{Col}A$에서 $b$에 가장 가까운 점은 $\hat b=\operatorname{proj}_{\operatorname{Col}A}b$이다. $\hat b\in\operatorname{Col}A$이므로 방정식 $Ax=\hat b$는 <strong>항상 consistent</strong>하다. 따라서 <strong>최소제곱해 $\hat x$란 $A\hat x=\hat b$를 만족하는 벡터</strong>이다.</p>
+      </div>
+
+      <h3>3. 정규방정식 (Normal Equations)</h3>
+      <div class="thm-block">
+        <div class="label">정리 — 정규방정식의 유도</div>
+        <p>$\hat x$가 $A\hat x=\hat b$를 만족한다고 하자. $\hat b=\operatorname{proj}_{\operatorname{Col}A}b$이므로 직교분해정리(Class 12)에 의해 $(b-\hat b)\perp\operatorname{Col}A$, 즉</p>
+        $$(b-\hat b)\in(\operatorname{Col}A)^\perp=(\operatorname{Row}(A^T))^\perp=\operatorname{Nul}(A^T)$$
+        <p>(마지막 등호는 Class 10의 $(\operatorname{Row}B)^\perp=\operatorname{Nul}B$를 $B=A^T$에 적용한 것이다.) $\operatorname{Nul}(A^T)$의 정의에 의해</p>
+        $$A^T(b-A\hat x)=0 \quad\Longrightarrow\quad A^TA\hat x = A^Tb$$
+        <p>이 방정식을 $\hat x$에 대한 <strong>정규방정식(normal equations)</strong>이라 부른다. 정규방정식의 해집합은 (원래 최소제곱문제의) 최소제곱해 전체와 정확히 일치한다.</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 — 정규방정식 풀기</div>
+        <p>다음 비일관(inconsistent) 시스템 $Ax=b$의 최소제곱해를 구하라.</p>
+        $$A=\begin{bmatrix}1&1&0&0\\1&1&0&0\\1&0&1&0\\1&0&1&0\\1&0&0&1\\1&0&0&1\end{bmatrix},\qquad b=\begin{bmatrix}-3\\-1\\0\\2\\5\\1\end{bmatrix}$$
+        <p>계산하면 $A^TA=\begin{bmatrix}6&2&2&2\\2&2&0&0\\2&0&2&0\\2&0&0&2\end{bmatrix}$, $A^Tb=\begin{bmatrix}4\\-4\\2\\6\end{bmatrix}$이고, 정규방정식의 첨가행렬을 행 축소하면</p>
+        $$\begin{bmatrix}1&0&0&1&3\\0&1&0&-1&-5\\0&0&1&-1&-2\\0&0&0&0&0\end{bmatrix}$$
+        <p>$x_4=t$(자유변수)로 두면 $x_1=3-t,\ x_2=-5+t,\ x_3=-2+t$. 따라서 <strong>최소제곱해 전체</strong>는</p>
+        $$\hat x=\begin{bmatrix}3\\-5\\-2\\0\end{bmatrix}+t\begin{bmatrix}-1\\1\\1\\1\end{bmatrix} \quad (t\in\mathbb{R})$$
+        <p>해가 <strong>무수히 많다</strong> — 이는 $A$의 열이 선형독립이 아니기 때문이다(아래 정리 참고).</p>
+      </div>
+
+      <h3>4. 최소제곱해의 유일성</h3>
+      <div class="thm-block">
+        <div class="label">정리 — $A^TA$의 가역성과 유일성</div>
+        <p>행렬 $A^TA$가 <strong>가역</strong>일 필요충분조건은 $A$의 <strong>열이 선형독립</strong>인 것이다. 이 경우 $Ax=b$는 <strong>유일한</strong> 최소제곱해 $\hat x$를 가지며,</p>
+        $$\hat x=(A^TA)^{-1}A^Tb$$
+        <p><em>증명 — Claim 1: $\operatorname{Nul}A=\operatorname{Nul}(A^TA)$.</em> $Ax=0\Rightarrow A^TAx=0$이므로 $\operatorname{Nul}A\subseteq\operatorname{Nul}(A^TA)$. 역으로 $A^TAx=0$이면 $x^TA^TAx=0$, 즉 $(Ax)\cdot(Ax)=\|Ax\|^2=0$이므로 $Ax=0$. 따라서 $\operatorname{Nul}(A^TA)\subseteq\operatorname{Nul}A$. 두 포함관계로 등식이 성립한다.</p>
+        <p><em>Claim 2 ($\Rightarrow$):</em> $A^TA$가 가역이면 $\operatorname{Nul}(A^TA)=\{0\}$. Claim 1에 의해 $\operatorname{Nul}A=\{0\}$, 즉 $A$의 열은 선형독립이다.</p>
+        <p><em>Claim 3 ($\Leftarrow$):</em> $A$의 열이 선형독립이면 $\operatorname{Nul}A=\{0\}$. Claim 1에 의해 $\operatorname{Nul}(A^TA)=\{0\}$인데 $A^TA$는 정사각($n\times n$)행렬이므로 (IMT에 의해) $A^TA$는 가역이다.</p>
+        <p>$A^TA$가 가역이면 정규방정식 $A^TA\hat x=A^Tb$을 양변에 $(A^TA)^{-1}$을 곱해 유일하게 풀 수 있다: $\hat x=(A^TA)^{-1}A^Tb$. $\square$</p>
+      </div>
+
+      <h3>5. $QR$ 분해를 이용한 계산</h3>
+      <div class="thm-block">
+        <div class="label">정리 — $QR$ 분해로 최소제곱해 구하기</div>
+        <p>$A$가 선형독립인 열을 가진 $m\times n$ 행렬이고 $A=QR$(Class 13의 $QR$ 분해)이면, 모든 $b\in\mathbb{R}^m$에 대해 $Ax=b$는 유일한 최소제곱해를 가지며</p>
+        $$\hat x = R^{-1}Q^Tb$$
+        <p><em>증명:</em> 정규방정식 $A^TA\hat x=A^Tb$에 $A=QR$을 대입하면 $(QR)^T(QR)\hat x=(QR)^Tb$, 즉 $R^TQ^TQR\hat x=R^TQ^Tb$. $Q^TQ=I$(Class 12)이므로 $R^TR\hat x=R^TQ^Tb$. $R$이 가역(Class 13)이므로 $R^T$도 가역이고, 양변에 $(R^T)^{-1}$을 곱하면 $R\hat x=Q^Tb$, 즉 $\hat x=R^{-1}Q^Tb$. $\square$</p>
+        <p style="color:#555;">👉 실제 계산에서는 $R^{-1}$을 직접 구하지 않는다. $R$이 <strong>상삼각행렬</strong>이므로 $R\hat x=Q^Tb$를 <strong>후진대입(back-substitution)</strong>으로 풀면 더 빠르고 수치적으로 안정적이다.</p>
+      </div>
+
+      <h3>6. 최소제곱오차 (Least-Squares Error)</h3>
+      <div class="def-block">
+        <div class="label">정의 (Least-Squares Error)</div>
+        <p>최소제곱해 $\hat x$로 $b$를 근사할 때, $b$와 $A\hat x$ 사이의 거리</p>
+        $$\|b-A\hat x\|$$
+        <p>를 이 근사의 <strong>최소제곱오차</strong>라 한다. (이 값이 바로 Class 12에서 본 "점과 부분공간 사이의 거리" $\operatorname{dist}(b,\operatorname{Col}A)$이다.)</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#14-least_squares_handout.pdf</code> — pp. 1–4 전체 (Answer Key 포함)</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 15 ────────── -->
+  <div class="section" id="c15">
+    <div class="section-header">
+      <span class="class-num">Class 15</span>
+      응용 (Applications)
+    </div>
+    <div class="section-body">
+
+      <div class="lead-block">
+        <p class="lead-label">들어가며 — 어떤 맥락에서 나온 개념인가</p>
+        <p>Class 14에서 "비일관 시스템도 최선의 근사해를 구할 수 있다"는 것을 배웠다. 이 단원은 그 기법을 <strong>실제 데이터에 곡선을 맞추는(curve fitting)</strong> 문제에 바로 적용한다 — 통계의 선형회귀, 머신러닝의 선형모델이 수학적으로 전부 이것이다.</p>
+        <p>머신러닝의 언어로 다시 쓰면: 기계는 입력(독립변수)과 출력(종속변수)의 짝으로 이루어진 <strong>훈련 데이터(training data)</strong>를 받는다. 기계는 이 데이터로부터 입력과 출력 사이의 <strong>관계(직선의 기울기·절편 등 계수)</strong>를 "학습"한다. 학습이 끝나면, 새로운 입력값에 대해 출력값을 <strong>예측</strong>할 수 있다. 이 "관계를 학습하는" 단계가 수학적으로는 정확히 <strong>정규방정식을 푸는 것</strong>이다.</p>
+        <p><strong>이 단원에서 다루는 것:</strong> 최소제곱직선(least-squares line) 구하기, 데이터를 선형모델 $X\beta=y$로 세우는 방법, 포물선 등 곡선으로 확장하는 방법.</p>
+      </div>
+
+      <h3>1. 최소제곱직선 (Least-Squares Line)</h3>
+      <div class="def-block">
+        <div class="label">개요</div>
+        <p>실험 데이터 $(x_1,y_1),\ldots,(x_n,y_n)$이 직선 근처에 분포할 때, 데이터에 가장 잘 맞는 직선 $y=\beta_0+\beta_1x$를 찾고 싶다. <strong>최소제곱직선</strong>이란 잔차(residual, 실제값과 예측값의 차이)의 제곱합을 최소화하는 직선이다.</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 — 최소제곱직선 구하기</div>
+        <p>데이터점 $(2,1),(5,2),(7,3),(8,3)$에 가장 잘 맞는 직선 $y=a+bx$를 구하라.</p>
+        <p><strong>1단계 — 선형모델 세우기:</strong> 각 데이터점이 $y_i=a+bx_i$를 (근사적으로) 만족한다고 보고, 미지수 $\beta=(a,b)^T$에 대한 선형시스템 $X\beta=y$로 쓴다:</p>
+        $$X=\begin{bmatrix}1&2\\1&5\\1&7\\1&8\end{bmatrix},\qquad \beta=\begin{bmatrix}a\\b\end{bmatrix},\qquad y=\begin{bmatrix}1\\2\\3\\3\end{bmatrix}$$
+        <p><strong>2단계 — 정규방정식 $X^TX\beta=X^Ty$:</strong></p>
+        $$X^TX=\begin{bmatrix}4&22\\22&142\end{bmatrix},\qquad X^Ty=\begin{bmatrix}9\\57\end{bmatrix}$$
+        <p>(계산: $\sum x_i=22$, $\sum x_i^2=142$, $\sum y_i=9$, $\sum x_iy_i=57$.)</p>
+        <p><strong>3단계 — 풀기:</strong> $4a+22b=9$, $22a+142b=57$. 첫 식에 $5.5$를 곱해 빼면 $21b=7.5\Rightarrow b=\dfrac{5}{14}$, 대입하면 $a=\dfrac27$.</p>
+        $$y = \frac27 + \frac{5}{14}x$$
+      </div>
+
+      <h3>2. 곡선으로 확장 — 포물선 맞추기</h3>
+      <div class="example-block">
+        <div class="label">예제 — 포물선 최소제곱 맞춤</div>
+        <p>데이터점 $(x_1,y_1),\ldots,(x_n,y_n)$이 직선이 아니라 포물선 $y=a+bx+cx^2$ 근처에 분포한다고 하자. 이 데이터에 대한 "최소제곱 맞춤"을 만드는 선형모델을 설명하라.</p>
+        <p>미지수를 $\beta=(a,b,c)^T$로 두면, 각 데이터점에서 $y_i=a+bx_i+cx_i^2$이므로 선형시스템 $X\beta=y$는</p>
+        $$X=\begin{bmatrix}1&x_1&x_1^2\\1&x_2&x_2^2\\\vdots&\vdots&\vdots\\1&x_n&x_n^2\end{bmatrix},\qquad \beta=\begin{bmatrix}a\\b\\c\end{bmatrix},\qquad y=\begin{bmatrix}y_1\\y_2\\\vdots\\y_n\end{bmatrix}$$
+        <p>직선일 때와 완전히 같은 방식으로 정규방정식 $X^TX\beta=X^Ty$를 풀면 된다 — <strong>모델이 $x$에 대해 비선형(포물선)이어도, 계수 $a,b,c$에 대해서는 선형</strong>이기 때문에 똑같은 최소제곱 기법이 그대로 통한다.</p>
+        <p style="color:#555;">👉 이 관찰이 Class 14~15 전체의 핵심이다 — "곡선을 맞춘다"는 말이 거창해 보여도, 계수에 대해 선형이기만 하면 전부 $X^TX\beta=X^Ty$ 하나로 환원된다.</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#15-applications_handout.pdf</code> — pp. 1–2 전체 (Answer Key 포함)</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ────────── CLASS 16 ────────── -->
+  <div class="section" id="c16">
+    <div class="section-header">
+      <span class="class-num">Class 16</span>
+      내적공간 (Inner Product Spaces)
+    </div>
+    <div class="section-body">
+
+      <div class="lead-block">
+        <p class="lead-label">들어가며 — 어떤 맥락에서 나온 개념인가</p>
+        <p>지금까지의 직교성·투영·그람-슈미트·최소제곱은 전부 $\mathbb{R}^n$의 <strong>표준 내적</strong> $u\cdot v=u^Tv$ 위에서 전개됐다. 그런데 이 모든 이론은 사실 "내적"이 갖는 <strong>몇 가지 성질(대칭성, 선형성, 양의 정부호성)</strong>만 있으면 작동한다 — 꼭 $\mathbb{R}^n$의 점곱일 필요가 없다.</p>
+        <p>이 단원은 그 관찰을 공식화한다. <strong>내적공간(inner product space)</strong>이란 "점곱처럼 행동하는" 함수 $\langle u,v\rangle$가 정의된 벡터공간이다. 다항식 공간, 연속함수 공간에도 내적을 정의할 수 있고, 그러면 Class 11~14의 직교성·투영·그람-슈미트·최소제곱 정리가 <strong>그대로</strong> 성립한다. 이것이 바로 푸리에 급수(신호처리)와 함수 근사 이론의 수학적 기반이다.</p>
+        <p><strong>이 단원에서 다루는 것:</strong> 내적의 공리적 정의, 길이·거리·직교의 일반화, 다항식 공간과 함수 공간에서의 구체적 내적 예제, 코시-슈바르츠 부등식, 그리고 푸리에 근사.</p>
+      </div>
+
+      <h3>1. 내적의 정의 (Inner Product)</h3>
+      <div class="def-block">
+        <div class="label">정의 (Inner Product)</div>
+        <p>벡터공간 $V$ 위의 <strong>내적</strong>이란, $V$의 두 벡터 $u,v$의 쌍마다 실수 $\langle u,v\rangle$를 대응시키는 함수로서, 모든 $u,v,w\in V$와 모든 스칼라 $c$에 대해 다음을 만족하는 것이다:</p>
+        <p class="sol-step">(a) $\langle u,v\rangle=\langle v,u\rangle$ &nbsp;(대칭성)</p>
+        <p class="sol-step">(b) $\langle u+v,w\rangle=\langle u,w\rangle+\langle v,w\rangle$ &nbsp;(덧셈에 대한 선형성)</p>
+        <p class="sol-step">(c) $\langle cu,v\rangle=c\langle u,v\rangle$ &nbsp;(스칼라곱에 대한 선형성)</p>
+        <p class="sol-step">(d) $\langle u,u\rangle\ge0$이고, $\langle u,u\rangle=0 \iff u=0$ &nbsp;(양의 정부호성)</p>
+        <p>내적이 정의된 벡터공간을 <strong>내적공간</strong>이라 한다.</p>
+      </div>
+
+      <div class="def-block">
+        <div class="label">정의 — 길이, 거리, 직교의 일반화</div>
+        <p>내적공간 $V$에서:</p>
+        <p class="sol-step">(a) 벡터 $v$의 <strong>길이(norm)</strong>: $\|v\|=\sqrt{\langle v,v\rangle}$</p>
+        <p class="sol-step">(b) $u,v$ 사이의 <strong>거리</strong>: $\operatorname{dist}(u,v)=\|u-v\|$</p>
+        <p class="sol-step">(c) $u,v$가 <strong>직교</strong>: $\langle u,v\rangle=0$</p>
+        <p style="color:#555;">👉 $\mathbb{R}^n$의 표준 내적 $\langle u,v\rangle=u\cdot v$가 이 정의를 만족하는 가장 익숙한 예다 — 즉 지금까지 배운 모든 것은 이 일반 이론의 특수한 경우였다.</p>
+      </div>
+
+      <h3>2. 예제 — 다항식 공간의 내적</h3>
+      <div class="example-block">
+        <div class="label">예제 (a) — 점 평가(evaluation) 내적</div>
+        <p>서로 다른 실수 $t_0,\ldots,t_n$을 고정하고, $\mathbf{P}_n$의 $p,q$에 대해</p>
+        $$\langle p,q\rangle = p(t_0)q(t_0)+p(t_1)q(t_1)+\cdots+p(t_n)q(t_n)$$
+        <p>로 정의하면 이는 $\mathbf{P}_n$ 위의 내적이다. (각 공리는 유한합의 성질에서 바로 확인된다 — 특히 (d)는 $p\ne0$이 $n+1$개의 서로 다른 점에서 동시에 $0$이 될 수 없다는 사실, 즉 $n$차 이하 다항식은 근이 많아야 $n$개라는 사실에서 나온다.)</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 (b) — $W=\mathbf{P}_2$의 직교기저를 그람-슈미트로 구하기</div>
+        <p>$V=\mathbf{P}_4$에서 $t_0,\ldots,t_4=-2,-1,0,1,2$에서의 평가 내적을 쓴다고 하자. $W=\mathbf{P}_2$는 $V$의 <strong>부분공간</strong>이고, $B=\{1,t,t^2\}$는 $W$의 <strong>기저</strong>이다.</p>
+        <p><strong>$B$가 직교집합인가?</strong> 세 내적을 계산한다:</p>
+        <p class="sol-step">$\langle1,t\rangle=\sum t_i=-2-1+0+1+2=0$</p>
+        <p class="sol-step">$\langle1,t^2\rangle=\sum t_i^2=4+1+0+1+4=10\ne0$</p>
+        <p class="sol-step">$\langle t,t^2\rangle=\sum t_i^3=-8-1+0+1+8=0$</p>
+        <p>$\langle1,t^2\rangle\ne0$이므로 <strong>$B$는 직교집합이 아니다.</strong></p>
+        <p><strong>그람-슈미트로 직교기저 구성:</strong> $\langle1,1\rangle=5$이므로</p>
+        <p class="sol-step">$p_0=1$</p>
+        <p class="sol-step">$p_1=t-\dfrac{\langle t,1\rangle}{\langle1,1\rangle}\cdot1=t-0=t$</p>
+        <p class="sol-step">$p_2=t^2-\dfrac{\langle t^2,1\rangle}{\langle1,1\rangle}\cdot1-\dfrac{\langle t^2,t\rangle}{\langle t,t\rangle}\cdot t=t^2-\dfrac{10}{5}-0=t^2-2$</p>
+        <p>따라서 $W$의 직교기저는 $S=\{p_0,p_1,p_2\}=\{1,\ t,\ t^2-2\}$이다.</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 (c) — 다항식으로 최적근사 구하기</div>
+        <p>위의 직교기저 $S=\{p_0,p_1,p_2\}=\{1,t,t^2-2\}$를 써서, $p(t)=5-\dfrac12t^4$에 대한 $W$ 안에서의 최적근사(Class 12 투영 공식)를 구하라.</p>
+        <p>$t=-2,-1,0,1,2$에서 $p$의 값: $p(-2)=-3,\ p(-1)=4.5,\ p(0)=5,\ p(1)=4.5,\ p(2)=-3$.</p>
+        <p class="sol-step">$\langle p,p_0\rangle=\sum p(t_i)=8$, $\langle p_0,p_0\rangle=5$ &nbsp;$\Rightarrow$&nbsp; 계수 $=8/5$</p>
+        <p class="sol-step">$\langle p,p_1\rangle=\sum p(t_i)t_i=0$ &nbsp;$\Rightarrow$&nbsp; 계수 $=0$</p>
+        <p class="sol-step">$\langle p,p_2\rangle=\sum p(t_i)(t_i^2-2)=-31$, $\langle p_2,p_2\rangle=\sum(t_i^2-2)^2=14$ &nbsp;$\Rightarrow$&nbsp; 계수 $=-31/14$</p>
+        $$\operatorname{proj}_Wp=\frac85\cdot1+0\cdot t-\frac{31}{14}(t^2-2)=\frac{211}{35}-\frac{31}{14}t^2$$
+      </div>
+
+      <h3>3. 예제 — 연속함수 공간의 내적</h3>
+      <div class="example-block">
+        <div class="label">예제 (a) — 적분 내적</div>
+        <p>$C[a,b]$(구간 $[a,b]$에서 연속인 함수들의 공간)에서 $f,g$에 대해</p>
+        $$\langle f,g\rangle=\int_a^b f(t)g(t)\,dt$$
+        <p>로 정의하면 이는 내적이다. (대칭성·선형성은 적분의 선형성에서 바로 나온다. $\langle f,f\rangle=\int_a^bf(t)^2dt\ge0$이고, $f$가 연속이고 $f\not\equiv0$이면 $f^2>0$인 구간이 존재하므로 적분값이 $0$이 될 수 없다 — 즉 $\langle f,f\rangle=0\iff f=0$.)</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 (b) — $C[0,1]$에서 그람-슈미트</div>
+        <p>$V=C[0,1]$, 위 적분 내적을 쓰고, $W=\operatorname{Span}\{p_1,p_2,p_3\}$ ($p_1=1$, $p_2=2t-1$, $p_3=12t^2$)일 때 그람-슈미트로 $W$의 직교기저를 구하라.</p>
+        <p class="sol-step">$q_1=p_1=1$</p>
+        <p class="sol-step">$\langle p_2,q_1\rangle=\int_0^1(2t-1)dt=0$ &nbsp;$\Rightarrow$&nbsp; $q_2=p_2-0=2t-1$ (이미 직교)</p>
+        <p class="sol-step">$\langle p_3,q_1\rangle=\int_0^1 12t^2dt=4$, $\langle q_1,q_1\rangle=1$; &nbsp;$\langle p_3,q_2\rangle=\int_0^112t^2(2t-1)dt=2$, $\langle q_2,q_2\rangle=\int_0^1(2t-1)^2dt=\frac13$</p>
+        <p class="sol-step">$q_3=12t^2-\dfrac41\cdot1-\dfrac{2}{1/3}(2t-1)=12t^2-4-6(2t-1)=12t^2-12t+2$</p>
+        <p>직교기저: $\{1,\ 2t-1,\ 12t^2-12t+2\}$. (이는 구간 $[0,1]$에서의 <strong>르장드르 다항식</strong>의 스칼라배다.)</p>
+      </div>
+
+      <div class="example-block">
+        <div class="label">예제 (c) — 삼각함수의 직교성과 (d) 푸리에 근사</div>
+        <p><strong>(c)</strong> $\{1,\cos t,\cos2t,\ldots,\cos nt,\sin t,\sin2t,\ldots,\sin nt\}$는 $C[0,2\pi]$에서 (적분 내적에 대해) <strong>직교집합</strong>이다. 양의 정수 $m\ne n$에 대해 $\cos mt$와 $\cos nt$가 직교함을 곱-합 공식으로 확인하자:</p>
+        $$\cos mt\cos nt=\frac12[\cos(m-n)t+\cos(m+n)t]$$
+        <p>$m\ne n$이면 $m-n\ne0$이고 $m+n\ne0$이므로, $\cos(kt)$를 $[0,2\pi]$(정수 주기 $k$개)에 걸쳐 적분하면 $0$이 된다. 따라서 $\langle\cos mt,\cos nt\rangle=0$.</p>
+        <p><strong>(d)</strong> 이 직교집합이 생성하는 부분공간 $W$에서, 임의의 $f\in C[0,2\pi]$의 최적근사(Class 12 투영 공식)를 $f$의 <strong>$n$차 푸리에 근사</strong>라 부른다:</p>
+        $$\hat f(t) = \frac{a_0}{2} + \sum_{k=1}^{n}\bigl(a_k\cos kt + b_k\sin kt\bigr), \qquad a_k=\frac{\langle f,\cos kt\rangle}{\pi},\quad b_k=\frac{\langle f,\sin kt\rangle}{\pi}$$
+        <p>($\langle\cos kt,\cos kt\rangle=\langle\sin kt,\sin kt\rangle=\pi$, $\langle1,1\rangle=2\pi$이므로 나오는 계수.)</p>
+        <p><strong>예: $f(t)=t$의 $n$차 푸리에 근사.</strong> 부분적분으로 계산하면 $a_0=2\pi$, 모든 $k\ge1$에 대해 $a_k=0$, $b_k=-\dfrac2k$. 따라서</p>
+        $$\hat f(t) = \pi - 2\sum_{k=1}^{n}\frac{\sin kt}{k}$$
+        <p style="color:#555;">👉 이것이 바로 신호처리에서 말하는 "톱니파(sawtooth wave)의 푸리에 급수"다 — 사인·코사인이라는 직교기저로 임의의 함수를 "좌표 분해"한 것일 뿐, 수학적으로는 Class 11의 직교좌표 공식과 완전히 같다.</p>
+      </div>
+
+      <h3>4. 코시-슈바르츠 부등식 (The Cauchy-Schwarz Inequality)</h3>
+      <div class="thm-block">
+        <div class="label">정리</div>
+        <p>임의의 내적공간 $V$의 $u,v$에 대해,</p>
+        $$|\langle u,v\rangle| \le \|u\|\,\|v\|$$
+        <p><em>증명:</em> $u=0$이면 양변이 $0$이므로 자명하다. $u\ne0$이라 하고, 임의의 스칼라 $t$에 대해 $\langle v-tu,v-tu\rangle\ge0$(공리 (d))이다. 전개하면</p>
+        $$0\le\langle v,v\rangle-2t\langle u,v\rangle+t^2\langle u,u\rangle$$
+        <p>이는 $t$에 대한 이차식이 항상 $0$ 이상이라는 뜻이므로, 판별식이 $0$ 이하여야 한다:</p>
+        $$4\langle u,v\rangle^2-4\langle u,u\rangle\langle v,v\rangle\le0 \;\Longrightarrow\; \langle u,v\rangle^2\le\|u\|^2\|v\|^2$$
+        <p>양변에 제곱근을 취하면 $|\langle u,v\rangle|\le\|u\|\|v\|$. $\square$</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">출처</div>
+        <p>📄 <code>Class#16-inner_product_space_handout.pdf</code> — pp. 1–6 전체</p>
       </div>
 
     </div>
