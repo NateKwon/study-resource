@@ -2468,6 +2468,107 @@
         <p>를 이 근사의 <strong>최소제곱오차</strong>라 한다. (이 값이 바로 Class 12에서 본 "점과 부분공간 사이의 거리" $\operatorname{dist}(b,\operatorname{Col}A)$이다.)</p>
       </div>
 
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #18 · Least-Squares (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body">
+            <p>Find the orthogonal projection of $b$ onto $\operatorname{Col}A$ by finding a least-squares solution of $Ax=b$.</p>
+            $$A=\begin{bmatrix}1&1&0\\1&0&-1\\0&1&1\\-1&1&-1\end{bmatrix},\qquad b=\begin{bmatrix}2\\5\\6\\6\end{bmatrix}$$
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$A^TA$와 $A^Tb$를 계산한 뒤 정규방정식(Class 14)을 풀어 $\hat x$를 구하고, $\hat b=A\hat x$로 투영을 얻는다.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>$A$의 세 열이 <strong>서로 직교</strong>함을 먼저 확인하면($a_1\cdot a_2=0,\ a_1\cdot a_3=0,\ a_2\cdot a_3=0$) 계산이 단순해진다:</p>
+                $$A^TA=\begin{bmatrix}3&0&0\\0&3&0\\0&0&3\end{bmatrix}=3I,\qquad A^Tb=\begin{bmatrix}1\\14\\-5\end{bmatrix}$$
+                <p>$A^TA=3I$는 가역이므로(대각원소가 모두 $0$이 아님) 유일한 최소제곱해가 존재한다:</p>
+                $$\hat x=(A^TA)^{-1}A^Tb=\frac13\begin{bmatrix}1\\14\\-5\end{bmatrix}=\begin{bmatrix}1/3\\14/3\\-5/3\end{bmatrix}$$
+                <p>투영 $\hat b=A\hat x$를 계산하면:</p>
+                $$\hat b=\begin{bmatrix}5\\2\\3\\6\end{bmatrix}$$
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "Ans: $\hat b=(5,2,3,6)$. (You will get $\hat x=(1/3,14/3,-5/3)$ in the calculation.)"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body">
+            <p><strong>True or False.</strong> Justify: For a $4\times5$ matrix $A$ whose rank is $3$, $\operatorname{rank}A^TA=3$.</p>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>왜 $\operatorname{rank}A=\operatorname{rank}A^TA$인가? Class 14의 Claim 1($\operatorname{Nul}A=\operatorname{Nul}(A^TA)$)을 떠올리고, 차원정리(dimension theorem)를 적용하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>True.</strong> Class 14의 Claim 1에 의해 $\operatorname{Nul}A=\operatorname{Nul}(A^TA)$이므로, 두 공간의 차원(nullity)도 같다. $A$는 $4\times5$이므로 열 수는 $5$이고, 차원정리에 의해 $\operatorname{rank}A+\operatorname{nullity}A=5$. $\operatorname{rank}A=3$이므로 $\operatorname{nullity}A=2$, 따라서 $\operatorname{nullity}(A^TA)=2$. $A^TA$는 $5\times5$ 정사각행렬이므로 $\operatorname{rank}(A^TA)=5-\operatorname{nullity}(A^TA)=5-2=3$.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "True (Why rank $A$ = rank $A^TA$?)"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 3</div>
+          <div class="q-body">
+            <p>Let $A=\begin{bmatrix}2&1\\-3&-4\\3&2\end{bmatrix}$, $b=\begin{bmatrix}5\\4\\4\end{bmatrix}$, $u=\begin{bmatrix}4\\-5\end{bmatrix}$, $v=\begin{bmatrix}6\\-5\end{bmatrix}$.</p>
+            <ol type="a">
+              <li>By computing $Au$ and $Av$, show that $\|b-Au\|=\|b-Av\|$.</li>
+              <li>Without computing a least-squares solution directly, explain why neither $u$ nor $v$ is a least-squares solution of $Ax=b$.</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>(b) 만약 $u$(또는 $v$)가 최소제곱해라면, 몇 개의 서로 다른 최소제곱해가 존재하게 되는가? $A$의 두 열이 선형독립인데 그게 왜 모순인가(Class 14의 유일성 정리)?</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(a)</strong> $Au=\begin{bmatrix}2(4)+1(-5)\\-3(4)-4(-5)\\3(4)+2(-5)\end{bmatrix}=\begin{bmatrix}3\\8\\2\end{bmatrix}$, &nbsp;$b-Au=(2,-4,2)$, $\|b-Au\|^2=4+16+4=24$.</p>
+                <p>$Av=\begin{bmatrix}2(6)+1(-5)\\-3(6)-4(-5)\\3(6)+2(-5)\end{bmatrix}=\begin{bmatrix}7\\2\\8\end{bmatrix}$, &nbsp;$b-Av=(-2,2,-4)$, $\|b-Av\|^2=4+4+16=24$.</p>
+                <p>두 값이 같으므로 $\|b-Au\|=\|b-Av\|=\sqrt{24}$.</p>
+                <p><strong>(b)</strong> $A$의 두 열 $(2,-3,3)$과 $(1,-4,2)$는 서로 배수 관계가 아니므로 <strong>선형독립</strong>이다. Class 14의 유일성 정리에 의해 $A^TA$가 가역이고, 따라서 $Ax=b$의 최소제곱해는 <strong>단 하나뿐</strong>이다.</p>
+                <p>만약 $u$가 그 유일한 최소제곱해라면, $u$가 $\|b-Ax\|$를 최소화하는 <strong>유일한</strong> 점이어야 한다. 그런데 $\|b-Av\|=\|b-Au\|$이므로 $v$도 똑같이 그 최솟값을 달성한다 — 즉 $v$도 최소제곱해가 되어버려 "유일하다"는 사실과 모순된다($u\ne v$이므로). $v$가 최소제곱해라고 가정해도 똑같은 모순이 생긴다. 따라서 <strong>$u$도 $v$도 최소제곱해가 아니다.</strong></p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "(a) Show. (b) If not, how many distinct least-squares solutions do you have? Why is that not possible for this $A$?"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 4</div>
+          <div class="q-body">
+            <p>A certain experiment produces the data $(1,7.9),(2,5.4),(3,-0.9)$. Give a linear model that produces a least-squares fit of these points by a function of the form $y=\alpha\cos x+\beta\sin x$.</p>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>미지수가 $\alpha,\beta$뿐이라는 점에 주목하라 — $\cos x,\sin x$ 자체는 $x$값이 주어지면 그냥 상수가 된다. Class 15의 포물선 맞춤과 똑같은 방식으로 $X\beta=y$를 세워라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>각 데이터점 $(x_i,y_i)$에서 $y_i\approx\alpha\cos x_i+\beta\sin x_i$이므로, 미지수 $\beta^*=(\alpha,\beta)^T$에 대한 선형모델 $X\beta^*=y$는</p>
+                $$X=\begin{bmatrix}\cos1&\sin1\\\cos2&\sin2\\\cos3&\sin3\end{bmatrix},\qquad y=\begin{bmatrix}7.9\\5.4\\-0.9\end{bmatrix}$$
+                <p>이 비일관 시스템의 최소제곱해는 정규방정식 $X^TX\beta^*=X^Ty$를 풀면 얻어진다 — Class 15의 직선·포물선 맞춤과 <strong>완전히 같은 구조</strong>다(계수 $\alpha,\beta$에 대해 선형이기 때문).</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "Give $A$ and $b$ and the linear system to find $\alpha$ and $\beta$."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
       <div class="note-block">
         <div class="label">출처</div>
         <p>📄 <code>Class#14-least_squares_handout.pdf</code> — pp. 1–4 전체 (Answer Key 포함)</p>
@@ -2638,9 +2739,72 @@
         <p>양변에 제곱근을 취하면 $|\langle u,v\rangle|\le\|u\|\|v\|$. $\square$</p>
       </div>
 
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #19 · Inner Products (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body">
+            <p>Let $T:V\to\mathbb{R}^n$ be a <strong>one-to-one</strong> linear transformation. For $u$ and $v$ in $V$, define $\langle u,v\rangle=T(u)\cdot T(v)$.</p>
+            <ol type="a">
+              <li>Is $\langle u,v\rangle$ a real number?</li>
+              <li>Show that the definition above is an inner product on $V$.</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>(a) $T(u)$는 어디에 속하는가? (b) 공리 (a)~(c)는 $\mathbb{R}^n$의 표준 내적(점곱)의 성질과 $T$의 선형성에서 바로 나온다. 공리 (d)에서 "$\langle u,u\rangle=0\iff u=0$"을 보일 때, $T$가 <strong>단사(one-to-one)</strong>라는 조건이 정확히 어디서 쓰이는지 생각하라 — 단사 $\iff \ker T=\{0\}$(Class 21, 선형대수 1).</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(a)</strong> <strong>예.</strong> $T(u),T(v)\in\mathbb{R}^n$이므로, 둘의 점곱 $T(u)\cdot T(v)$는 $\mathbb{R}^n$의 표준 내적이고 그 값은 실수이다.</p>
+                <p><strong>(b)</strong> 공리를 하나씩 확인한다:</p>
+                <p class="sol-step">(a) $\langle u,v\rangle=T(u)\cdot T(v)=T(v)\cdot T(u)=\langle v,u\rangle$ ($\mathbb{R}^n$ 점곱의 대칭성).</p>
+                <p class="sol-step">(b) $\langle u+v,w\rangle=T(u+v)\cdot T(w)=(T(u)+T(v))\cdot T(w)=T(u)\cdot T(w)+T(v)\cdot T(w)=\langle u,w\rangle+\langle v,w\rangle$ ($T$의 선형성 + 점곱의 선형성).</p>
+                <p class="sol-step">(c) $\langle cu,v\rangle=T(cu)\cdot T(v)=cT(u)\cdot T(v)=c\langle u,v\rangle$ ($T$의 선형성).</p>
+                <p class="sol-step">(d) $\langle u,u\rangle=T(u)\cdot T(u)=\|T(u)\|^2\ge0$. 등호는 $T(u)=0$일 때만 성립한다. $T$가 <strong>단사</strong>이므로 $\ker T=\{0\}$, 즉 $T(u)=0\iff u=0$. 따라서 $\langle u,u\rangle=0\iff u=0$.</p>
+                <p>네 공리를 모두 만족하므로 $\langle u,v\rangle=T(u)\cdot T(v)$는 $V$ 위의 내적이다.</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "#1(a): Yes. ($T(u)\in$ where?) #1(b): Show that axioms (a) to (d) are satisfied. Recall that a linear transformation is one-to-one if and only if $\ker T=?$"</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body">
+            <p>In $\mathbf{P}_2$, let $t_0=-1,\ t_1=0,\ t_2=1$. Consider the inner product defined in class, i.e., $\langle p,q\rangle=\sum_{i=0}^2 p(t_i)q(t_i)$. Let $p(t)=4+t$ and $q(t)=5-4t^2$.</p>
+            <ol type="a">
+              <li>Compute $\langle p,q\rangle$.</li>
+              <li>Compute $\|p\|$.</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$t=-1,0,1$에서 $p,q$의 값을 각각 구한 뒤 공식에 대입하면 끝이다. $\|p\|=\sqrt{\langle p,p\rangle}$임을 기억하라(Class 16).</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>$p$의 값: $p(-1)=3,\ p(0)=4,\ p(1)=5$. &nbsp; $q$의 값: $q(-1)=1,\ q(0)=5,\ q(1)=1$.</p>
+                <p><strong>(a)</strong></p>
+                $$\langle p,q\rangle=3\cdot1+4\cdot5+5\cdot1=3+20+5=28$$
+                <p><strong>(b)</strong></p>
+                $$\|p\|^2=\langle p,p\rangle=3^2+4^2+5^2=9+16+25=50 \;\Longrightarrow\; \|p\|=\sqrt{50}=5\sqrt2$$
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "#2(a): 28. #2(b): $5\sqrt2$."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
       <div class="note-block">
         <div class="label">출처</div>
-        <p>📄 <code>Class#16-inner_product_space_handout.pdf</code> — pp. 1–6 전체</p>
+        <p>📄 <code>Class#16-inner_product_space_handout.pdf</code> — pp. 1–6 전체 (Answer Key 포함)</p>
       </div>
 
     </div>
