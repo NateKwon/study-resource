@@ -386,8 +386,11 @@
       </div>
 
       <h3>1. 동기 — 미분방정식과 고유값</h3>
-      <p>1계 선형 미분방정식 시스템 $\dfrac{dx(t)}{dt} = Ax(t)$의 해는 행렬 $A$의 고유값(eigenvalue)에 의해 결정된다. 고유값·고유벡터는 이후 대각화, 미분방정식, 안정성 해석에서 핵심적으로 쓰인다.</p>
-      <p style="color:#666;font-size:13px;">(이 방정식이 실제로 어떻게 풀리는지는 Class 7에서, 고유벡터가 부족한 경우까지 포함한 완전한 해법은 Class 8에서 다룬다.)</p>
+      <div class="note-block">
+        <div class="label">동기 — 미분방정식과의 연결</div>
+        <p>1계 선형 미분방정식 시스템 $\dfrac{dx(t)}{dt} = Ax(t)$의 해는 행렬 $A$의 고유값(eigenvalue)에 의해 결정된다. 고유값·고유벡터는 이후 대각화, 미분방정식, 안정성 해석에서 핵심적으로 쓰인다.</p>
+        <p style="color:#666;font-size:13px;">(이 방정식이 실제로 어떻게 풀리는지는 Class 7에서, 고유벡터가 부족한 경우까지 포함한 완전한 해법은 Class 8에서 다룬다.)</p>
+      </div>
 
       <h3>2. 정의 — 고유값과 고유벡터</h3>
       <div class="def-block">
@@ -462,6 +465,11 @@
         <div class="label">정리 — 삼각행렬의 고유값</div>
         <p>$A$가 $n\times n$ <strong>삼각행렬(triangular matrix)</strong>(상삼각/하삼각/대각행렬)이면, $A$의 <strong>대각원소(diagonal entries)</strong>가 바로 $A$의 고유값이다.</p>
         <p><em>이유:</em> $A-\lambda I$도 삼각행렬이므로 $\det(A-\lambda I)=\prod_i(a_{ii}-\lambda)$. 이 값이 0이 되는 $\lambda$는 정확히 대각원소들이다.</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>이 단원은 "주어진 $\lambda$, $x$가 맞는지" <strong>확인</strong>하는 방법까지만 다룬다 — $\det(A-\lambda I)=0$을 만족하는지 보기만 하면 되기 때문이다. 하지만 실제로는 $\lambda$가 무엇인지조차 모르는 상태에서 <strong>모든 고유값을 직접 찾아내야</strong> 하는 경우가 대부분이다. 그 방법(특성방정식)은 Class 2에서 다룬다.</p>
       </div>
 
       <div class="practice-section">
@@ -634,13 +642,21 @@
       <div class="thm-block">
         <div class="label">정리</div>
         <p>실수 $n\times n$ 행렬 $A$의 서로 다른(distinct) 고유값 $\lambda_1,\ldots,\lambda_k$ ($k\le n$)에 각각 대응하는 고유벡터를 $x_1,\ldots,x_k$라 하면, 집합 $\{x_1,\ldots,x_k\}$는 $\mathbb{R}^n$에서 <strong>선형독립(linearly independent)</strong>이다. 즉, <strong>서로 다른 고유값에 대응하는 고유벡터들은 선형독립이다.</strong></p>
-        <p style="margin-top:10px;"><strong>증명 (귀류법)</strong></p>
+      </div>
+
+      <div class="thm-block">
+        <div class="label">증명 (귀류법)</div>
         <p class="sol-step">$\{x_1,\ldots,x_k\}$가 선형종속이라 가정하자. 고유벡터는 $0$이 아니므로, 어떤 최소의 $p$가 존재하여 그 이전 벡터들 $x_1,\ldots,x_p$는 선형독립이지만 $x_{p+1}$은 이들의 일차결합으로 표현된다: $c_1x_1+\cdots+c_px_p=x_{p+1}$ … (∗)</p>
         <p class="sol-step">양변에 $A$를 곱하면 $c_1\lambda_1x_1+\cdots+c_p\lambda_px_p=\lambda_{p+1}x_{p+1}$ … (∗∗)</p>
         <p class="sol-step">(∗)의 양변에 $\lambda_{p+1}$을 곱하면 $c_1\lambda_{p+1}x_1+\cdots+c_p\lambda_{p+1}x_p=\lambda_{p+1}x_{p+1}$</p>
         <p class="sol-step">(∗∗)에서 이 식을 빼면 $c_1(\lambda_1-\lambda_{p+1})x_1+\cdots+c_p(\lambda_p-\lambda_{p+1})x_p=0$</p>
         <p class="sol-step">$x_1,\ldots,x_p$가 선형독립이고 $\lambda_i\ne\lambda_{p+1}$ ($i\le p$, 서로 다른 고유값이므로)이므로 모든 계수 $c_i=0$이어야 한다.</p>
         <p class="sol-step">그러면 (∗)에 의해 $x_{p+1}=0$이 되는데, 이는 고유벡터가 $0$이 될 수 없다는 사실에 모순이다. 따라서 $\{x_1,\ldots,x_k\}$는 선형독립이다. $\blacksquare$</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>특성다항식의 근을 손으로 구하는 것은 $3\times3$만 넘어가도 쉽지 않다 — 예제 1처럼 유리근조차 없을 수 있다. 실전에서는 삼각행렬·대칭행렬 같은 특수 구조(대칭행렬의 경우 Class 18의 스펙트럼 정리)나 수치해법(Class 9의 Power Method)을 활용해 고유값을 근사·구성한다. 이 단원의 마지막 정리(서로 다른 고유값의 고유벡터는 선형독립)는 Class 3 대각화 가능성의 핵심 열쇠다.</p>
       </div>
 
       <div class="practice-section">
