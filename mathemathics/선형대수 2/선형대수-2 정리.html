@@ -1933,6 +1933,11 @@
         <p><em>이유:</em> $\operatorname{Nul}A=\{x:Ax=0\}$은 $x$가 $A$의 모든 행과 직교함을 뜻하므로 $\operatorname{Nul}A=(\operatorname{Row}A)^\perp$. 양변에 직교여공간을 취하면 $(\operatorname{Nul}A)^\perp=\operatorname{Row}A$ (부분공간에 대해 $(W^\perp)^\perp=W$이므로).</p>
       </div>
 
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>이 단원은 "직교란 무엇인가"라는 <strong>정의</strong>만 다뤘다 — 실제로 어떤 벡터가 다른 벡터에 직교하는 성분과 평행한 성분으로 어떻게 <strong>나뉘는지</strong>(직교분해·투영)는 아직 다루지 않았다. $(\operatorname{Nul}A)^\perp=\operatorname{Row}A$라는 사실은 Class 14 최소제곱법에서 정규방정식을 유도하는 핵심 도구로 다시 쓰인다.</p>
+      </div>
+
       <div class="practice-section">
         <div class="practice-label">📝 Practice Problems #13 · $W^\perp$ Intro (영어 원문)</div>
 
@@ -2055,6 +2060,11 @@
         <div class="label">예제 — $\mathbb{R}^3$의 서로 다른 정규직교기저 두 개</div>
         <p>표준기저 $\{e_1,e_2,e_3\}=\left\{\begin{bmatrix}1\\0\\0\end{bmatrix},\begin{bmatrix}0\\1\\0\end{bmatrix},\begin{bmatrix}0\\0\\1\end{bmatrix}\right\}$는 가장 간단한 정규직교기저이다.</p>
         <p>$xy$-평면을 $45°$ 회전시킨 기저 $\left\{\begin{bmatrix}1/\sqrt2\\1/\sqrt2\\0\end{bmatrix},\begin{bmatrix}-1/\sqrt2\\1/\sqrt2\\0\end{bmatrix},\begin{bmatrix}0\\0\\1\end{bmatrix}\right\}$도 정규직교기저이다 (각 벡터의 길이가 $1$이고, 서로 내적하면 $0$임을 쉽게 확인할 수 있다).</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>직교기저는 "좌표를 내적만으로 구할 수 있다"는 혜택을 주지만, <strong>임의의 기저가 저절로 직교기저인 것은 아니다</strong>. 어떤 기저든 직교기저로 바꾸는 방법(그람-슈미트 과정)은 Class 13에서 다룬다. 또한 이 단원의 $1$차원 투영 공식 $a=\frac{y\cdot u}{u\cdot u}u$은 Class 12에서 <strong>임의 차원</strong>의 부분공간으로 확장된다.</p>
       </div>
 
       <div class="practice-section">
@@ -2222,6 +2232,11 @@
         <p>(계산 요령: $z=\frac75(1,0,2)$로 묶으면 $\|z\|=\frac75\sqrt{1+4}=\frac{7\sqrt5}{5}$로 더 빠르다.)</p>
       </div>
 
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>투영 공식 $\hat y=\sum_i\frac{y\cdot u_i}{u_i\cdot u_i}u_i$을 쓰려면 <strong>먼저 직교기저를 손에 쥐고 있어야</strong> 한다 — 임의의 기저로는 쓸 수 없다. 임의의 기저를 직교기저로 바꾸는 방법(그람-슈미트 과정)은 Class 13에서 다룬다. 최적근사정리는 Class 14 최소제곱법의 이론적 근거 그 자체이기도 하다.</p>
+      </div>
+
       <div class="practice-section">
         <div class="practice-label">📝 Practice Problems #15 · Projection (영어 원문)</div>
 
@@ -2352,6 +2367,11 @@
         <p>를 만족하는 계수들이 존재한다 ($r_{ii}<0$이면 $u_i$를 $-u_i$로 바꿔서 $r_{ii}\ge0$으로 만들 수 있다). $r_i=(r_{1i},\ldots,r_{ii},0,\ldots,0)^T$, $R=[r_1\ \cdots\ r_n]$으로 두면 $a_i=Qr_i$이므로</p>
         $$A=[a_1\ \cdots\ a_n]=[Qr_1\ \cdots\ Qr_n]=QR$$
         <p>$R$이 상삼각이고 대각원소 $r_{ii}>0$이므로(만들 때 그렇게 선택) $\det R=r_{11}r_{22}\cdots r_{nn}\ne0$, 즉 <strong>$R$은 가역</strong>이다. $\square$</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>Gram-Schmidt는 수학적으로는 정확하지만, 손계산에서 벡터를 스케일(양의 배수로 조정)하는 것처럼 <strong>수치 계산에서는 반올림 오차가 누적되기 쉬운</strong> 알고리즘이다. 실제 소프트웨어는 변형된 알고리즘(Modified Gram-Schmidt)이나 하우스홀더 변환 등을 쓴다. $QR$ 분해는 Class 14의 최소제곱해를 $\hat x=R^{-1}Q^Tb$로 안정적으로 계산하는 데 바로 쓰인다.</p>
       </div>
 
       <div class="practice-section">
