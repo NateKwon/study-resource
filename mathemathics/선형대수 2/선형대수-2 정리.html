@@ -810,14 +810,21 @@
       <div class="thm-block">
         <div class="label">정리</div>
         <p><strong>닮음 행렬은 같은 특성다항식(고유값)을 갖는다.</strong></p>
-        <p><em>이유:</em> $A=P^{-1}BP$이면 (행렬식의 곱셈 성질과 $\det(P^{-1})\det(P)=1$ 이용)</p>
+      </div>
+
+      <div class="thm-block">
+        <div class="label">증명</div>
+        <p>$A=P^{-1}BP$이면 (행렬식의 곱셈 성질과 $\det(P^{-1})\det(P)=1$ 이용)</p>
         $$\det(A-\lambda I)=\det(P^{-1}BP-\lambda P^{-1}P)$$
         $$=\det\big(P^{-1}(B-\lambda I)P\big)$$
-        $$=\det(P^{-1})\det(B-\lambda I)\det(P)=\det(B-\lambda I)$$
+        $$=\det(P^{-1})\det(B-\lambda I)\det(P)=\det(B-\lambda I) \quad\blacksquare$$
       </div>
 
       <h3>3. 왜 대각행렬인가?</h3>
-      <p>대각행렬(diagonal matrix)은 다루기 가장 쉽다 — 거듭제곱 계산이 쉽고($D^k$는 대각원소를 $k$제곱만 하면 됨), 행렬식·역행렬 계산도 쉽다.</p>
+      <div class="note-block">
+        <div class="label">왜 대각행렬인가</div>
+        <p>대각행렬(diagonal matrix)은 다루기 가장 쉽다 — 거듭제곱 계산이 쉽고($D^k$는 대각원소를 $k$제곱만 하면 됨), 행렬식·역행렬 계산도 쉽다.</p>
+      </div>
       <div class="note-block">
         <div class="label">핵심 질문</div>
         <p>어떤 행렬이 대각행렬에 <strong>닮음(similar)</strong>인가? 즉, 어떤 가역행렬 $P$에 대해 $A = PDP^{-1}$ ($D$는 대각행렬)을 만족하는 $A$를 찾고 싶다.</p>
@@ -855,6 +862,11 @@
         <p><strong>4단계 — 기하 중복도의 합 $=1+2=3=n$이므로 대각화 가능.</strong></p>
         $$P=\begin{bmatrix}-2&-1&-4\\-1&1&0\\1&0&1\end{bmatrix}, \quad D=\begin{bmatrix}1&0&0\\0&3&0\\0&0&3\end{bmatrix}, \quad A=PDP^{-1}$$
         <p style="color:#888;font-style:italic;margin-top:10px;">$P$의 열 순서와 고유벡터의 스칼라배는 답에 영향을 주지 않는다 — $D$의 대각원소 순서만 $P$의 열 순서와 일치하면 된다.</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>$P$는 <strong>유일하지 않다</strong> — 고유벡터의 스칼라배, 그리고 (기하 중복도가 $2$ 이상인 고유공간에서) 기저를 고르는 방법이 여러 가지이기 때문이다. 또한 이 단원의 판정 조건은 고유값이 실수인 경우를 전제로 한다 — 고유값이 복소수인 행렬은 실수 범위에서 대각화가 불가능할 수 있으며, 그 경우의 대안은 Class 5에서 다룬다.</p>
       </div>
 
       <div class="practice-section">
@@ -973,7 +985,10 @@
       </div>
 
       <h3>1. 선형변환의 행렬표현 (Matrix Representation)</h3>
-      <p>유한차원 벡터공간 $V$(기저 $B$, $\dim V=n$)와 $W$(기저 $C$, $\dim W=m$) 사이의 선형변환 $T:V\to W$가 있을 때, 좌표벡터를 이용하면 $T$를 하나의 행렬로 나타낼 수 있다.</p>
+      <div class="note-block">
+        <div class="label">개요</div>
+        <p>유한차원 벡터공간 $V$(기저 $B$, $\dim V=n$)와 $W$(기저 $C$, $\dim W=m$) 사이의 선형변환 $T:V\to W$가 있을 때, 좌표벡터를 이용하면 $T$를 하나의 행렬로 나타낼 수 있다.</p>
+      </div>
       <div class="def-block">
         <div class="label">정의 (Matrix for $T$ relative to $B$ and $C$)</div>
         <p>임의의 $x\in V$에 대해 좌표벡터 $[x]_B \in \mathbb{R}^n$이고, $T(x)\in W$의 좌표벡터 $[T(x)]_C \in \mathbb{R}^m$이다.</p>
@@ -1031,6 +1046,11 @@
         <p>특성방정식: $\lambda^2-4\lambda+4=(\lambda-2)^2=0 \Rightarrow \lambda=2$ (대수적 중복도 $2$).</p>
         <p>$(A-2I)=\begin{bmatrix}-1&1\\-1&1\end{bmatrix}$은 rank $1$ (두 행이 같음) $\Rightarrow$ 기하 중복도 $=1 < 2=$ 대수적 중복도.</p>
         <p>고유공간이 $1$차원뿐이라 선형독립인 고유벡터를 $2$개 모을 수 없다. 따라서 <strong>$[T]_B$를 대각행렬로 만드는 기저 $B$는 존재하지 않는다</strong> ($A$는 대각화 불가능).</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>$[T]_B$는 "행렬 $A$ 자체"가 아니라 "기저 $B$에서 바라본 $A$의 모습"이다 — 같은 선형변환도 기저를 바꾸면 전혀 다른 행렬로 보인다. 표준기저를 쓰면 $[T]_B=A$가 되는 것도 이 관점에서는 특수한 경우일 뿐이다. 모든 행렬이 고유벡터 기저로 대각화되는 것은 아니지만(예제 4-(b)), Class 18에서 보듯 <strong>대칭행렬</strong>은 예외 없이 (심지어 정규직교기저로) 대각화된다.</p>
       </div>
 
       <div class="practice-section">
@@ -1114,7 +1134,10 @@
       </div>
 
       <h3>1. 동기 — 실수 행렬의 복소 고유값</h3>
-      <p>실수 행렬(real matrix)이라도 특성방정식의 근이 복소수일 수 있다. 이 경우 고유벡터도 $\mathbb{C}^n$(복소벡터공간)에서 찾아야 한다.</p>
+      <div class="note-block">
+        <div class="label">동기</div>
+        <p>실수 행렬(real matrix)이라도 특성방정식의 근이 복소수일 수 있다. 이 경우 고유벡터도 $\mathbb{C}^n$(복소벡터공간)에서 찾아야 한다.</p>
+      </div>
 
       <div class="example-block">
         <div class="label">예제 1 — $\mathbb{C}^2$에서 고유값·고유벡터 구하기</div>
@@ -1127,7 +1150,10 @@
       </div>
 
       <h3>2. 회전과 확대·축소(Rotation-Scaling)</h3>
-      <p>$x\mapsto Ax$가 회전(rotation)과 확대·축소(scaling)의 합성으로 나타나는 특수한 경우가 있다.</p>
+      <div class="note-block">
+        <div class="label">개요</div>
+        <p>$x\mapsto Ax$가 회전(rotation)과 확대·축소(scaling)의 합성으로 나타나는 특수한 경우가 있다.</p>
+      </div>
       <div class="example-block">
         <div class="label">예제 2 — 회전각과 배율 구하기</div>
         <p>$A=\begin{bmatrix}\sqrt3&3\\-3&\sqrt3\end{bmatrix}$에 대해, 회전각 $\theta$ ($-\pi<\theta\le\pi$)와 배율(scale factor) $\gamma$를 구하라.</p>
@@ -1153,7 +1179,10 @@
         <div class="label">정리</div>
         <p>실수 $2\times2$ 행렬 $A$가 복소 고유값 $\lambda=a-bi$ ($b\ne0$)와 대응하는 고유벡터 $v\in\mathbb{C}^2$를 가지면,</p>
         $$A = PCP^{-1}, \quad P=[\operatorname{Re}v \ \ \operatorname{Im}v], \quad C=\begin{bmatrix}a&-b\\b&a\end{bmatrix}$$
-        <p style="margin-top:10px;"><strong>증명 스케치</strong></p>
+      </div>
+
+      <div class="thm-block">
+        <div class="label">증명 스케치</div>
         <p class="sol-step">(1) $A$는 실수 행렬이므로 임의의 $x\in\mathbb{C}^2$에 대해 $\operatorname{Re}(Ax)=A(\operatorname{Re}x)$, $\operatorname{Im}(Ax)=A(\operatorname{Im}x)$.</p>
         <p class="sol-step">(2) $Av=\lambda v=(a-bi)(\operatorname{Re}v+i\operatorname{Im}v)$의 실수부·허수부를 (1)과 비교하면 $A(\operatorname{Re}v)=a\operatorname{Re}v+b\operatorname{Im}v$, $A(\operatorname{Im}v)=-b\operatorname{Re}v+a\operatorname{Im}v$.</p>
         <p class="sol-step">(3) $P=[\operatorname{Re}v\ \operatorname{Im}v]$의 두 열에 대한 (2)의 관계식을 행렬 곱으로 다시 쓰면 정확히 $AP=PC$이고, $\operatorname{Re}v,\operatorname{Im}v$가 선형독립(따라서 $P$가 가역)이므로 $A=PCP^{-1}$. $\blacksquare$</p>
@@ -1165,6 +1194,11 @@
         <p>$3$행·$3$열이 $(0,0,2)$뿐이므로, $A$는 $xy$-평면에 작용하는 $2\times2$ 블록 $\begin{bmatrix}1&-1\\1&1\end{bmatrix}$과 $z$축에 작용하는 스칼라 $2$로 분리된다.</p>
         <p>$xy$-블록은 $a=1,b=1$ 형태이므로 고유값 $1\pm i$, $\gamma=\sqrt2$, $\theta=\arg(1+i)=\pi/4$. $z$축 방향은 고유값 $2$ (고유벡터 $(0,0,1)$).</p>
         <p>따라서 $A$의 고유값은 $\{1+i,\ 1-i,\ 2\}$이며, 기하학적으로 $A$는 <strong>$xy$-평면에서 $45°$ 회전 후 $\sqrt2$배 확대</strong>하는 동시에 <strong>$z$축 방향으로는 $2$배 확대</strong>하는 변환이다.</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>$P=[\operatorname{Re}v\ \operatorname{Im}v]$는 <strong>유일하지 않다</strong> — 고유벡터 $v$ 자체가 (0이 아닌 복소수배만큼) 자유롭게 선택되기 때문이다(Practice #8 문제 2). Class 3의 대각화 $A=PDP^{-1}$와 이 단원의 $A=PCP^{-1}$는 사실 <strong>같은 아이디어의 두 버전</strong>이다 — 실수 고유값이면 $D$(순수 배율), 복소 고유값이면 $C$(회전+배율)가 가장 단순한 표현이 된다.</p>
       </div>
 
       <div class="practice-section">
