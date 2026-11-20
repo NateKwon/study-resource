@@ -3154,6 +3154,73 @@
       </div>
 
       <div class="note-block">
+        <div class="label">참고</div>
+        <p>"대각화 가능"·"직교 대각화 가능"·"직교 상삼각화 가능"은 <strong>서로 다른 강도의 조건</strong>이다 — 일반 행렬은 셋 중 아무것도 보장되지 않을 수 있고, 서로 다른 고유값만 있으면 대각화는 되지만 직교 대각화는 안 될 수 있다(Practice #21 문제 2). 반면 <strong>실고유값을 가진 모든 행렬</strong>은 슈어 정리(Class 17)에 의해 직교 상삼각화는 항상 가능하고, <strong>대칭행렬</strong>만이 그중 가장 강한 직교 대각화까지 보장받는다.</p>
+      </div>
+
+      <div class="practice-section">
+        <div class="practice-label">📝 Practice Problems #21 · Cauchy-Schwarz &amp; Schur (영어 원문)</div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 1</div>
+          <div class="q-body">
+            <p>Given $a\ge0$ and $b\ge0$, let $u=(\sqrt a,\sqrt b)$ and $v=(\sqrt b,\sqrt a)$. Prove that</p>
+            $$\sqrt{ab} \le \frac{a+b}{2}$$
+            <p>(이는 두 음이 아닌 수의 <strong>기하평균과 산술평균을 비교</strong>하는 유명한 부등식(AM-GM)이다.)</p>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>$u,v$는 $\mathbb{R}^2$의 벡터다. $\mathbb{R}^2$의 표준 내적에 대한 코시-슈바르츠 부등식(Class 16)을 적용하라.</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p>$u\cdot v=\sqrt a\sqrt b+\sqrt b\sqrt a=2\sqrt{ab}$이고, $\|u\|=\sqrt{a+b}=\|v\|$ (둘 다 성분이 $a,b$의 순서만 바뀐 것이므로 길이는 같다).</p>
+                <p>코시-슈바르츠 부등식(Class 16) $|u\cdot v|\le\|u\|\|v\|$에 대입하면:</p>
+                $$2\sqrt{ab} = |u\cdot v| \le \|u\|\|v\| = \sqrt{a+b}\cdot\sqrt{a+b} = a+b$$
+                <p>양변을 $2$로 나누면 $\sqrt{ab}\le\dfrac{a+b}{2}$. $\square$</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "Note that $u$ and $v$ are vectors in $\mathbb{R}^2$. Use the usual inner product on $\mathbb{R}^2$ with Cauchy-Schwarz Inequality."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="practice-item">
+          <div class="q-num">Problem 2</div>
+          <div class="q-body">
+            <p>Let $A=\begin{bmatrix}1&1\\8&3\end{bmatrix}$, which has two distinct real eigenvalues $\lambda_1=-1$ and $\lambda_2=5$.</p>
+            <p><strong>True or False.</strong> Justify.</p>
+            <ol type="a">
+              <li>$A$ has two linearly independent eigenvectors.</li>
+              <li>$A$ is <em>diagonalizable</em>. (즉 $P^{-1}AP=D$를 만족하는 가역행렬 $P$가 존재한다.)</li>
+              <li>직교집합 $\{x,y\}$를 각각 $\lambda_1,\lambda_2$에 대응하는 고유벡터로 구성할 수 있다.</li>
+              <li>$A$ is <em>orthogonally diagonalizable</em>. (즉 $U^TAU=D$를 만족하는 직교행렬 $U$가 존재한다.)</li>
+              <li>$A$ is <em>orthogonally triangularizable</em>. (즉 $U^TAU=R$을 만족하는 직교행렬 $U$와 상삼각행렬 $R$이 존재한다.)</li>
+            </ol>
+          </div>
+          <div class="toggle-row">
+            <details class="hint-detail">
+              <summary>💡 힌트 보기</summary>
+              <div class="toggle-body"><p>(a) Class 2의 정리를 떠올려라. (b) 2x2 행렬이 선형독립인 고유벡터 2개를 가지면? (c) 각 고유공간의 기저를 직접 구해 내적을 확인하라. (d) 직교 대각화 가능 $\iff$ 대칭(Class 18). (e) 슈어 정리(Class 17)의 적용 조건이 무엇이었는가?</p></div>
+            </details>
+            <details class="sol-detail">
+              <summary>✅ 완전한 해설 보기 (원문 Answer 포함)</summary>
+              <div class="toggle-body">
+                <p><strong>(a) True.</strong> $\lambda_1\ne\lambda_2$ (서로 다른 고유값)이므로, Class 2의 정리에 의해 그 고유벡터들은 자동으로 선형독립이다.</p>
+                <p><strong>(b) True.</strong> $2\times2$ 행렬이 선형독립인 고유벡터 $2$개(=$n$개)를 가지면 기하 중복도의 합이 $n=2$이므로 Class 3의 대각화 가능 조건을 만족한다.</p>
+                <p><strong>(c) False.</strong> $\operatorname{Nul}(A+I)=\operatorname{Span}\{(1,-2)\}$, $\operatorname{Nul}(A-5I)=\operatorname{Span}\{(1,4)\}$ (직접 계산). $(1,-2)\cdot(1,4)=1-8=-7\ne0$ — <strong>직교하지 않는다.</strong> 각 고유공간이 $1$차원뿐이므로 고유벡터는 전부 이 기저벡터의 스칼라배이고, 스칼라를 곱해도 내적은 $-7$에 그 두 스칼라의 곱만큼 비례해서 남을 뿐 결코 $0$이 될 수 없다. 따라서 <strong>어떤 $0$이 아닌 $x\in\operatorname{Nul}(A+I)$, $y\in\operatorname{Nul}(A-5I)$를 골라도 직교집합을 만들 수 없다.</strong></p>
+                <p><strong>(d) False.</strong> $U^TAU=D$ (즉 $AU=UD$)라면 $U$의 두 열이 서로 다른 고유값 $\lambda_1,\lambda_2$에 대응하는 <strong>직교(정규직교)</strong> 고유벡터여야 하는데, (c)에서 그런 직교 고유벡터 쌍이 존재하지 않음을 보였다. 따라서 $A$는 직교 대각화 불가능하다. (다른 설명: $A$가 대칭이 아니므로 — $a_{12}=1\ne8=a_{21}$ — Class 18의 "직교 대각화 가능 $\iff$ 대칭" 정리에 의해서도 바로 False.)</p>
+                <p><strong>(e) True.</strong> $A$는 <strong>실수 고유값</strong>($-1,5$)을 가진 실행렬이므로, 슈어 정리(Class 17)에 의해 항상 직교행렬 $U$와 상삼각행렬 $R$(대각원소가 고유값)을 만족하는 $U^TAU=R$이 존재한다. (슈어 정리는 대칭성을 요구하지 않는다 — 그래서 (d)는 거짓이어도 (e)는 참일 수 있다.)</p>
+                <p style="color:#888;font-style:italic;margin-top:10px;">원문(Answer): "(a) T. (b) T. (c) F — Note that Nul(A+I)=Span{(1,-2)}, Nul(A-5I)=Span{(1,4)}... (d) F. If $U^TAU=D$, this means $A$ has two [orthogonal] eigenvectors... (e) T. $A$ is a real matrix with [real] eigenvalues, so, by [Schur]'s Theorem."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note-block">
         <div class="label">출처</div>
         <p>📄 <code>Class#18_spectral_theorem_handout.pdf</code> — pp. 1–4 전체</p>
       </div>
