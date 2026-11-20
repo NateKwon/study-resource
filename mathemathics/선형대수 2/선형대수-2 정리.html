@@ -2576,6 +2576,11 @@
         <p>를 이 근사의 <strong>최소제곱오차</strong>라 한다. (이 값이 바로 Class 12에서 본 "점과 부분공간 사이의 거리" $\operatorname{dist}(b,\operatorname{Col}A)$이다.)</p>
       </div>
 
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>이 단원의 모든 이론은 "최적근사정리"(Class 12) <strong>하나</strong>에서 파생된다 — $\hat b$를 투영으로 바꿔치기한다는 아이디어 자체가 전부다. 다음 Class 15는 이 틀을 그대로 가져와 실제 데이터에 직선·곡선을 맞추는 데 적용한다.</p>
+      </div>
+
       <div class="practice-section">
         <div class="practice-label">📝 Practice Problems #18 · Least-Squares (영어 원문)</div>
 
@@ -2729,6 +2734,11 @@
       </div>
 
       <div class="note-block">
+        <div class="label">참고</div>
+        <p>같은 발상은 $\cos x,\sin x$ 같은 비다항식 기저함수에도 그대로 적용된다(Practice #18 문제 4) — <strong>계수가 선형으로만 들어가면</strong> 무엇이든 $X^TX\beta=X^Ty$로 환원된다. 이 원리는 Class 16의 내적공간 관점에서 "함수를 직교기저로 분해하는" 푸리에 근사로 다시 일반화된다.</p>
+      </div>
+
+      <div class="note-block">
         <div class="label">출처</div>
         <p>📄 <code>Class#15-applications_handout.pdf</code> — pp. 1–2 전체 (Answer Key 포함)</p>
       </div>
@@ -2845,6 +2855,11 @@
         <p>이는 $t$에 대한 이차식이 항상 $0$ 이상이라는 뜻이므로, 판별식이 $0$ 이하여야 한다:</p>
         $$4\langle u,v\rangle^2-4\langle u,u\rangle\langle v,v\rangle\le0 \;\Longrightarrow\; \langle u,v\rangle^2\le\|u\|^2\|v\|^2$$
         <p>양변에 제곱근을 취하면 $|\langle u,v\rangle|\le\|u\|\|v\|$. $\square$</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>내적을 "공리 네 개를 만족하는 함수"로 추상화하면, $\mathbb{R}^n$에서 증명한 모든 정리(직교분해, 최적근사, 그람-슈미트, 최소제곱)가 <strong>증명을 다시 쓸 필요 없이</strong> 다항식 공간·함수 공간에도 그대로 적용된다 — 이것이 선형대수를 공리적으로 다루는 이유다. 또한 대칭행렬의 스펙트럼 정리(Class 18)는 이 추상적 관점에서 가장 자연스럽게 이해된다.</p>
       </div>
 
       <div class="practice-section">
