@@ -1365,7 +1365,10 @@
       </div>
 
       <h3>1. 예제 — 인구 이동 모형 (도시 ↔ 교외)</h3>
-      <p>매년 도시 인구의 $4\%$가 교외로, 교외 인구의 $3\%$가 도시로 이동한다. 2026년 도시 인구 $600{,}000$명, 교외 인구 $400{,}000$명일 때, $x_0=(600000,\,400000)$으로 두고 차분방정식을 세워 2028년(2년 후) 인구를 추정하라.</p>
+      <div class="note-block">
+        <div class="label">문제 설정</div>
+        <p>매년 도시 인구의 $4\%$가 교외로, 교외 인구의 $3\%$가 도시로 이동한다. 2026년 도시 인구 $600{,}000$명, 교외 인구 $400{,}000$명일 때, $x_0=(600000,\,400000)$으로 두고 차분방정식을 세워 2028년(2년 후) 인구를 추정하라.</p>
+      </div>
       <div class="example-block">
         <div class="label">풀이</div>
         <p>도시 인구 중 $96\%$는 남고 교외에서 $3\%$가 유입: $x^{\text{city}}_{k+1}=0.96x^{\text{city}}_k+0.03x^{\text{suburb}}_k$. 교외는 도시에서 $4\%$ 유입, 자신의 $97\%$ 유지: $x^{\text{suburb}}_{k+1}=0.04x^{\text{city}}_k+0.97x^{\text{suburb}}_k$.</p>
@@ -1376,7 +1379,10 @@
       </div>
 
       <h3>2. 예제 — 포식자-피식자 모형 (올빼미-쥐)</h3>
-      <p>$O_k$: $k$개월째 올빼미 수, $R_k$: $k$개월째 쥐 수(천 마리 단위). (1) 쥐가 없으면 올빼미는 매달 절반만 생존. (2) 올빼미가 없으면 쥐는 매달 $10\%$ 증가. (3) 쥐가 풍부하면 올빼미는 $0.4R_k$만큼 증가. (4) 매달 $0.104O_k$마리(천 마리 단위)의 쥐가 잡아먹힘.</p>
+      <div class="note-block">
+        <div class="label">문제 설정</div>
+        <p>$O_k$: $k$개월째 올빼미 수, $R_k$: $k$개월째 쥐 수(천 마리 단위). (1) 쥐가 없으면 올빼미는 매달 절반만 생존. (2) 올빼미가 없으면 쥐는 매달 $10\%$ 증가. (3) 쥐가 풍부하면 올빼미는 $0.4R_k$만큼 증가. (4) 매달 $0.104O_k$마리(천 마리 단위)의 쥐가 잡아먹힘.</p>
+      </div>
       <div class="def-block">
         <div class="label">차분방정식</div>
         $$\begin{bmatrix}O_{k+1}\\R_{k+1}\end{bmatrix} = \begin{bmatrix}0.5&0.4\\-0.104&1.1\end{bmatrix}\begin{bmatrix}O_k\\R_k\end{bmatrix}$$
@@ -1402,6 +1408,11 @@
         <p>$x_0=(-2,-5,3)$는 정확히 $v_3$ 자신이다! 따라서 일반적인 세 항의 결합이 필요 없이, $c_1=c_2=0,\ c_3=1$인 자명한(그리고 유일한) 경우이다:</p>
         $$x_k = \left(\frac{3}{5}\right)^k v_3 = \left(\frac{3}{5}\right)^k\begin{bmatrix}-2\\-5\\3\end{bmatrix}$$
         <p>$|3/5|<1$이므로 $k\to\infty$일 때 $x_k \to (0,0,0)$ — 즉 원점으로 수렴(소멸)한다.</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>이 단원의 "지배적 고유값" 논증은 서로 다른 <strong>실수</strong> 고유값을 전제로 한다. 복소 고유값이 나오면(Class 5) 해는 진동(회전)하는 성분을 포함하게 되고, 고유벡터가 부족해 대각화가 안 되는 경우(기하 중복도 &lt; 대수 중복도)는 추가적인 처리가 필요하다 — 이 미분방정식 버전의 완전한 해법은 Class 7~8에서 다룬다.</p>
       </div>
 
       <div class="practice-section">
@@ -1507,9 +1518,12 @@
       </div>
 
       <h3>1. 선형 미분방정식 시스템</h3>
-      <p>$n$개의 함수 $x_1(t),\ldots,x_n(t)$로 이루어진 선형 시스템을 생각하자:</p>
-      $$\frac{dx}{dt}=Ax, \quad x(t)=\begin{bmatrix}x_1(t)\\\vdots\\x_n(t)\end{bmatrix}, \quad A=\begin{bmatrix}a_{11}&\cdots&a_{1n}\\\vdots&&\vdots\\a_{n1}&\cdots&a_{nn}\end{bmatrix} \quad (*)$$
-      <p>목표: $(*)$의 <strong>$n$개의 선형독립인 해</strong> $x^1(t),\ldots,x^n(t)$를 찾는 것이다.</p>
+      <div class="def-block">
+        <div class="label">시스템의 형태</div>
+        <p>$n$개의 함수 $x_1(t),\ldots,x_n(t)$로 이루어진 선형 시스템을 생각하자:</p>
+        $$\frac{dx}{dt}=Ax, \quad x(t)=\begin{bmatrix}x_1(t)\\\vdots\\x_n(t)\end{bmatrix}, \quad A=\begin{bmatrix}a_{11}&\cdots&a_{1n}\\\vdots&&\vdots\\a_{n1}&\cdots&a_{nn}\end{bmatrix} \quad (*)$$
+        <p>목표: $(*)$의 <strong>$n$개의 선형독립인 해</strong> $x^1(t),\ldots,x^n(t)$를 찾는 것이다.</p>
+      </div>
 
       <h3>2. 고유벡터를 이용한 해 구성</h3>
       <div class="thm-block">
@@ -1530,6 +1544,11 @@
         <p class="sol-step">$\lambda=-2$: $v^3=(-1,1,1)$ — $Av^3=(2,-2,-2)=-2\cdot v^3$ ✓</p>
         <p>따라서 일반해는</p>
         $$x(t) = c_1e^{t}\begin{bmatrix}-1\\4\\1\end{bmatrix} + c_2e^{3t}\begin{bmatrix}1\\2\\1\end{bmatrix} + c_3e^{-2t}\begin{bmatrix}-1\\1\\1\end{bmatrix}$$
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>이 방법은 $A$가 <strong>$n$개의 선형독립인 고유벡터</strong>를 가질 때만 바로 통한다 — 즉 Class 3의 대각화 가능 조건과 정확히 같다. 고유벡터가 부족한 경우(기하 중복도 &lt; 대수 중복도)의 완전한 해법은 Class 8에서 행렬지수함수로 다룬다. 또한 고유값이 복소수(Class 5)라면 $e^{\lambda t}v$도 복소함수가 되는데, 실수부·허수부를 따로 떼어내면 진동하는 실수 해를 얻을 수 있다.</p>
       </div>
 
       <div class="note-block">
@@ -1557,7 +1576,10 @@
       </div>
 
       <h3>1. 동기 — 고유벡터가 부족할 때</h3>
-      <p>특성다항식이 $n$개의 서로 다른 근을 갖지 않으면, $A$는 $n$개의 선형독립인 고유벡터를 갖지 못할 수 있다. 이 경우 Class 7의 방법($x^j(t)=e^{\lambda_j t}v^j$)만으로는 $\dot x=Ax$의 해를 $n$개 모두 구할 수 없다.</p>
+      <div class="note-block">
+        <div class="label">동기</div>
+        <p>특성다항식이 $n$개의 서로 다른 근을 갖지 않으면, $A$는 $n$개의 선형독립인 고유벡터를 갖지 못할 수 있다. 이 경우 Class 7의 방법($x^j(t)=e^{\lambda_j t}v^j$)만으로는 $\dot x=Ax$의 해를 $n$개 모두 구할 수 없다.</p>
+      </div>
       <div class="example-block">
         <div class="label">예제 — 고유벡터가 부족한 경우</div>
         <p>$A=\begin{bmatrix}1&1&0\\0&1&0\\0&0&2\end{bmatrix}$는 서로 다른 고유값 $\lambda_1=1,\ \lambda_2=2$만 갖는다 ($\lambda=1$의 대수적 중복도 $2$).</p>
@@ -1613,6 +1635,11 @@
         $$e^{At}v = e^t\big(v+(A-I)tv\big) = e^t\begin{bmatrix}t\\1\\0\end{bmatrix}$$
         <p>검산: $x(t)=(te^t,e^t,0)$이면 $\dot x=(e^t+te^t,\,e^t,\,0)$이고 $Ax=(te^t+e^t,\,e^t,\,0)$ — 일치한다. ✓</p>
         <p>따라서 일반해는 $x(t)=c_1e^t\begin{bmatrix}1\\0\\0\end{bmatrix}+c_2e^t\begin{bmatrix}t\\1\\0\end{bmatrix}+c_3e^{2t}\begin{bmatrix}0\\0\\1\end{bmatrix}$ — 드디어 $3$개의 선형독립인 해를 얻는다.</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>일반화된 고유벡터에서 나오는 $t,\ t^2/2!$ 같은 다항식 인자는 "순수한 지수 성장/감쇠"(Class 6~7)에 <strong>다항식으로 변조된 성장</strong>이 더해진다는 뜻이다 — 다중근이 있는 미분방정식의 공명(resonance) 현상과 같은 발상이다. 한편 $A$가 <strong>대칭행렬</strong>이면(Class 18) 항상 $n$개의 정규직교 고유벡터를 가지므로, 이 알고리즘 자체가 애초에 필요 없다.</p>
       </div>
 
       <div class="practice-section">
@@ -1742,7 +1769,10 @@
       </div>
 
       <h3>1. 이론적 배경</h3>
-      <p>$A$가 실수 $n\times n$ 대각화 가능 행렬이고, 선형독립인 고유벡터 $\{v_1,\ldots,v_n\}$(기저)와 대응 고유값이 $|\lambda_1|>|\lambda_2|\ge|\lambda_3|\ge\cdots$를 만족한다고 하자 (즉 $\lambda_1$이 유일한 <strong>지배적 고유값(dominant eigenvalue)</strong>).</p>
+      <div class="note-block">
+        <div class="label">가정</div>
+        <p>$A$가 실수 $n\times n$ 대각화 가능 행렬이고, 선형독립인 고유벡터 $\{v_1,\ldots,v_n\}$(기저)와 대응 고유값이 $|\lambda_1|>|\lambda_2|\ge|\lambda_3|\ge\cdots$를 만족한다고 하자 (즉 $\lambda_1$이 유일한 <strong>지배적 고유값(dominant eigenvalue)</strong>).</p>
+      </div>
       <div class="thm-block">
         <div class="label">핵심 관찰</div>
         <p>임의의 $x=c_1v_1+\cdots+c_nv_n\in\mathbb{R}^n$에 대해</p>
@@ -1772,6 +1802,11 @@
         <p class="sol-step">$k=2$: $\hat x_2=Ax_1=(5.00,7.25,9.50)$, $\max(\hat x_2)=9.5$, $x_2=(0.5263,0.7632,1.0000)$.</p>
         <p class="sol-step">$k=3$: $\hat x_3=Ax_2=(5.0526,7.3421,9.6316)$, $\max(\hat x_3)=9.6316$, $x_3=(0.5246,0.7623,1.0000)$.</p>
         <p>$\max(\hat x_k)$가 $12\to9.5\to9.6316\to\cdots$로 $\lambda_1=9.6235$에, $x_k$가 $v_1$의 정규화된 방향 $(0.3851,0.5595,0.7339)/0.7339\approx(0.5247,0.7624,1.0000)$에 빠르게 수렴함을 볼 수 있다.</p>
+      </div>
+
+      <div class="note-block">
+        <div class="label">참고</div>
+        <p>거듭제곱법은 <strong>지배적 고유값이 유일할 때만</strong>(즉 $|\lambda_1|>|\lambda_2|$로 엄격한 부등식일 때만) 수렴이 보장된다 — $|\lambda_1|=|\lambda_2|$이면(예: 켤레 복소 고유값 한 쌍이 가장 크거나, $\lambda_1=-\lambda_2$인 경우) $A^kx$가 한 방향에 정착하지 못하고 진동할 수 있다. 가장 작은 고유값을 구하고 싶다면 $A^{-1}$에 이 방법을 적용하면 된다(역거듭제곱법).</p>
       </div>
 
       <div class="practice-section">
